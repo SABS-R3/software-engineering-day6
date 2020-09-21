@@ -1,15 +1,11 @@
 # Intro
 
-Today we are going to be looking at the topic of testing software. This covers basic 
-testsing to check the correctness of a function or class, the tools that you can use to 
-test Python code in particular, and how you integrate the testing process into an 
-on-going software project that might involve just yourself, or a team of developers.
-
-This lecture will cover the motivation behind testing, why it is important to test your 
-code, and will introduce the different levels of testing that you might want to 
-consider, from unit testing to end-to-end testing. It will also cover some of the 
-terminology and concepts that you find in software testing, as some terms, such as 
-fixtures and mocking, are quite non-obvious when you first come across them.
+Today we are going to be looking at the topic of testing software. This lecture will 
+cover the motivation behind testing, why it is important to test your code, and will 
+introduce the different levels of testing that you might want to consider, from unit 
+testing to end-to-end testing. It will also cover some of the terminology and concepts 
+that you find in software testing, as some terms, such as fixtures and mocking, are 
+quite non-obvious when you first come across them.
 
 # Software testing in academia and industry
 
@@ -18,7 +14,7 @@ first writing your code you will often, at the very least, put in little checks 
 print, assert or if statements to ensure that a particular variable has the value you 
 want in it, or that the array is the correct size. In academic code this is typically 
 taken further and if, for example, the code will generate results as part of a 
-publication there are usually tests speific to the particular scientific field (e.g. 
+publication there are usually tests speific to that particular scientific field (e.g. 
 convergence tests for numerical modelling) that are implemented and run to ensure the 
 correct behaviour for the software. 
 
@@ -40,8 +36,9 @@ written a number of papers using the results of this code, at least four of whic
 listed on the published GitHub repository. These papers were, it is assumed, thoughorly 
 peer reviewed, and there is absolutly no indication that the results produced by the 
 covid-sim software were incorrect. On the contrairy, Professor Ferguson has had a long 
-career in mathematical biology modelling and I am confident that he and his team 
-rigerously verified the outputs of the software before each and every publication. 
+career in mathematical biology modelling and it seems reasonable to assume that he and 
+his team rigerously verified the outputs of the software before each and every 
+publication. 
 
 
 https://github.com/mrc-ide/covid-sim/issues/181
@@ -186,8 +183,15 @@ between two separate classes, or that you are testing a higher-level component t
 multiple lower-level components to achieve its task. 
 
 The top level, with the least number of tests, is the system or end-to-end testing. This 
-is where you are testing all the components of your library/application together. So if 
-you were writing a
+is where you are testing all the components of your library/application together. These 
+types of test are closely releated to your original goals for writing the software in 
+the first place. For example if you were developing the software to solve a modelling 
+problem, you could write a test to solve a related modelling problem with an analytical 
+solution. It is tempting to solely focus on this level for your testing, because it is 
+most closely related to the goals of the sofware, but if you ever want confidence that 
+the individual components of your software work correctly in a different context, or if 
+you wish to ever re-use any of the software that you write, then it is essential to also 
+work at the lower levels of the pyramid.
 
 Level of test	Area covered by test
 Unit testing	smallest logical block of work (often < 10 lines of code)
@@ -196,30 +200,63 @@ System/End-to-end testing	all components together / whole program
 
 # Some useful testing vocabulary
 
-fixture: input data to a test
-component: a minimal software item (class, function) to be tested
-expected result: the output that should be obtained
-actual result: the output that is obtained
-coverage: proportion of all possible paths in the code that the tests take
-Branch coverage: branches give rise to an exponentially growing number of possible paths 
-through your code, how many of these are tested?
-if energy > 0:
-    ! Do this 
-else:
-    ! Do that
-Is there a test for both energy > 0 and energy <= 0?
-continuous integration: the process of integrating new software into a code repository. 
-Of pimary importance in CI is the automated running of all or a subset of the test 
-suite, as well as other checks to verify the quality of the new code
-stubbing and mocking: very handy for unit tests. Stubs and mocks are stand-ins for real 
-methods or classes so that you can test one class/method *in isolation*
+There are a lot of terminology associated with software testing, here are a few of the 
+more common terms you might come across:
 
+Component: This is a minimal software item, for example a class method, a function, or 
+even a certain behaviour of a function or class, to be tested. It should represent a 
+small amount of code (on the order of 10 lines of code)
+
+Fixture: A class or function needs either a dataset to process,  or a certain 
+environment to run in, which must be setup before the test can run. This is known as a 
+test fixture. 
+
+Coverage: Proportion of all possible lines of code that your whole test-suite executes. 
+This value is often used as a metric to ensure that the tests "cover" a sufficient 
+amount of the codebase. This sufficient threshold can vary from project to project, but 
+is typically 90-99%.
+
+Decision/Branch/Edge coverage: There are many definitions of coverage, and the one given 
+previously is the most commonly used because it is relativly easy to satisfy. Truely 
+exhaustive testing of your code would need to test all the possible combination of 
+control flow paths through your program. For example, if you program consisted of 3 
+sequential if statements you would need to test all 8 possible routes through the 
+program. This is generally unfeasable to do for any practical codebase, so is rarely 
+used.
+
+Continuous Integration, or CI, is the process of integrating new software into a code 
+repository. Of pimary importance in CI is the automated running of all or a subset of 
+the test suite, as well as other checks to verify the quality of the new code. This 
+ensures that every change to the code is validated against the test suite and other 
+metrics, and blocked from being added unless all the checks are satisfied.
+
+Stubbing and Mocking: The important feature of unit testing is that you test each 
+component in isolation. This can be difficult to do, especially if your component 
+depends on other components, or on some external environment, to operate. For example, 
+if you have a class that needs to download a file from a given url. Stubs and mocks are 
+stand-ins for real methods or classes so that you can test one component in isolution, 
+and in an environment that you can reliably control. There are many mocking libraries 
+for different languages, for example the 
+[`unittest.mock`](https://docs.python.org/3/library/unittest.mock.html) library for 
+Python.
+
+Test-Driven Development: This is a style of software development where the test for a 
+given component is written *before* the component itself is written. Once the tests are 
+in place, the developer works on writing the component, and once the tests pass the work 
+is complete. 
 
 
 # Not a panacea
-Trying to improve the quality of software by doing more testing is like trying to lose weight by weighting yourself more often.
 
-- Steve McConnell
-Testing won't corrrect a buggy code
-Testing will tell you were the bugs are...
-... if the test cases cover the bugs
+Finally, it is worth noting that software testing is not the final solution to software 
+quality and reliability. Steve McConnell, author of Code Complete, has this to say about 
+testing:
+
+"Trying to improve the quality of software by doing more testing is like trying to lose 
+weight by weighing yourself more often."
+
+It is easy to get caught up in reaching 100% code coverage, at the expense of stoping to 
+think about things like the quality and design of the code itself, wether the tests will 
+cover all the important situations that the code must operate in, and whether the tests 
+are approprate for the particular goals of the project. 
+
