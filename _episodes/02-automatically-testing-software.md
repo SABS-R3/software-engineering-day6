@@ -51,7 +51,31 @@ For the purposes of this course, we'll focus on unit tests. But the principles a
 
 ## An example dataset and application
 
-We going to use an example dataset that was actually used in the novice Software Carpentry materials. It's based on a clinical trial of inflammation in patients who have been given a new treatment for arthritis. There are a number of these data sets in the `data` directory, and are each stored in comma-separated values (CSV) format: each row holds information for a single patient, and the columns represent successive days.
+We going to use an example dataset that was taken from the [Software Carpentry 
+materials](https://swcarpentry.github.io/python-novice-inflammation/). It's based on a 
+clinical trial of inflammation in patients who have been given a new treatment for 
+arthritis. 
+
+First clone and install the repository:
+
+```bash
+$ git clone https://github.com/SABS-R3/2020-software-engineering-day6-inflammation.git
+$ cd 2020-software-engineering-day6-inflammation
+$ python3 -m venv env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+```
+
+Then, since we will be editing the code, we will create and checkout a new branch called 
+`develop`:
+
+```bash
+$ git checkout -b develop
+```
+
+There are a number of these data sets in the `data` directory, and are each stored in 
+comma-separated values (CSV) format: each row holds information for a single patient, 
+and the columns represent successive days.
 
 Let's take a quick look now. Start the Python interpreter on the command line, in the repository root `swc-intermediate-template` directory:
 

@@ -115,11 +115,11 @@ your components, each of which should be sufficiently independent so that you ca
 it in isolation. If a component is hard to test, its not properly designed.
 (https://cppcast.com/testing-oleg-rabaev/).
 
-The next level can be called component, integration, or even interaction testing, where 
-the aim is to write tests that verify that multiple different components work together 
-correctly. This could mean that you are testing the communication patterns between two 
-separate classes, or that you are testing a higher-level component that uses multiple 
-lower-level components to achieve its task. 
+The next level can be called functional, component, integration, or even interaction 
+testing, where the aim is to write tests that verify that multiple different components 
+work together correctly. This could mean that you are testing the communication patterns 
+between two separate classes, or that you are testing a higher-level component that uses 
+multiple lower-level components to achieve its task. 
 
 The top level, with the least number of tests, is the system or end-to-end testing. This 
 is where you are testing all the components of your library/application together. These 
