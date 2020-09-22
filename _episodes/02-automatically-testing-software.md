@@ -58,13 +58,15 @@ arthritis.
 
 First clone and install the repository:
 
-```bash
-$ git clone https://github.com/SABS-R3/2020-software-engineering-day6-inflammation.git
-$ cd 2020-software-engineering-day6-inflammation
+```
+$ git clone https://github.com/SABS-R3/2020-software-engineering-day6-inflammation.git 
+inflammation
+$ cd inflammation
 $ python3 -m venv env
 $ source env/bin/activate
 $ pip install -r requirements.txt
 ```
+{: .language-bash}
 
 Then, since we will be editing the code, we will create and checkout a new branch called 
 `develop`:
@@ -72,12 +74,14 @@ Then, since we will be editing the code, we will create and checkout a new branc
 ```bash
 $ git checkout -b develop
 ```
+{: .language-bash}
 
 There are a number of these data sets in the `data` directory, and are each stored in 
 comma-separated values (CSV) format: each row holds information for a single patient, 
 and the columns represent successive days.
 
-Let's take a quick look now. Start the Python interpreter on the command line, in the repository root `swc-intermediate-template` directory:
+Let's take a quick look now. Start the Python interpreter on the command line, in the 
+repository root `inflammation` directory:
 
 ~~~
 $ python
@@ -210,7 +214,11 @@ Each of these test functions, in a general sense, are called **test cases** - th
 
 > ## What about the comments that refer to Yapf?
 >
-> You'll also notice the peculiar `# yapf: disable` comments. You may remember we looked into coding style in the last lesson, and Yapf is a command-line tool that reformats your code according to a given coding style. These *directives* inform Yapf that we don't wish to have this line reformatted, just to maintain clarity. We'll be looking into using Yapf later.
+> You'll also notice the peculiar `# yapf: disable` comments. You may remember we looked 
+> into coding style in a previous lesson, and Yapf is a command-line tool that reformats 
+> your code according to a given coding style. These *directives* inform Yapf that we 
+> don't wish to have this line reformatted, just to maintain clarity. We'll be looking 
+> into using Yapf later.
 >
 {: .callout}
 
@@ -286,7 +294,7 @@ We should see included with the other installed packages:
 
 ~~~
 ...
-patient-analysis 1.0    /Users/user/swc-intermediate-template
+patient-analysis 1.0    /Users/user/inflammation
 ...
 ~~~
 {: .output}
@@ -502,7 +510,10 @@ $ cat requirements.txt
 ~~~
 {: .language-bash}
 
-Now if you look at `requirement.txt` you'll see `pytest-cov`, you'll notice it has a line indicating our `swc-intermediate-template` package is installed in edit mode, along with a GitHub repository URL to locate it. Before committing it to GitHub, we should remove this line, since we only need it for development. Do that now, and once done:
+Now if you look at `requirement.txt` you'll see `pytest-cov`, you'll notice it has a 
+line indicating our `inflammation` package is installed in edit mode, along with a 
+GitHub repository URL to locate it. Before committing it to GitHub, we should remove 
+this line, since we only need it for development. Do that now, and once done:
 
 ~~~
 $ git add requirements.txt

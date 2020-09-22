@@ -1,6 +1,6 @@
 ---
 title: "Diagnosing Issues and Improving Robustness"
-teaching: 25
+teaching: 30
 exercises: 10
 questions:
 - "Once we know our program has errors, how can we identify where they are?"
