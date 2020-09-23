@@ -1,7 +1,7 @@
 ---
 title: "Mocking for Unit Testing"
-teaching: 30
-exercises: 10
+teaching: 20
+exercises: 20
 questions:
 - "How can we test components in isolation that depend on an external environment or 
   other components?"
@@ -281,6 +281,7 @@ def test_build_default_params(mock_get):
         }
       )
 ~~~
+{: .language-python}
 
 # Testing functions that call other functions
 
