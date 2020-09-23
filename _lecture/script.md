@@ -7,16 +7,38 @@ testing to end-to-end testing. It will also cover some of the terminology and co
 that you find in software testing, as some terms, such as fixtures and mocking, are 
 quite non-obvious when you first come across them.
 
+# Software testing in academia
+
+Software testing is a natural part of the software development lifecycle, while you are 
+first writing your code you will often, at the very least, put in little checks such as 
+print, assert or if statements to ensure that a particular variable has the value you 
+want in it, or that the array is the correct size. In academic code this is typically 
+taken further and if, for example, the code will generate results as part of a 
+publication you will add systems-level tests that are specific to that particular field 
+(e.g. convergence tests for numerical modelling) in order to demonstrate correct 
+behaviour for your software. 
+
+However, it is often the case in academia that this is as far as software testing goes. 
+The paper is written, the code might be forgotton, or it might be continued to be 
+developed as part of another publication, or as part of the software toolkit for that 
+particular research group. But the tests that were written, both the print statements, 
+or the more involved convergence studies, are typically not considered part of the 
+software and are either removed, or alternativly, forgotten for long enough that they 
+quickly become out of date with the main codebase. 
+
+The goals of the lesson today is to show you how to write automated tests in such a way 
+that they can demonstrate correctness at both a systems-level and individual 
+component-level, that can be maintained and there be useful over the entire lifecycle of 
+your software, to publication and beyond.
+
 # Why we test software
 
 Here are a few high level reasons for why you should test your code:
 
 The first is obviously "correctness", that your code does what you intend it to do. Note 
 that this does not mean that the code is bug-free, but it does mean that you have 
-written sufficiently comprehensive tests so that you have minimise the chances of 
-meaningful bugs in your code (i.e. bugs that will significantly change the results), and 
-that you have done so in a way that the tests can be performed automatically, giving 
-you, and anyone else, confidence that your code is working from one day to the next.
+written sufficiently comprehensive tests to satisfy yourself, and everyone else, that 
+your code is doing what you expect it to do from one day to the next.
 
 Another advantage of writing tests is that they can serve as a low-level specification 
 or documentation of how to use the code that you have written. Each test will setup the 
@@ -25,20 +47,21 @@ function, and then verify that the output is correct, effectivly providing a sma
 contained example of how to use your code.
 
 Writing tests also tends to be more time-efficient in the longer term. How many times 
-have you sprinkled a bunch of `print` statements throughout your code to debug a bit of 
-code. Then, you then fix the bug and delete the `print` statements. A week later another 
-bug appears and once again, you put in a whole bunch of print statements to try to track 
-down where exactly the new bug is occuring. A good testing suite will tell you 
-immediately where a bug might be occuring by simply looking at the tests that have 
-failed. And it will tell you where a bug is **not** occuring by looking at the passing 
-tests.
+have you worked hard to track down a bug in your code, adding print statements or 
+breakpoints all throughout your code to track down and finally fixing the problem. Then, 
+a week later another bug appears and once again, you spend hours tracking through your 
+code, adding print statements and breakpoints again to try to find it. A good test suite 
+will assist you in this process, telling you in what area you should be looking and what 
+exactly is failing. It will also tell you where a bug is **not** occuring by looking at 
+the tests that have passed.
 
-Teamwork and large codebases also benifit from having a good test suite. Each person on 
-the team will never have a perfect knowledge of the entire project. Even the code you 
-have personally written will probably fade from your memory over time. It is very likely 
-that a minor change you make in a particular component  will have follow-on effects on 
-other components. Having a comprehensive test suite means that it will pick up these 
-effects and follow-on bugs without you having to be aware of them.
+Teamwork and large codebases also benifit a lot from having a good test suite. Each 
+person on the team will never have a perfect knowledge of the entire project. Even the 
+code you have personally written will probably fade from your memory over time. It is 
+very likely that a minor change you make in a particular component  will have follow-on 
+effects throughout your software, often in unexpected places. Having a comprehensive 
+test suite means that it will pick up these effects and identify follow-on bugs without 
+you having to be aware of them.
 
 Finally, and most importantly, testing gives you relaxation and peace of mind. Having a 
 comprehensive test suite means you can always check that your software works correctly, 
@@ -80,89 +103,77 @@ component of your code in isolation, where a component is a minimal software ite
 as a function or a class, or a specific behaviour of a function or class. The majority 
 of your tests should be unit tests, and this has important implications on how you write 
 your components, each of which should be sufficiently independent so that you can test 
-it in isolation. If a component is hard to test, its not properly designed.
-(https://cppcast.com/testing-oleg-rabaev/).
+each in isolation. If a component is hard to test, its probably not properly designed.
 
-The next level can be called functional, component, integration, or even interaction 
-testing, where the aim is to write tests that verify that multiple different components 
-work together correctly. This could mean that you are testing the communication patterns 
-between two separate classes, or that you are testing a higher-level component that uses 
-multiple lower-level components to achieve its task. 
+The next level can be called either functional, component, integration, or even 
+interaction testing, where the aim is to write tests that verify that multiple different 
+components work together correctly. This could mean that you are testing the 
+communication patterns between two separate classes, or that you are testing a 
+higher-level component that uses multiple lower-level components to achieve its task. 
 
 The top level, with the least number of tests, is the system or end-to-end testing. This 
 is where you are testing all the components of your library/application together. These 
 types of test are closely releated to your original goals for writing the software in 
-the first place. It is tempting to focus soely on this level for your testing because 
-this is the part of your code that the world "sees",  but should you wish to ever re-use 
-any of the software that you have writen, or wish to continue editing and improving the 
-individual components of your software, then it is essential to also work at the lower 
-levels of the pyramid.
+the first place. It is tempting to focus soely on this level because this is the part of 
+your code that the world "sees", but should you wish to ever re-use any of the software 
+that you have writen, or wish to continue editing and improving the individual 
+components of your software, then it is essential that you also work at the lower levels 
+of this pyramid.
 
-The different levels of the pyramid are in practice not distinct, and the lines between 
-them are often blurred. Its not important that each test that you write is classified 
-into a "unit test" or and "integration test", the important thing to take away from this 
+The different levels shown here are in practice not distinct, and the lines between them 
+are often blurred. Its not important that each test that you write is classified into a 
+"unit test" or and "integration test", the important thing to take away from this 
 diagram is that you should be testing your code at all these levels, not only at the 
 system level or only at the unit testing level.
 
 # Some useful testing vocabulary
 
-There are a lot of terminology associated with software testing, here are a few of the 
-more common that your might come across:
+There are a lot of terminology associated with software testing which might be 
+unfamiliar at first. Here I'll try and cover a few of the most common terms that you 
+might come across:
 
 Component: This is a minimal software item, for example a class method, a function, or 
 even a certain behaviour of a function or class, to be tested. It should represent a 
 small amount of code (on the order of 10 lines of code)
 
-Fixture: A class or function needs either a dataset to process,  or a certain 
-environment to run in, which must be setup before the test can run. This is known as a 
-test fixture. 
+Fixture: A class or function needs either a dataset to process, or a certain environment 
+to run in, which must be setup before the test can run. This is known as a test fixture. 
 
-Stubbing and Mocking: The important feature of unit testing is that you test each 
+Stubbing and Mocking: The most important feature of unit testing is that you test each 
 component in isolation. This can be difficult to do, especially if your component 
-depends on other components, or on some external environment, to operate. For example, 
-if you have a class that needs to download a file from a given url. Stubs and mocks are 
-stand-ins for real methods or classes so that you can test one component in isolution, 
-and in an environment that you can reliably control. There are many mocking libraries 
-for different languages, for example the 
-[`unittest.mock`](https://docs.python.org/3/library/unittest.mock.html) library for 
-Python.
+depends on other components, or on some external environment. For example, you might 
+have a function that needs to download a file as part of its normal operation. Stubs and 
+mocks are very userful because they can act as replacements for real methods or classes, 
+alleviating one of the main challenges in writing unit tests.
 
-Coverage: Proportion of all possible lines of code that your whole test-suite executes. 
-This value is often used as a metric to ensure that the tests "cover" a sufficient 
-amount of the codebase. This sufficient threshold can vary from project to project, but 
-is typically 90-99%.
-
-Decision/Branch/Edge coverage: There are many definitions of coverage, and the one given 
-previously is the most commonly used because it is relativly easy to satisfy. Truely 
-exhaustive testing of your code would need to test all the possible combination of 
-control flow paths through your program. For example, if you program consisted of 3 
-sequential if statements you would need to test all 8 possible routes through the 
-program. This is generally unfeasable to do for any practical codebase, so is rarely 
-used.
+Coverage: This is often defined as the percentage of all possible lines of code that 
+your test-suite executes. This value is often used as a metric to ensure that the tests 
+"cover" a sufficient amount of the codebase. This "sufficient" threshold can vary from 
+project to project, but is typically 80-99%.
 
 Continuous Integration, or CI, is the process of integrating new software into a code 
-repository. Of pimary importance in CI is the automated running of all or a subset of 
+repository. Of primary importance in CI is the automated running of all or a subset of 
 the test suite, as well as other checks to verify the quality of the new code. This 
 ensures that every change to the code is validated against the test suite and other 
-metrics, and blocked from being added unless all the checks are satisfied.
+metrics, and typically blocked from being added unless all the checks are satisfied.
 
 Test-Driven Development: This is a style of software development where the test for a 
 given component is written *before* the component itself is written. Once the tests are 
 in place, the developer works on writing the component, and once the tests pass the work 
-is complete. 
-
+is complete. In practice, I often find it is useful to write some tests initially in 
+order to verify the basic functionality of what I'm writing. I then tend to fill in the 
+test behind me to make sure I've crossed all the t's and dotted the i's. 
 
 # Not a panacea
 
 Finally, it is worth noting that software testing is not the final solution to software 
-quality and reliability. Steve McConnell, author of Code Complete, has this to say about 
-testing:
+quality and reliability.
 
-"Trying to improve the quality of software by doing more testing is like trying to lose 
-weight by weighing yourself more often."
-
-It is easy to get caught up in reaching 100% code coverage, at the expense of stoping to 
-think about things like the quality and design of the code itself, wether the tests will 
-cover all the important situations that the code must operate in, and whether the tests 
-are approprate for the particular goals of the project. 
+It is very easy to get caught up in reaching 100% code coverage, at the expense of 
+stoping to think about things like the quality and design of the code itself, wether the 
+tests will cover all the important situations that the code must operate in, and whether 
+the tests are approprate for the particular goals of your project. Remember that tests 
+must be maintained as well as the rest of your code, and you don't want to be spending 
+so much time writing and re-writing your tests, such that it eliminates the advantages 
+of writing tests in the first place.
 
