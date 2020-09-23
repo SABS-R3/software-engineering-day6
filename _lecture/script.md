@@ -7,54 +7,22 @@ testing to end-to-end testing. It will also cover some of the terminology and co
 that you find in software testing, as some terms, such as fixtures and mocking, are 
 quite non-obvious when you first come across them.
 
-# Software testing in academia and industry
-
-Software testing is a natural part of the software development lifecycle, while you are 
-first writing your code you will often, at the very least, put in little checks such as 
-print, assert or if statements to ensure that a particular variable has the value you 
-want in it, or that the array is the correct size. In academic code this is typically 
-taken further and if, for example, the code will generate results as part of a 
-publication there are usually tests speific to that particular scientific field (e.g. 
-convergence tests for numerical modelling) that are implemented and run to ensure the 
-correct behaviour for the software. 
-
-However, it is often the case in academia that this is as far as software testing goes. 
-The paper is written, the code might be forgotton, or it might be continued to be 
-developed as part of another publication, or as part of the software for that particular 
-research group. But the tests that were written, both the very small print statements, 
-or the more involved convergence studies, are typically not considered part of the 
-software and are either removed, or forgotten for long enough that they quickly become 
-out of date with the main codebase. 
-
-This focus on publication time motivates the key difference between software testing in 
-both academia and industry, with testing in industry focussed on automated testing of 
-individual software components and the interaction between them, whereas the focus in 
-academia is on manual, labour intensive demonstration of system-level correctness at 
-publication time. Unfortunately, while the academic strategy works well for generating 
-outputs for publication, it often results in software that is unlikely to work in any 
-other context. It is also a collosal waste of time for those that developed the software 
-in the first place. Testing is a complex and laborious task, and a useful rule of thumb 
-is that you should have about as much testing code as you have actual functional code. 
-However, in academia the work that goes into testing is effectvly thrown away soon after 
-publication, leaving you with a complex, untested codebase that quickly becomes 
-unmaintainable over time.
-
 # Why we test software
 
-Here are a few high level reasons as to why you should test your code:
+Here are a few high level reasons for why you should test your code:
 
-The first and most obvious reason is "correctness", that your code does what you intend 
-it to do. Note that this does not mean that the code is bug-free, but it does mean that 
-you have written sufficiently comprehensive tests so that you have minimise the chances 
-of meaningful bugs in your code (i.e. bugs that will significantly change the results), 
-and that you have done so in a way that the tests can be performed automatically, giving 
-you, and anyone else, confidence that your code is working one day to the next.
+The first is obviously "correctness", that your code does what you intend it to do. Note 
+that this does not mean that the code is bug-free, but it does mean that you have 
+written sufficiently comprehensive tests so that you have minimise the chances of 
+meaningful bugs in your code (i.e. bugs that will significantly change the results), and 
+that you have done so in a way that the tests can be performed automatically, giving 
+you, and anyone else, confidence that your code is working from one day to the next.
 
-Another advantage of writing tests is that they can serve as a very low-level 
-specification or documentation of how to use your code. Each test will setup the 
+Another advantage of writing tests is that they can serve as a low-level specification 
+or documentation of how to use the code that you have written. Each test will setup the 
 environment to use the particular function or method being tested, it will call the 
 function, and then verify that the output is correct, effectivly providing a small self 
-contained example of how to use the code.
+contained example of how to use your code.
 
 Writing tests also tends to be more time-efficient in the longer term. How many times 
 have you sprinkled a bunch of `print` statements throughout your code to debug a bit of 
@@ -66,11 +34,11 @@ failed. And it will tell you where a bug is **not** occuring by looking at the p
 tests.
 
 Teamwork and large codebases also benifit from having a good test suite. Each person on 
-the team will never have a perfect knowledge of the entire codebase. Even the code you 
+the team will never have a perfect knowledge of the entire project. Even the code you 
 have personally written will probably fade from your memory over time. It is very likely 
-that a minor change you make in a component A will have follow-on effects on the other 
-components B, C and D of the software, and a tests suite that tests all these different 
-components together will pick up these effects without you having to be aware of them.
+that a minor change you make in a particular component  will have follow-on effects on 
+other components. Having a comprehensive test suite means that it will pick up these 
+effects and follow-on bugs without you having to be aware of them.
 
 Finally, and most importantly, testing gives you relaxation and peace of mind. Having a 
 comprehensive test suite means you can always check that your software works correctly, 
