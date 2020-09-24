@@ -1,6 +1,6 @@
 ---
 title: "Mocking for Unit Testing"
-teaching: 20
+teaching: 25
 exercises: 20
 questions:
 - "How can we test components in isolation that depend on an external environment or 
