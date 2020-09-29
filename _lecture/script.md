@@ -1,11 +1,11 @@
 # Intro
 
-Today we are going to be looking at the topic of testing software. This lecture will 
-cover the motivation behind testing, why it is important to test your code, and will 
-introduce the different levels of testing that you might want to consider, from unit 
-testing to end-to-end testing. It will also cover some of the terminology and concepts 
-that you find in software testing, as some terms, such as fixtures and mocking, are 
-quite non-obvious when you first come across them.
+Hello everybody, today we are going to be looking at the topic of testing software. This 
+lecture will cover the motivation behind testing, why it is important to test your code, 
+and will introduce the different levels of testing that you might want to consider, from 
+unit testing to end-to-end testing. It will also cover some of the terminology and 
+concepts that you find in software testing, as some terms, such as fixtures and mocking, 
+are quite non-obvious when you first come across them.
 
 # Software testing in academia
 
@@ -176,4 +176,13 @@ the tests are approprate for the particular goals of your project. Remember that
 must be maintained as well as the rest of your code, and you don't want to be spending 
 so much time writing and re-writing your tests, such that it eliminates the advantages 
 of writing tests in the first place.
+
+# The end
+
+
+Ok, so this should have given you some understanding of why you should be testing your 
+code, the different sorts of tests you should be thinking of writing and some basic 
+terminology. After this lecture you should start going through the online material, 
+which will start you off with actually writing some of your own unit tests within an 
+example Python project, using a commonly used testing framework called PyTest.
 
