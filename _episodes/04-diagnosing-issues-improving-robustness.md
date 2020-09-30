@@ -153,10 +153,34 @@ nice green tick next to the test in the VSCode IDE.
 
 ## Corner or Edge Cases
 
+The test case that we have currently written for `patient_normalise` is parameterised 
+with a fairly standard `data` array. However, when writing your test cases, it is 
+important to consider parameterising them by unusual or extream values, in order to test 
+all the edge or corner cases that your code could be exposed to in practice. Generally 
+speaking, it is at these extream cases that you will find your code failing, so it 
+benificial to test them beforehand.
 
+What is considered an "edge case" for any given component depends on what that component 
+is meant to do. In the case of `patient_normalise` the goal of the function is to 
+normalise a numeric array of numbers. For numerical values the extream cases could be 
+zeros, very large or small values, not-a-number (NaN), or infinity values. Since we are 
+specifically considering an *array* of values, an extram case could be that all the 
+numbers of the array are equal.
 
-FIXME: importance of corner/edge cases. Externalising your cognition/understanding about 
-your code into tests. Insufficiency of our current tests. Add 0 and 1 tests:
+For all the given edge cases you might come up with, you should also consider their 
+likelihood of occurance, it is often too much effort to exhaustivly test a given 
+function, so you should priorities edge cases that are likely to happen in practice. For 
+our `patient_normalise` function, the most common edge cases would be the occurance of 
+zeros, and the case where all the values of the array are the same. 
+
+When you are considering edge cases to test for, try also to think about what might 
+break your code. For `patient_normalise` we can see that there is a division by the 
+maximum inflammation value for each patient, so this will clearly break if we are 
+dividing by zero here, resulting in NaN values in the normalised array. 
+
+With all this in mind, lets add a few edge cases to our parametrisation of 
+`test_patient_normalise`. We will add two extra tests, corresponding to an input array 
+of all 0, and an input array of all 1.
 
 ~~~
 @pytest.mark.parametrize(
@@ -169,47 +193,259 @@ your code into tests. Insufficiency of our current tests. Add 0 and 1 tests:
 ~~~
 {: .language-python}
 
-FIXME: 0's fail due to nan's (division by zero). How do we deal with this?
+Running the tests not results in the following assertion error, due to the division by 
+zero as we predicted.
 
 ~~~
-        ([[0, 0, 0], [0, 0, 0], [0, 0, 0]], [[0, 0, 0], [0, 0, 0], [0, 0, 0]]),
+E           AssertionError:
+E           Arrays are not almost equal to 2 decimals
+E
+E           x and y nan location mismatch:
+E            x: array([[0, 0, 0],
+E                  [0, 0, 0],
+E                  [0, 0, 0]])
+E            y: array([[nan, nan, nan],
+E                  [nan, nan, nan],
+E                  [nan, nan, nan]])
+
+env/lib/python3.6/site-packages/numpy/testing/_private/utils.py:740: AssertionError
 ~~~
-{: .language-python}
+{: .output}
+
+Helpfully, you will also notice that Numpy also provides a run-time warning for the 
+divide by zero, reproduced below
+
+~~~
+  RuntimeWarning: invalid value encountered in true_divide
+    return data / max[:, np.newaxis]
+~~~
+{: .output}
+
+How can we fix this. Luckily there is a Numpy function that is useful here, 
+[`np.isnan()`](https://numpy.org/doc/stable/reference/generated/numpy.isnan.html), which 
+we can use to replace all the NaN's with our desired result, which is 0. We can also 
+silence the run-time warning using 
+[`np.errstate`](https://numpy.org/doc/stable/reference/generated/numpy.errstate.html). 
 
 > ## Exploring tests for edge cases
 >
-> Think of some more suitable edge cases to test our `patient_normalise()` function and add them to the parametrised tests.
+> Fix the failing `test_patient_normalise` test, and think of some more suitable edge 
+> cases to test our `patient_normalise()` function and add them to the parametrised 
+> tests.
+>
+> > ## Possible Solution
+> > ~~~
+> > ...
+> >
+> > def patient_normalise(data):
+> >     """
+> >     Normalise patient data between 0 and 1 of a 2D inflammation data array.
+> > 
+> >     Any NaN values are ignored, and normalised to 0
+> > 
+> >     Any negative values are clipped to 0
+> >     """
+> >     max = np.nanmax(data, axis=1)
+> >     with np.errstate(invalid='ignore', divide='ignore'):
+> >         normalised = data / max[:, np.newaxis]
+> >     normalised[np.isnan(normalised)] = 0
+> >     normalised[normalised < 0] = 0
+> >     return normalised
+> > 
+> > ...
+> >
+> > @pytest.mark.parametrize(
+> >     "test, expected",
+> >     [
+> >         (
+> >             [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+> >             [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+> >         ),
+> >         (
+> >             [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+> >             [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+> >         ),
+> >         (
+> >             [[float('nan'), 1, 1], [1, 1, 1], [1, 1, 1]],
+> >             [[0, 1, 1], [1, 1, 1], [1, 1, 1]],
+> >         ),
+> >         (
+> >             [[1, 2, 3], [4, 5, float('nan')], [7, 8, 9]],
+> >             [[0.33, 0.66, 1], [0.8, 1, 0], [0.77, 0.88, 1]],
+> >         ),
+> >         (
+> >             [[-1, 2, 3], [4, 5, 6], [7, 8, 9]],
+> >             [[0, 0.66, 1], [0.66, 0.83, 1], [0.77, 0.88, 1]],
+> >         ),
+> >         (
+> >             [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+> >             [[0.33, 0.66, 1], [0.66, 0.83, 1], [0.77, 0.88, 1]],
+> >         )
+> >     ])
+> > def test_patient_normalise(test, expected):
+> >     """Test normalisation works for arrays of one and positive integers."""
+> >     from inflammation.models import patient_normalise
+> >     npt.assert_almost_equal(np.array(expected), patient_normalise(np.array(test)), decimal=2)
+> > ...
+> > ~~~
+> > {: .language-python}
+> >
+> > You could also test, and handle, the case of a whole row of NaNs...
+> {: .solution}
+>
+{: .challenge}
+
+
+## Defensive programming to avoid potential errors
+
+In the previous section, we have made a few design choices for our `patient_normalise` 
+function. The first was that we are implicitly converting any NaN and negative values to 
+0, the second is that normalising a constant 0 array of inflammation will result in an 
+identical array of 0's. The third is that we don't want to warn the user in any of these 
+situations. This could be handled differently, we might decide that we don't want to 
+silently make these changes to the data, but instead to explicitly check that the input 
+data satisfies a given set of assumptions (e.g. no negative values), and raise an error 
+if this is not the case. Then we can proceed with the normalisation, confident that our 
+normalisation function will work correctly.
+
+Checking valid input to a function via preconditions is one of the simplest forms of 
+*defensive programming*. These preconditions are checked at the beginning of the 
+function to make sure that all assumpations are satisfied. These assumptions are often 
+based on the *value* of the arguments, like we have already discussed. However, in a 
+dynamic language like Python one of the more common preconditions is to check that the 
+arguements of function are of the correct *type*. Currently there is nothing stopping 
+someone from calling `patient_normalise` with a string, a dictionary, or another object 
+that is not an `ndarray`.
+
+As an example, let's change the behaviour of the `patient_normalise` function to raise 
+an error on negative inflammation values. We can add a precondition check to the 
+beginning of our function like so
+
+~~~
+...
+    if np.any(data < 0):
+        raise ValueError('inflammation values should be non-negative')
+...
+~~~
+{: .language-python}
+
+We can then modify our test function to check that the function raises the correct 
+exception, a `ValueError`. The 
+[`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError) exception 
+is part of the standard library and is used to indicate that the function received an 
+argument of the right type, but an inappropriate value.
+
+~~~
+@pytest.mark.parametrize(
+    "test, expected, raises",
+    [
+        ... # other test cases here, with None for raises
+        (
+            [[-1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0, 0.66, 1], [0.66, 0.83, 1], [0.77, 0.88, 1]],
+            ValueError,
+        ),
+        (
+            [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0.33, 0.66, 1], [0.66, 0.83, 1], [0.77, 0.88, 1]],
+            None,
+        ),
+    ])
+def test_patient_normalise(test, expected, raises):
+    """Test normalisation works for arrays of one and positive integers."""
+    from inflammation.models import patient_normalise
+    if raises:
+        with pytest.raises(raises):
+            npt.assert_almost_equal(np.array(expected), patient_normalise(np.array(test)), decimal=2)
+    else:
+        npt.assert_almost_equal(np.array(expected), patient_normalise(np.array(test)), decimal=2)
+~~~
+{: .language-python}
+
+> ## Add precondition checking correct type and shape of data
+>
+> We are not currently checking that the `data` arguement to `test_patient_normalise` is 
+> of a valid type. Add one precondtion to check that data is an `ndarray` object, and 
+> another to check that it is of the correct shape. Add corresponding tests to check 
+> that the function raises the correct exception. You will probably find the Python 
+> function [`isinstance`](https://docs.python.org/3/library/functions.html#isinstance) 
+> useful here, as well as the Python exception 
+> [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError)
 >
 > > ## Solution
 > > ~~~
 > > ...
+> >
+> > def patient_normalise(data):
+> >     """
+> >     Normalise patient data between 0 and 1 of a 2D inflammation data array.
 > > 
+> >     Any NaN values are ignored, and normalised to 0
+> > 
+> >     :param data: 2d array of inflammation data
+> >     :type data: ndarray
+> > 
+> >     """
+> >     if not isinstance(data, np.ndarray):
+> >         raise TypeError('data input should be ndarray')
+> >     if len(data.shape) != 2:
+> >         raise ValueError('inflammation array should be 2-dimensional')
+> >     if np.any(data < 0):
+> >         raise ValueError('inflammation values should be non-negative')
+> >     max = np.nanmax(data, axis=1)
+> >     with np.errstate(invalid='ignore', divide='ignore'):
+> >         normalised = data / max[:, np.newaxis]
+> >     normalised[np.isnan(normalised)] = 0
+> >     return normalised
+> > ...
+> >
+> > @pytest.mark.parametrize(
+> >     "test, expected, raises",
+> >     [
+> >         ...
+> >         (
+> >             'hello',
+> >             None,
+> >             TypeError,
+> >         ),
+> >         (
+> >             3,
+> >             None,
+> >             TypeError,
+> >         ),
+> >         (
+> >             [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+> >             [[0.33, 0.66, 1], [0.66, 0.83, 1], [0.77, 0.88, 1]],
+> >             None,
+> >         )
+> >     ])
+> > def test_patient_normalise(test, expected, raises):
+> >     """Test normalisation works for arrays of one and positive integers."""
+> >     from inflammation.models import patient_normalise
+> >     if isinstance(test, list):
+> >         test = np.array(test)
+> >     if raises:
+> >         with pytest.raises(raises):
+> >             npt.assert_almost_equal(np.array(expected), patient_normalise(test), decimal=2)
+> >     else:
+> >         npt.assert_almost_equal(np.array(expected), patient_normalise(test), decimal=2)
 > > ...
 > > ~~~
-> > 
-> > This one has forced me to think about whether this is behaviour I want to allow or not.
 > > {: .language-python}
 > {: .solution}
 >
 {: .challenge}
 
-FIXME: show debugger with more complex example, stepping through code. Step over, step into. Resume program
 
-FIXME: add something about debugging on command line?
-
-
-## Defensive programming to avoid potential errors
-
-
-FIXME: preconditions (protect your functions from bad data. This adheres to fail fast), postconditions (does out output make sense), invariants (these things should never happen, or should always be true). Don't take it too far and try to code for every conceivable eventuality. State the assumptions and limitations of your code for others. Where possible codify your assumptions
-
-FIXME: add precondition of no values below zero (as per assumption), add assert postconditions of no values below 0 or above 1
-
-
-## What about the other failed test?
-
-FIXME: introduce TDD for next lesson
-
-
+Don't take it too far and try to code preconditions for every conceivable eventuality. 
+You must always strike a balance between making sure you secure your function against 
+incorrect use, and writing an overly complicated and expensive function that handles 
+cases that could never possibly occur. For example, it would be sensible to validate the 
+shape of your inflammation data array when it is actually read from the csv file (in 
+`load_csv`), and therefore there is no reason to test this again in `patient_normalise`. 
+You can always also neglect to add explicit preconditions in your code, but instead 
+state the assumptions and limitations of your code for others in the docstring, trusting 
+that they will use the function correctly. This approach is useful when explicitly 
+checking the precondition would be too costly to execute.
 
 {% include links.md %}
