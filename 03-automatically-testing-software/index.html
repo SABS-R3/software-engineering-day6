@@ -1,0 +1,861 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2020-10-05 12:02:46 +0100">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../assets/favicons/swc/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/favicons/swc/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/favicons/swc/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/favicons/swc/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../assets/favicons/swc/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../assets/favicons/swc/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../assets/favicons/swc/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../assets/favicons/swc/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Software Carpentry - Developing better code with automated testing"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../assets/favicons/swc/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../assets/favicons/swc/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../assets/favicons/swc/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../assets/favicons/swc/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../assets/favicons/swc/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+  <title>
+  Automatically Testing your Software &ndash; Developing better code with automated testing
+  </title>  
+
+  </head>
+  <body>
+
+    
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="https://software-carpentry.org" class="pull-left">
+        <img class="navbar-logo" src="../assets/img/sabs-logo.png" alt="Software Carpentry logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="../index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        
+        
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="../01-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../02-introduction/index.html">Introduction</a></li>
+            
+            <li><a href="../03-automatically-testing-software/index.html">Automatically Testing your Software</a></li>
+            
+            <li><a href="../04-diagnosing-issues-improving-robustness/index.html">Diagnosing Issues and Improving Robustness</a></li>
+            
+            <li><a href="../05-mocking/index.html">Mocking for Unit Testing</a></li>
+            
+            <li><a href="../06-lunch/index.html">Lunch</a></li>
+            
+            <li><a href="../07-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../08-continuous-integration-automated-testing/index.html">Continuous Integration for Automated Testing</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="../aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="../LICENSE.html">License</a></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../02-introduction/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Developing better code with automated testing</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../04-diagnosing-issues-improving-robustness/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Automatically Testing your Software</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 35 min
+      <br/>
+      <strong>Exercises:</strong> 10 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>Does the code we develop work the way it should do?</p>
+</li>
+	
+	<li><p>Can we (and others) verify these assertions for themselves?</p>
+</li>
+	
+	<li><p>To what extent are we confident of the accuracy of results that appear in publications?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain the reasons why testing is important</p>
+</li>
+	
+	<li><p>Describe the three main types of tests and what each are used for</p>
+</li>
+	
+	<li><p>Implement and run unit tests to verify the correct behaviour of program functions</p>
+</li>
+	
+	<li><p>Use parameterisation to automatically run tests over a set of inputs</p>
+</li>
+	
+	<li><p>Use code coverage to understand how much of our code is being tested using unit tests</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>So far we’ve seen how to use version control to manage the development of code with tools that help automate the process. Automation, where possible is a good thing - it enables us to define a potentially complex process in a repeatable way that is far less prone to error than manual approaches. Once defined, automation can also save us a lot of effort, particularly in the long run. In this episode we’ll look into techniques of automated testing to improve the predictability of a software change, make development more productive, and help us produce code that works as expected and produces desired results.</p>
+
+<p>Being able to demonstrate that a process generates the right results is important in any field of research, whether it’s software generating those results or not. So when writing software we need to ask ourselves some key questions:</p>
+
+<ul>
+  <li>Does the code we develop work the way it should do?</li>
+  <li>Can we (and others) verify these assertions for themselves?</li>
+  <li>And perhaps most importantly, to what extent are we confident of the accuracy of results that appear in publications?</li>
+</ul>
+
+<p>If we are unable to demonstrate that our software fulfils these criteria, why would anyone use it?</p>
+
+<h2 id="what-is-software-testing">What is software testing?</h2>
+
+<p>For the sake of argument, if each line we write has a 99% chance of being right, then a 70-line program will be wrong more than half the time. We need to do better than that, which means we need to test our software to catch these mistakes.</p>
+
+<p>We can and should extensively test our software manually, and manual testing is well suited to testing aspects such as graphical user interfaces and reconciling visual outputs against inputs. However, even with a good test plan, manual testing is very time consuming and prone to error. Another style of testing is automated testing. We can write code as <strong>unit tests</strong> that test the functions of our software. Since computers are very good and efficient at automating repetitive tasks, we should take advantage of this wherever possible.</p>
+
+<p>There are three main types of automated tests:</p>
+
+<ul>
+  <li><em>Unit tests</em> are tests for fairly small and specific units of functionality, e.g. determining that a particular function returns output as expected given specific inputs.</li>
+  <li><em>Functional or integration tests</em> work at a higher level, and test functional paths through your code, e.g. given some specific inputs, a set of interconnected functions across a number of modules (or the entire code) produce the expected result. These are particularly useful for exposing faults in how functional units interact.</li>
+  <li><em>Regression tests</em> make sure that your program’s output hasn’t changed, for example after making changes your code to add new functionality or fix a bug.</li>
+</ul>
+
+<p>For the purposes of this course, we’ll focus on unit tests. But the principles and practices we’ll talk about can be built on and applied to the other types of tests too.</p>
+
+<h2 id="an-example-dataset-and-application">An example dataset and application</h2>
+
+<p>We going to use an example dataset that was taken from the <a href="https://swcarpentry.github.io/python-novice-inflammation/">Software Carpentry 
+materials</a>. It’s based on a 
+clinical trial of inflammation in patients who have been given a new treatment for 
+arthritis.</p>
+
+<p>First clone and install the repository:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/SABS-R3/2020-software-engineering-day6-inflammation.git 
+inflammation
+<span class="nv">$ </span><span class="nb">cd </span>inflammation
+<span class="nv">$ </span>python3 <span class="nt">-m</span> venv <span class="nb">env</span>
+<span class="nv">$ </span><span class="nb">source env</span>/bin/activate
+<span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p>Then, since we will be editing the code, we will create and checkout a new branch called 
+<code class="language-plaintext highlighter-rouge">develop</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout <span class="nt">-b</span> develop
+</code></pre></div></div>
+
+<p>There are a number of these data sets in the <code class="language-plaintext highlighter-rouge">data</code> directory, and are each stored in 
+comma-separated values (CSV) format: each row holds information for a single patient, 
+and the columns represent successive days.</p>
+
+<p>Let’s take a quick look now. Start the Python interpreter on the command line, in the 
+repository root <code class="language-plaintext highlighter-rouge">inflammation</code> directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python
+</code></pre></div></div>
+
+<p>And then enter the following:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="p">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s">'data/inflammation-01.csv'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="n">data</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-output">(60, 40)
+</code></pre>
+
+<p>The data in this case has 60 rows (one for each patient) and 40 columns (one for each day). Each cell in the data represents an inflammation reading on a given day for a patient. So this shows the results of measuring the inflammation of 60 patients over a 40 day period. Let’s look into how we can test our application’s statistical functions (held in <code class="language-plaintext highlighter-rouge">inflammation/models.py</code>) against this data.</p>
+
+<h2 id="writing-tests-to-verify-correct-behaviour">Writing tests to verify correct behaviour</h2>
+
+<h3 id="how-about-using-python-assertions">How about using Python assertions?</h3>
+<p>As an example, we’ll start by testing our code directly using <code class="language-plaintext highlighter-rouge">assert</code>. Here, we call the function three times with different arguments, checking that a certain value is returned each time:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_mean</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])))</span>
+</code></pre></div></div>
+
+<p>So here, our first test is testing that the average mean of a dataset that has values of zero for each day for two patients is, overall, zero for each day. Our second test is testing that some positive integer data for three patients returns some particular average values. Similarly, for the third test.</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+AssertionError
+</code></pre></div></div>
+
+<p>This result is useful, in the sense that we know something’s wrong, but look closely at what happens if we run the tests in a different order:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_mean</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])))</span>
+</code></pre></div></div>
+
+<p>If we were to enter these in this order, we’d now get the following after the first test:</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+AssertionError
+</code></pre></div></div>
+
+<p>We could put these in a separate script to automate the running of these tests. But 
+Python halts at the first failed assertion, so the second and third tests are not run at 
+all. It would be more helpful if we could get data from all of our tests every time 
+they’re run, since the more information we have, the faster we’re likely to be able to 
+track down bugs. It would also be helpful to have some kind of summary report: if our 
+set of test - known as a <strong>test suite</strong> - includes thirty or forty tests (as it well 
+might for a complex function or library that’s widely used), we’d like to know how many 
+passed or failed.</p>
+
+<p>So what has failed? As it turns out, the first test we just ran was incorrect, and should have read:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])))</span>
+</code></pre></div></div>
+
+<p>Which highlights an important point: as well as making sure our code is returning correct answers, we also need to ensure our tests are also correct. Otherwise, we may go on to fix our code only to return an incorrect result that <em>appears</em> to be correct. So a good rule is to make tests simple enough to understand so we can reason about both the correctness of our tests as well as our code. Otherwise, our tests hold little value.</p>
+
+<h3 id="using-a-testing-framework">Using a testing framework</h3>
+
+<p>Most people don’t enjoy writing tests, so if we want them to actually do it, it must be easy to:</p>
+
+<ul>
+  <li>Add or change tests,</li>
+  <li>Understand the tests that have already been written,</li>
+  <li>Run those tests, and</li>
+  <li>Understand those tests’ results</li>
+</ul>
+
+<p>Test results must also be reliable. If a testing tool says that code is working when it’s not, or reports problems when there actually aren’t any, people will lose faith in it and stop using it.</p>
+
+<p>Keeping these things in mind, here’s a different approach. Look at 
+<code class="language-plaintext highlighter-rouge">tests/test_models.py</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"""Tests for statistics functions within the Model layer."""</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">numpy.testing</span> <span class="k">as</span> <span class="n">npt</span>
+
+
+<span class="k">def</span> <span class="nf">test_daily_mean_zeros</span><span class="p">():</span>
+    <span class="s">"""Test that mean function works for an array of zeros."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_mean</span>
+
+    <span class="c1"># NB: the comment 'yapf: disable' disables automatic formatting using
+</span>    <span class="c1"># a tool called 'yapf' which we have used when creating this project
+</span>    <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>  <span class="c1"># yapf: disable
+</span>
+    <span class="c1"># Need to use Numpy testing functions to compare arrays
+</span>    <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">test_array</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">test_daily_mean_integers</span><span class="p">():</span>
+    <span class="s">"""Test that mean function works for an array of positive integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_mean</span>
+
+    <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>  <span class="c1"># yapf: disable
+</span>
+    <span class="c1"># Need to use Numpy testing functions to compare arrays
+</span>    <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">test_array</span><span class="p">))</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>Here, we have specified our zero and positive integer tests as separate functions. Aside from some minor changes to clarify the creation of a Numpy array to test against, they run the same assertions. Note that for clarity, only within the scope of each test function do we import the necessary function we want to test. So, reasonably easy to understand, and it appears easy to add new ones.</p>
+
+<p>Each of these test functions, in a general sense, are called <strong>test cases</strong> - these are a specification of inputs, execution conditions, testing procedure and expected outputs. And here, we’re defining these things for a test case we can run independently that requires no manual intervention.</p>
+
+<blockquote class="callout">
+  <h2 id="what-about-the-comments-that-refer-to-yapf">What about the comments that refer to Yapf?</h2>
+
+  <p>You’ll also notice the peculiar <code class="language-plaintext highlighter-rouge"># yapf: disable</code> comments. You may remember we looked 
+into coding style in a previous lesson, and Yapf is a command-line tool that reformats 
+your code according to a given coding style. These <em>directives</em> inform Yapf that we 
+don’t wish to have this line reformatted, just to maintain clarity.</p>
+
+</blockquote>
+
+<p>Going back to our list of requirements, how easy is it to run these tests? We can do this using a Python package called <code class="language-plaintext highlighter-rouge">pytest</code>. PyTest is a testing framework that allows you to write test cases using Python. You can use it to test things like Python functions, database operations, or even things like service APIs - essentially anything that has inputs and expected outputs. We’ll be using PyTest to write unit tests, but what you learn can scale to more complex functional testing for applications or libraries.</p>
+
+<blockquote class="callout">
+  <h2 id="what-about-unit-testing-in-other-languages">What about unit testing in other languages?</h2>
+
+  <p>Other unit testing frameworks exist for Python, including Nose2 and Unittest, and the approach to unit testing can be translated to other languages as well, e.g. FRUIT for Fortran, JUnit for Java (the original unit testing framework), Catch for C++, etc.</p>
+
+</blockquote>
+
+<h3 id="preparing-to-write-unit-tests">Preparing to write unit tests</h3>
+
+<h4 id="install-pytest">Install pytest</h4>
+
+<p>One of the first things we need to do is install the pytest package in our virtual environment. Instead of using PyCharm to configure the Conda environment, let’s use the <code class="language-plaintext highlighter-rouge">pip</code> command from the command line instead:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>pytest
+</code></pre></div></div>
+
+<p>You should see something like:</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Collecting pytest
+  Downloading pytest-6.0.2-py3-none-any.whl (270 kB)
+     |████████████████████████████████| 270 kB 1.0 MB/s 
+...
+
+Installing collected packages: pytest
+Successfully installed pytest-6.0.2
+</code></pre></div></div>
+
+<p>So pytest gets installed along with any additional dependencies it requires.</p>
+
+<h4 id="set-up-a-new-feature-branch-for-writing-tests">Set up a new feature branch for writing tests</h4>
+
+<p>Since we’re going to write some new tests, let’s ensure we’re initially on our <code class="language-plaintext highlighter-rouge">develop</code> branch we created earlier. And then, we’ll create a new feature branch called <code class="language-plaintext highlighter-rouge">test-suite</code> - a common term we use to refer to sets of tests - that we’ll use for our initial test writing work:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout develop
+<span class="nv">$ </span>git branch test-suite
+<span class="nv">$ </span>git checkout test-suite
+</code></pre></div></div>
+
+<p>Good practice is to write our tests around the same time we write our code on a feature branch. But since the code already exists, we’re creating a feature branch for just these extra tests. Git branches are designed to be lightweight, and where necessary, transient, and use of branches for even small bits of work is encouraged.</p>
+
+<p>Once we’ve finished writing these tests and are convinced they work properly, we’ll merge our <code class="language-plaintext highlighter-rouge">test-suite</code> branch back into <code class="language-plaintext highlighter-rouge">develop</code>.</p>
+
+<h4 id="write-a-metadata-package-description">Write a metadata package description</h4>
+
+<p>Another thing we need to do is create a <code class="language-plaintext highlighter-rouge">setup.py</code> in the root of our project repository. A <code class="language-plaintext highlighter-rouge">setup.py</code> file defines metadata about our software, such as its name and current version, and is typically used when writing and distributing Python code as packages:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"patient-analysis"</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">'1.0'</span><span class="p">,</span> <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>This is a typical short <code class="language-plaintext highlighter-rouge">setup.py</code> that will enable pytest to locate the Python source files to test, that we have in the <code class="language-plaintext highlighter-rouge">inflammation</code> directory. But first, we need to install our code as a local package:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
+<span class="nv">$ </span>pip list
+</code></pre></div></div>
+
+<p>We should see included with the other installed packages:</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+patient-analysis 1.0    /Users/user/inflammation
+...
+</code></pre></div></div>
+
+<p>This will install our code, as a package, within our virtual environment. The <code class="language-plaintext highlighter-rouge">-e</code> flag indicates that it’s an <em>editable</em> package, i.e. its contents may change. So as we develop our code we don’t need to install it each time.</p>
+
+<h3 id="running-the-tests">Running the tests</h3>
+
+<p>Now we can run these tests using pytest:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pytest tests/test_models.py
+</code></pre></div></div>
+
+<p>So here, we specify the <code class="language-plaintext highlighter-rouge">tests/test_models.py</code> file to run the tests in that file 
+specifically.</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>============================= test session starts ==============================
+platform darwin -- Python 3.7.9, pytest-6.0.2, py-1.9.0, pluggy-0.13.1
+rootdir: /Users/user/Projects/SSI/intermediate-swc/swc-intermediate-template
+collected 2 items                                                              
+
+tests/test_models.py ..                                                   [100%]
+
+============================== 2 passed in 0.08s ===============================
+</code></pre></div></div>
+
+<p>Pytest looks for functions whose names also start with the letters ‘test_’ and runs each one. Notice the <code class="language-plaintext highlighter-rouge">..</code> after our test script:</p>
+
+<ul>
+  <li>If the function completes without an assertion being triggered, we count the test as a success (indicated as <code class="language-plaintext highlighter-rouge">.</code>).</li>
+  <li>If an assertion fails, or we encounter an error, we count the test as a failure (indicated as <code class="language-plaintext highlighter-rouge">F</code>). The error is included in the output so we can see what went wrong.</li>
+</ul>
+
+<p>So if we have many tests, we essentially get a report indicating which tests succeeded or failed. Going back to our list of requirements, do we think these results are easy to understand?</p>
+
+<blockquote class="challenge">
+  <h2 id="write-some-unit-tests">Write some unit tests</h2>
+
+  <p>We already have a couple of test cases in our script that test the <code class="language-plaintext highlighter-rouge">daily_mean()</code> function. Looking at <code class="language-plaintext highlighter-rouge">inflammation/models.py</code>, write at least two new test cases that test the <code class="language-plaintext highlighter-rouge">daily_max()</code> and <code class="language-plaintext highlighter-rouge">daily_min()</code> functions. Try to choose cases that are suitably different.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="k">def</span> <span class="nf">test_daily_max</span><span class="p">():</span>
+    <span class="s">"""Test that max function works for an array of positive integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_max</span>
+
+    <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>  <span class="c1"># yapf: disable
+</span>
+    <span class="c1"># Need to use Numpy testing functions to compare arrays
+</span>    <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]),</span> <span class="n">daily_max</span><span class="p">(</span><span class="n">test_array</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">test_daily_min</span><span class="p">():</span>
+    <span class="s">"""Test that min function works for an array of positive and negative integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_min</span>
+
+    <span class="n">test_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                           <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                           <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>  <span class="c1"># yapf: disable
+</span>
+    <span class="c1"># Need to use Numpy testing functions to compare arrays
+</span>    <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">daily_min</span><span class="p">(</span><span class="n">test_array</span><span class="p">))</span>
+<span class="p">...</span>
+</code></pre></div>    </div>
+  </blockquote>
+
+</blockquote>
+
+<p>The big advantage is that as our code develops, we can update our test cases and commit them back, ensuring that ourselves (and others) always have a set of tests to verify our code at each step of development. This way, when we implement a new feature, we can check a) that the feature works using a test we write for it, and b) that the development of the new feature doesn’t break any existing functionality.</p>
+
+<h3 id="what-about-testing-for-errors">What about testing for errors?</h3>
+
+<p>There are some cases where seeing an error is the correct behaviour, and we can test for Python exceptions using, e.g.:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_daily_min_string</span><span class="p">():</span>
+    <span class="s">"""Test for TypeError when passing strings"""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_min</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="p">.</span><span class="n">raises</span><span class="p">(</span><span class="nb">TypeError</span><span class="p">):</span>
+        <span class="n">error_expected</span> <span class="o">=</span> <span class="n">daily_min</span><span class="p">([[</span><span class="s">'Hello'</span><span class="p">,</span> <span class="s">'there'</span><span class="p">],</span> <span class="p">[</span><span class="s">'General'</span><span class="p">,</span> <span class="s">'Kenobi'</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<p>Although note that we need to import the pytest library at the top of our 
+<code class="language-plaintext highlighter-rouge">test_models.py</code> file with <code class="language-plaintext highlighter-rouge">import pytest</code> so that we can use pytest’s <code class="language-plaintext highlighter-rouge">raises()</code> 
+function.</p>
+
+<blockquote class="callout">
+  <h2 id="why-should-we-test-invalid-input-data">Why should we test invalid input data?</h2>
+
+  <p>Testing the behaviour of inputs, both valid and invalid, is a really good idea and is known as <em>data validation</em>. Even if you are developing command-line software that cannot be exploited by malicious data entry, testing behaviour against invalid inputs prevents generation of erroneous results that could lead to serious misinterpretation (as well as saving time and compute cycles which may be expensive for longer-running applications). It’s generally best not to assume your user’s inputs will always be rational.</p>
+
+</blockquote>
+
+<h2 id="parameterise-tests-to-run-over-many-test-cases">Parameterise tests to run over many test cases</h2>
+
+<p>We’re starting to build up a number of tests that test the same function, but just with different parameters. Instead of writing a separate function for each different test, we can <strong>parameterize</strong> the tests with multiple test inputs. For example, we could rewrite the <code class="language-plaintext highlighter-rouge">test_daily_mean_zeros()</code> and <code class="language-plaintext highlighter-rouge">test_daily_mean_integers()</code> into a single test function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected"</span><span class="p">,</span>
+    <span class="p">[</span>
+     <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+     <span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+    <span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_daily_mean</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="s">"""Test mean function works for array of zeroes and positive integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_mean</span>
+    <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">daily_mean</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>Here, we use pytest’s <strong>mark</strong> capability to add metadata to this specific test - in 
+this case, marking that it’s a parameterised test. <code class="language-plaintext highlighter-rouge">parameterize()</code> is actually a Python 
+<strong>decorator</strong>. The arguments we pass to <code class="language-plaintext highlighter-rouge">parameterize()</code> indicate that we wish to pass 
+additional arguments to the function as it is executed a number of times, and what we’ll 
+call these arguments.  We also pass the arguments we want to test with the expected 
+result, which are picked up by the function. In this case, we are passing in two tests 
+which will be run sequentially.</p>
+
+<p>The big pluses here are that we don’t need to write separate functions for each of them, which can mean writing our tests scales better as our code becomes more complex and we need to write more tests.</p>
+
+<blockquote class="challenge">
+  <h2 id="write-parameterised-unit-tests">Write parameterised unit tests</h2>
+
+  <p>Rewrite your test functions for <code class="language-plaintext highlighter-rouge">daily_max()</code> and <code class="language-plaintext highlighter-rouge">daily_min()</code> to be parameterised, adding in new test cases for each of them.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1">Solution</h2>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+        <span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]),</span>
+        <span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]),</span>
+    <span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_daily_max</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="s">"""Test max function works for zeroes, positive integers, mix of positive/negative integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_max</span>
+    <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">daily_max</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)))</span>
+
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+        <span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+        <span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_daily_min</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="s">"""Test min function works for zeroes, positive integers, mix of positive/negative integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">daily_min</span>
+    <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">daily_min</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)))</span>
+<span class="p">...</span>
+</code></pre></div>    </div>
+    <p>function test_daily_max()</p>
+  </blockquote>
+
+</blockquote>
+
+<p>Try them out!</p>
+
+<p>Let’s commit our new <code class="language-plaintext highlighter-rouge">pytest.py</code> file and test cases to our <code class="language-plaintext highlighter-rouge">test-suite</code> branch (but don’t push it yet!):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add setup.py tests/test_models.py
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add initial test cases for daily_max() and daily_min()"</span>
+</code></pre></div></div>
+
+<h2 id="using-code-coverage-to-understand-how-much-of-our-code-is-tested">Using code coverage to understand how much of our code is tested</h2>
+
+<p>Pytest can’t think of test cases for us. We still have to decide what to test and how many tests to run. Our best guide here is economics: we want the tests that are most likely to give us useful information that we don’t already have. For example, if <code class="language-plaintext highlighter-rouge">daily_mean(np.array([[2, 0], [4, 0]])))</code> works, there’s probably not much point testing <code class="language-plaintext highlighter-rouge">daily_mean(np.array([[3, 0], [4, 0]])))</code>, since it’s hard to think of a bug that would show up in one case but not in the other.</p>
+
+<p>Now, we should try to choose tests that are as different from each other as possible, so that we force the code we’re testing to execute in all the different ways it can - to ensure our tests have a high degree of <strong>code coverage</strong>.</p>
+
+<p>A simple way to check the code coverage for a set of tests is to use nose to tell us how many statements in our code are being tested. By installing a Python package to our virtual environment called <code class="language-plaintext highlighter-rouge">pytest-cov</code> that is used by pytest and using that, we can find this out:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>pytest-cov
+<span class="nv">$ </span>pytest <span class="nt">--cov</span><span class="o">=</span>inflammation.models tests/test_models.py
+</code></pre></div></div>
+
+<p>So here, we specify the additional named argument <code class="language-plaintext highlighter-rouge">--cov</code> to PyTest specifying the code to analyse for test coverage.</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>============================= test session starts ==============================
+platform darwin -- Python 3.7.9, pytest-6.0.2, py-1.9.0, pluggy-0.13.1
+rootdir: /Users/user/swc-intermediate-template
+plugins: cov-2.10.1
+collected 9 items                                                              
+
+tests/test_models.py .....                                                [100%]
+
+---------- coverage: platform darwin, python 3.7.9-final-0 -----------
+Name                     Stmts   Miss  Cover
+--------------------------------------------
+inflammation/models.py       9      1    89%
+
+
+============================== 5 passed in 0.17s ===============================
+
+</code></pre></div></div>
+
+<p>Here we can see that our tests are doing very well - 89% of statements in <code class="language-plaintext highlighter-rouge">inflammation/models.py</code> have been executed. But there’s still one not being tested in <code class="language-plaintext highlighter-rouge">load_csv()</code>. So, here we should consider whether or not to write a test for this function, and indeed any others that may not be tested. Of course, if there are hundreds or thousands of lines that are not covered, it may not be feasible to write tests for them all. But we should prioritise the ones for which we write tests, considering how often they’re used, how complex they are, and importantly, the extent to which they affect our program’s results.</p>
+
+<p>We should also update our <code class="language-plaintext highlighter-rouge">requirements.txt</code> file with our latest package environment, which now includes <code class="language-plaintext highlighter-rouge">pytest-cov</code>, and commit it:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip freeze <span class="o">&gt;</span> requirements.txt
+<span class="nv">$ </span><span class="nb">cat </span>requirements.txt
+</code></pre></div></div>
+
+<p>Now if you look at <code class="language-plaintext highlighter-rouge">requirement.txt</code> you’ll see <code class="language-plaintext highlighter-rouge">pytest-cov</code>, you’ll notice it has a 
+line indicating our <code class="language-plaintext highlighter-rouge">inflammation</code> package is installed in edit mode, along with a 
+GitHub repository URL to locate it. Before committing it to GitHub, we should remove 
+this line, since we only need it for development. Do that now, and once done:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add requirements.txt
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add coverage support"</span> requirements.txt
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin test-suite
+</code></pre></div></div>
+
+<h2 id="limits-to-testing">Limits to testing</h2>
+
+<p>Like any other piece of experimental apparatus, a complex program requires a much higher investment in testing than a simple one. Putting it another way, a small script that is only going to be used once, to produce one figure, probably doesn’t need separate testing: its output is either correct or not. A linear algebra library that will be used by thousands of people in twice that number of applications over the course of a decade, on the other hand, definitely does. The key is identify and prioritise against what will most affect the code’s ability to generate accurate results.</p>
+
+<p>It’s also important to remember that unit testing cannot catch every bug in an application, no matter how many tests you write. To mitigate this manual testing is also important. Also remember to test using as much input data as you can, since very often code is developed and tested against the same small sets of data. Increasing the amount of data you test against - from numerous sources - gives you greater confidence that the results are correct.</p>
+
+<p>Our software will inevitably increases in complexity as it develops. Using automated testing where appropriate can save us considerable time, especially in the long term, and allows others to verify against correct behaviour.</p>
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The three main types of automated tests are <strong>unit tests</strong>, <strong>functional tests</strong>, and <strong>regression tests</strong>.</p>
+</li>
+    
+    <li><p>We can write unit tests to verify that functions generate expected output given a set of specific inputs.</p>
+</li>
+    
+    <li><p>It should be easy to add or change tests, understand and run them, and understand their results.</p>
+</li>
+    
+    <li><p>We can use a unit testing framework like PyTest to structure and simplify the writing of tests.</p>
+</li>
+    
+    <li><p>We should test for expected errors in our code.</p>
+</li>
+    
+    <li><p>Testing program behaviour against both valid and invalid inputs is important and is known as <strong>data validation</strong>.</p>
+</li>
+    
+    <li><p>We can assign multiple inputs to tests using parametrization.</p>
+</li>
+    
+    <li><p>It’s important to understand the <strong>coverage</strong> of our tests across our code.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../02-introduction/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../04-diagnosing-issues-improving-robustness/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-md-6 copyright" align="left">
+<!--
+	
+	Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2018–2020
+	by <a href="https://carpentries.org/">The Carpentries</a>
+        <br>
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2016–2018
+	by <a href="https://software-carpentry.org">Software Carpentry Foundation</a>
+	
+-->
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:s.crouch@software.ac.uk">Contact</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center">
+      Using <a href="https://github.com/carpentries/styles/">The Carpentries style</a>
+      version <a href="https://github.com/carpentries/styles/releases/tag/v9.5.3">9.5.3</a>.
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/lesson.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37305346-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

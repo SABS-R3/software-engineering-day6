@@ -1,0 +1,776 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2020-10-05 12:02:46 +0100">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../assets/favicons/swc/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/favicons/swc/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/favicons/swc/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/favicons/swc/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../assets/favicons/swc/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../assets/favicons/swc/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../assets/favicons/swc/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../assets/favicons/swc/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Software Carpentry - Developing better code with automated testing"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../assets/favicons/swc/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../assets/favicons/swc/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../assets/favicons/swc/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../assets/favicons/swc/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../assets/favicons/swc/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+  <title>
+  Diagnosing Issues and Improving Robustness &ndash; Developing better code with automated testing
+  </title>  
+
+  </head>
+  <body>
+
+    
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="https://software-carpentry.org" class="pull-left">
+        <img class="navbar-logo" src="../assets/img/sabs-logo.png" alt="Software Carpentry logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="../index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        
+        
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="../01-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../02-introduction/index.html">Introduction</a></li>
+            
+            <li><a href="../03-automatically-testing-software/index.html">Automatically Testing your Software</a></li>
+            
+            <li><a href="../04-diagnosing-issues-improving-robustness/index.html">Diagnosing Issues and Improving Robustness</a></li>
+            
+            <li><a href="../05-mocking/index.html">Mocking for Unit Testing</a></li>
+            
+            <li><a href="../06-lunch/index.html">Lunch</a></li>
+            
+            <li><a href="../07-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../08-continuous-integration-automated-testing/index.html">Continuous Integration for Automated Testing</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="../aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="../LICENSE.html">License</a></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../03-automatically-testing-software/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Developing better code with automated testing</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../05-mocking/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Diagnosing Issues and Improving Robustness</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 30 min
+      <br/>
+      <strong>Exercises:</strong> 15 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>Once we know our program has errors, how can we identify where they are?</p>
+</li>
+	
+	<li><p>How can we make our programs more resilient to failure?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Use a debugger to explore behaviour of a running program</p>
+</li>
+	
+	<li><p>Describe and identify edge and corner test cases and explain why they are important</p>
+</li>
+	
+	<li><p>Apply error handling and defensive programming techniques to improve robustness of a program</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h2 id="finding-faults-in-software">Finding faults in software</h2>
+
+<p>Unit testing can tell us something’s wrong and give a rough idea of where the error is 
+by what test(s) are failing. But it doesn’t tell us exactly where the problem is (i.e. 
+what line), or how it came about. We can do things like output program state at various 
+points, perhaps using print statements to output the contents of variables, maybe even 
+use a logging capability to output the state of everything as the program progresses, or 
+look at intermediately generated files to give us an idea of what went wrong.</p>
+
+<p>But such approaches only go so far and often these are time consuming and aren’t enough. 
+In complex programs like simulation codes, sometimes we need to get inside the code as 
+it’s running and explore. This is where using a <strong>debugger</strong> can be useful.</p>
+
+<h2 id="normalising-patient-data">Normalising patient data</h2>
+
+<p>We wish to add a new function to our inflammation example, one that will normalise a 
+given inflammation data array so that all the entries lie between 0 and 1.</p>
+
+<p>Add a new function to <code class="language-plaintext highlighter-rouge">model.py</code> called <code class="language-plaintext highlighter-rouge">patient_normalise()</code>, and copy the following 
+code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">patient_normalise</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="s">"""Normalise patient data between 0 and 1 of a 2D inflammation data array."""</span>
+    <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">/</span> <span class="nb">max</span><span class="p">[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>So here we’re attempting to normalise each patient’s inflammation data by the maximum 
+inflammation experienced by that patient, so that the final values are between 0 and 1. 
+We find the maximum value for a patient, and using NumPy’s elementwise division, divide 
+each value by that maximum. In order to prevent an unwanted feature of NumPy called 
+broadcasting, we need to add a blank axis to our array of patient maximums. Note there 
+is also an assumption in this calculation that the minimum value we want is always zero. 
+This is a sensible assumption for this particular application, since the zero value is a 
+special case indicating that a patient experiences no inflammation on that day.</p>
+
+<p>Now add a new test in <code class="language-plaintext highlighter-rouge">tests/test_models.py</code>, to check that the normalisation function 
+is correct for some test data.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="s">"""Test normalisation works for arrays of one and positive integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">patient_normalise</span>
+    <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Note the assumption here that a test accuracy of two decimal places is sufficient!</p>
+
+<p>Run the tests again using <code class="language-plaintext highlighter-rouge">pytest tests/test_model.py</code> and you will note that the new 
+test is failing, with an error message that doesn’t give many clues as to what is wrong</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E       AssertionError:
+E       Arrays are not almost equal to 2 decimals
+E
+E       Mismatched elements: 6 / 9 (66.7%)
+E       Max absolute difference: 0.57142857
+E       Max relative difference: 1.33333333
+E        x: array([[0.33, 0.66, 1.  ],
+E              [0.66, 0.83, 1.  ],
+E              [0.77, 0.88, 1.  ]])
+E        y: array([[0.14, 0.29, 0.43],
+E              [0.5 , 0.62, 0.75],
+E              [0.78, 0.89, 1.  ]])
+
+tests/test_models.py:53: AssertionError
+</code></pre></div></div>
+
+<h2 id="pytest-and-debugging-in-vscode">Pytest and debugging in VSCode</h2>
+
+<p>Let’s use a debugger to see what’s going on and why the function failed. Think of it like performing exploratory surgery - on code! Debuggers allow us to peer at the internal workings of a program, such as variables and other state, as it performs its functions.</p>
+
+<p>First we will setup VSCode to run and debug our tests. If you havn’t done so already, 
+you will first need to enable the PyTest framework in VSCode. You can do this by 
+selecting the <code class="language-plaintext highlighter-rouge">Python: Configure Tests</code> command in the Command Palette (Ctrl+Shift+P). 
+This will then prompt you to select a test framework (<code class="language-plaintext highlighter-rouge">Pytest</code>), and a directory 
+containing the tests (<code class="language-plaintext highlighter-rouge">tests</code>). You should then see the Test view, shown as a beaker, in 
+the left hand activity sidebar. Select this and you should see the list of tests, along 
+with our new test <code class="language-plaintext highlighter-rouge">test_patient_normalise</code>. If you select this test you should see some 
+icons to the right that either run, debug or open the <code class="language-plaintext highlighter-rouge">test_patient_normalise</code> test. You 
+can see what this looks like in the screenshot below.</p>
+
+<p><img src="/fig/testsInVSCode.jpg" alt="Patient normalise tests in VSCode" /></p>
+
+<p>Click on the “run” button next to <code class="language-plaintext highlighter-rouge">test_patient_normalise</code>, and you will be able to see 
+that VSCode runs the function, and the same <code class="language-plaintext highlighter-rouge">AssertionError</code> that we say before.</p>
+
+<p>Now we want to use the debugger to investigate what is happening inside the 
+<code class="language-plaintext highlighter-rouge">patient_normalise</code> function. To do this we will add a <em>breakpoint</em> in the code. 
+Navigate to the <code class="language-plaintext highlighter-rouge">models.py</code> file and move you mouse to the return statement of the 
+<code class="language-plaintext highlighter-rouge">patient_normalise</code> function. Click to the left of the line number for that line and a 
+small red dot will appear, indicating that you have placed a breakpoint on that line. 
+Now if you debug <code class="language-plaintext highlighter-rouge">test_patient_normalise</code>, you will notice that execution will be paused 
+at the return statement of <code class="language-plaintext highlighter-rouge">patient_normalise</code>, and we can investigate the exact state 
+of the program at it is executing this line of code. Navigate to the Run view, and you 
+will be able to see the local and global variables currently in memory, the call stack 
+(i.e. what functions are currently running), and the current list of breakpoints. In the 
+local variables section you will be able to see the <code class="language-plaintext highlighter-rouge">data</code> array that is input to the 
+<code class="language-plaintext highlighter-rouge">patient_normalise</code> function, as well as the <code class="language-plaintext highlighter-rouge">max</code> local array that was created to hold 
+the maximum inflammation values for each patient. See below for a screenshot.</p>
+
+<p><img src="/fig/debugInVSCode.jpg" alt="Debugging function in VSCode" /></p>
+
+<p>In the Watch section of the Run view you can write any expression you want the debugger 
+to calculate, this is useful if you want to view a particular combination of variables, 
+or perhaps a single element or slice of an array. Try putting in the expression <code class="language-plaintext highlighter-rouge">max[:, 
+np.newaxis]</code> into the Watch section, and you will be able to see the column vector that 
+we are dividing <code class="language-plaintext highlighter-rouge">data</code> by in the return line of the function. You can also open the 
+Debug Console and type in <code class="language-plaintext highlighter-rouge">max[:, np.newaxis]</code> to see the same result.</p>
+
+<p>Looking at the <code class="language-plaintext highlighter-rouge">max</code> variable, we can see that something looks wrong, as the maximum 
+values for each patient do not correspond to the <code class="language-plaintext highlighter-rouge">data</code> array. Recall that the input 
+<code class="language-plaintext highlighter-rouge">data</code> array we are using for the function is</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<p>so the maximum inflammation for each patient should be <code class="language-plaintext highlighter-rouge">[3, 6, 9]</code>, whereas the debugger 
+shows <code class="language-plaintext highlighter-rouge">[7, 8, 9]</code>. You can see that the latter corresponds exactly to the last column of 
+<code class="language-plaintext highlighter-rouge">data</code>, and we can immediately conclude that we took the maximum along the wrong axis of 
+<code class="language-plaintext highlighter-rouge">data</code>. So to fix the function we can change <code class="language-plaintext highlighter-rouge">axis=0</code> in the first line to <code class="language-plaintext highlighter-rouge">axis=1</code>. 
+With this fix in place, running the tests again will result in a passing test, and a 
+nice green tick next to the test in the VSCode IDE.</p>
+
+<h2 id="corner-or-edge-cases">Corner or Edge Cases</h2>
+
+<p>The test case that we have currently written for <code class="language-plaintext highlighter-rouge">patient_normalise</code> is parameterised 
+with a fairly standard <code class="language-plaintext highlighter-rouge">data</code> array. However, when writing your test cases, it is 
+important to consider parametrising them by unusual or extrema values, in order to test 
+all the edge or corner cases that your code could be exposed to in practice. Generally 
+speaking, it is at these extrema cases that you will find your code failing, so it 
+beneficial to test them beforehand.</p>
+
+<p>What is considered an “edge case” for any given component depends on what that component 
+is meant to do. In the case of <code class="language-plaintext highlighter-rouge">patient_normalise</code> the goal of the function is to 
+normalise a numeric array of numbers. For numerical values the extrema cases could be 
+zeros, very large or small values, not-a-number (NaN), or infinity values. Since we are 
+specifically considering an <em>array</em> of values, an extrema case could be that all the 
+numbers of the array are equal.</p>
+
+<p>For all the given edge cases you might come up with, you should also consider their 
+likelihood of occurrence, it is often too much effort to exhaustively test a given 
+function, so you should priorities edge cases that are likely to happen in practice. For 
+our <code class="language-plaintext highlighter-rouge">patient_normalise</code> function, the most common edge cases would be the occurrence of 
+zeros, and the case where all the values of the array are the same.</p>
+
+<p>When you are considering edge cases to test for, try also to think about what might 
+break your code. For <code class="language-plaintext highlighter-rouge">patient_normalise</code> we can see that there is a division by the 
+maximum inflammation value for each patient, so this will clearly break if we are 
+dividing by zero here, resulting in NaN values in the normalised array.</p>
+
+<p>With all this in mind, lets add a few edge cases to our parametrisation of 
+<code class="language-plaintext highlighter-rouge">test_patient_normalise</code>. We will add two extra tests, corresponding to an input array 
+of all 0, and an input array of all 1.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span>
+        <span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span>
+        <span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+    <span class="p">])</span>
+</code></pre></div></div>
+
+<p>Running the tests not results in the following assertion error, due to the division by 
+zero as we predicted.</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E           AssertionError:
+E           Arrays are not almost equal to 2 decimals
+E
+E           x and y nan location mismatch:
+E            x: array([[0, 0, 0],
+E                  [0, 0, 0],
+E                  [0, 0, 0]])
+E            y: array([[nan, nan, nan],
+E                  [nan, nan, nan],
+E                  [nan, nan, nan]])
+
+env/lib/python3.6/site-packages/numpy/testing/_private/utils.py:740: AssertionError
+</code></pre></div></div>
+
+<p>Helpfully, you will also notice that Numpy also provides a run-time warning for the 
+divide by zero, reproduced below</p>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  RuntimeWarning: invalid value encountered in true_divide
+    return data / max[:, np.newaxis]
+</code></pre></div></div>
+
+<p>How can we fix this? Luckily there is a Numpy function that is useful here, 
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.isnan.html"><code class="language-plaintext highlighter-rouge">np.isnan()</code></a>, which 
+we can use to replace all the NaN’s with our desired result, which is 0. We can also 
+silence the run-time warning using 
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.errstate.html"><code class="language-plaintext highlighter-rouge">np.errstate</code></a>.</p>
+
+<blockquote class="challenge">
+  <h2 id="exploring-tests-for-edge-cases">Exploring tests for edge cases</h2>
+
+  <p>Fix the failing <code class="language-plaintext highlighter-rouge">test_patient_normalise</code> test, and think of some more suitable edge 
+cases to test our <code class="language-plaintext highlighter-rouge">patient_normalise()</code> function and add them to the parametrised 
+tests.</p>
+
+  <blockquote class="solution">
+    <h2 id="possible-solution">Possible Solution</h2>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+
+<span class="k">def</span> <span class="nf">patient_normalise</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="s">"""
+    Normalise patient data between 0 and 1 of a 2D inflammation data array.
+
+    Any NaN values are ignored, and normalised to 0
+
+    Any negative values are clipped to 0
+    """</span>
+    <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">np</span><span class="p">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s">'ignore'</span><span class="p">,</span> <span class="n">divide</span><span class="o">=</span><span class="s">'ignore'</span><span class="p">):</span>
+        <span class="n">normalised</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="nb">max</span><span class="p">[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">normalised</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">normalised</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">normalised</span><span class="p">[</span><span class="n">normalised</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">normalised</span>
+
+<span class="p">...</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="s">'nan'</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s">'nan'</span><span class="p">)],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+        <span class="p">)</span>
+    <span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="s">"""Test normalisation works for arrays of one and positive integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">patient_normalise</span>
+    <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">...</span>
+</code></pre></div>    </div>
+
+    <p>You could also test, and handle, the case of a whole row of NaNs…</p>
+  </blockquote>
+
+</blockquote>
+
+<h2 id="defensive-programming-to-avoid-potential-errors">Defensive programming to avoid potential errors</h2>
+
+<p>In the previous section, we have made a few design choices for our <code class="language-plaintext highlighter-rouge">patient_normalise</code> 
+function. The first was that we are implicitly converting any NaN and negative values to 
+0, the second is that normalising a constant 0 array of inflammation will result in an 
+identical array of 0’s. The third is that we don’t want to warn the user in any of these 
+situations. This could be handled differently, we might decide that we don’t want to 
+silently make these changes to the data, but instead to explicitly check that the input 
+data satisfies a given set of assumptions (e.g. no negative values), and raise an error 
+if this is not the case. Then we can proceed with the normalisation, confident that our 
+normalisation function will work correctly.</p>
+
+<p>Checking valid input to a function via preconditions is one of the simplest forms of 
+<em>defensive programming</em>. These preconditions are checked at the beginning of the 
+function to make sure that all assumptions are satisfied. These assumptions are often 
+based on the <em>value</em> of the arguments, like we have already discussed. However, in a 
+dynamic language like Python one of the more common preconditions is to check that the 
+arguments of function are of the correct <em>type</em>. Currently there is nothing stopping 
+someone from calling <code class="language-plaintext highlighter-rouge">patient_normalise</code> with a string, a dictionary, or another object 
+that is not an <code class="language-plaintext highlighter-rouge">ndarray</code>.</p>
+
+<p>As an example, let’s change the behaviour of the <code class="language-plaintext highlighter-rouge">patient_normalise</code> function to raise 
+an error on negative inflammation values. We can add a precondition check to the 
+beginning of our function like so</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nb">any</span><span class="p">(</span><span class="n">data</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">'inflammation values should be non-negative'</span><span class="p">)</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>We can then modify our test function to check that the function raises the correct 
+exception, a <code class="language-plaintext highlighter-rouge">ValueError</code>. The 
+<a href="https://docs.python.org/3/library/exceptions.html#ValueError"><code class="language-plaintext highlighter-rouge">ValueError</code></a> exception 
+is part of the standard library and is used to indicate that the function received an 
+argument of the right type, but an inappropriate value.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected, raises"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">...</span> <span class="c1"># other test cases here, with None for raises
+</span>        <span class="p">(</span>
+            <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+            <span class="nb">ValueError</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+            <span class="bp">None</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">raises</span><span class="p">):</span>
+    <span class="s">"""Test normalisation works for arrays of one and positive integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">patient_normalise</span>
+    <span class="k">if</span> <span class="n">raises</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="p">.</span><span class="n">raises</span><span class="p">(</span><span class="n">raises</span><span class="p">):</span>
+            <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="add-precondition-checking-correct-type-and-shape-of-data">Add precondition checking correct type and shape of data</h2>
+
+  <p>We are not currently checking that the <code class="language-plaintext highlighter-rouge">data</code> argument to <code class="language-plaintext highlighter-rouge">test_patient_normalise</code> is 
+of a valid type. Add one precondition to check that data is an <code class="language-plaintext highlighter-rouge">ndarray</code> object, and 
+another to check that it is of the correct shape. Add corresponding tests to check 
+that the function raises the correct exception. You will probably find the Python 
+function <a href="https://docs.python.org/3/library/functions.html#isinstance"><code class="language-plaintext highlighter-rouge">isinstance</code></a> 
+useful here, as well as the Python exception 
+<a href="https://docs.python.org/3/library/exceptions.html#TypeError"><code class="language-plaintext highlighter-rouge">TypeError</code></a></p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+
+<span class="k">def</span> <span class="nf">patient_normalise</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="s">"""
+    Normalise patient data between 0 and 1 of a 2D inflammation data array.
+
+    Any NaN values are ignored, and normalised to 0
+
+    :param data: 2d array of inflammation data
+    :type data: ndarray
+
+    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="nb">TypeError</span><span class="p">(</span><span class="s">'data input should be ndarray'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">'inflammation array should be 2-dimensional'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nb">any</span><span class="p">(</span><span class="n">data</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">'inflammation values should be non-negative'</span><span class="p">)</span>
+    <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">np</span><span class="p">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s">'ignore'</span><span class="p">,</span> <span class="n">divide</span><span class="o">=</span><span class="s">'ignore'</span><span class="p">):</span>
+        <span class="n">normalised</span> <span class="o">=</span> <span class="n">data</span> <span class="o">/</span> <span class="nb">max</span><span class="p">[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">normalised</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">normalised</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">normalised</span>
+<span class="p">...</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s">"test, expected, raises"</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">...</span>
+        <span class="p">(</span>
+            <span class="s">'hello'</span><span class="p">,</span>
+            <span class="bp">None</span><span class="p">,</span>
+            <span class="nb">TypeError</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="mi">3</span><span class="p">,</span>
+            <span class="bp">None</span><span class="p">,</span>
+            <span class="nb">TypeError</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span>
+            <span class="p">[[</span><span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.83</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.77</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+            <span class="bp">None</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">raises</span><span class="p">):</span>
+    <span class="s">"""Test normalisation works for arrays of one and positive integers."""</span>
+    <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">patient_normalise</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">raises</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="p">.</span><span class="n">raises</span><span class="p">(</span><span class="n">raises</span><span class="p">):</span>
+            <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">...</span>
+</code></pre></div>    </div>
+  </blockquote>
+
+</blockquote>
+
+<p>Don’t take it too far and try to code preconditions for every conceivable eventuality. 
+You must always strike a balance between making sure you secure your function against 
+incorrect use, and writing an overly complicated and expensive function that handles 
+cases that could never possibly occur. For example, it would be sensible to validate the 
+shape of your inflammation data array when it is actually read from the csv file (in 
+<code class="language-plaintext highlighter-rouge">load_csv</code>), and therefore there is no reason to test this again in <code class="language-plaintext highlighter-rouge">patient_normalise</code>. 
+You can always also neglect to add explicit preconditions in your code, but instead 
+state the assumptions and limitations of your code for others in the docstring, trusting 
+that they will use the function correctly. This approach is useful when explicitly 
+checking the precondition would be too costly to execute.</p>
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Unit testing is good to show us what doesn’t work, but does not help us locate problems.</p>
+</li>
+    
+    <li><p>We can use a <strong>debugger</strong> to help us locate problems in our program.</p>
+</li>
+    
+    <li><p>A debugger allows us to pause a program and examine it’s state by adding <strong>breakpoints</strong> to lines in code.</p>
+</li>
+    
+    <li><p>We can use <strong>preconditions</strong> to ensure correct behaviour in our programs.</p>
+</li>
+    
+    <li><p>We must ensure our unit tests cater for <strong>edge</strong> and <strong>corner cases</strong> sufficiently.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../03-automatically-testing-software/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../05-mocking/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-md-6 copyright" align="left">
+<!--
+	
+	Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2018–2020
+	by <a href="https://carpentries.org/">The Carpentries</a>
+        <br>
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2016–2018
+	by <a href="https://software-carpentry.org">Software Carpentry Foundation</a>
+	
+-->
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:s.crouch@software.ac.uk">Contact</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center">
+      Using <a href="https://github.com/carpentries/styles/">The Carpentries style</a>
+      version <a href="https://github.com/carpentries/styles/releases/tag/v9.5.3">9.5.3</a>.
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/lesson.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37305346-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

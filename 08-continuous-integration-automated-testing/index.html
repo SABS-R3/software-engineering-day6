@@ -1,0 +1,550 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2020-10-05 12:02:46 +0100">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../assets/favicons/swc/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/favicons/swc/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/favicons/swc/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/favicons/swc/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../assets/favicons/swc/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../assets/favicons/swc/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../assets/favicons/swc/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../assets/favicons/swc/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Software Carpentry - Developing better code with automated testing"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../assets/favicons/swc/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../assets/favicons/swc/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../assets/favicons/swc/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../assets/favicons/swc/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../assets/favicons/swc/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+  <title>
+  Continuous Integration for Automated Testing &ndash; Developing better code with automated testing
+  </title>  
+
+  </head>
+  <body>
+
+    
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="https://software-carpentry.org" class="pull-left">
+        <img class="navbar-logo" src="../assets/img/sabs-logo.png" alt="Software Carpentry logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="../index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        
+        
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="../01-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../02-introduction/index.html">Introduction</a></li>
+            
+            <li><a href="../03-automatically-testing-software/index.html">Automatically Testing your Software</a></li>
+            
+            <li><a href="../04-diagnosing-issues-improving-robustness/index.html">Diagnosing Issues and Improving Robustness</a></li>
+            
+            <li><a href="../05-mocking/index.html">Mocking for Unit Testing</a></li>
+            
+            <li><a href="../06-lunch/index.html">Lunch</a></li>
+            
+            <li><a href="../07-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../08-continuous-integration-automated-testing/index.html">Continuous Integration for Automated Testing</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="../aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="../LICENSE.html">License</a></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../07-QandA/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Developing better code with automated testing</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Continuous Integration for Automated Testing</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 40 min
+      <br/>
+      <strong>Exercises:</strong> 10 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I apply automated repository testing to scale with development activity?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Describe the benefits of using Continuous Integration for further automation of testing</p>
+</li>
+	
+	<li><p>Enable GitHub Actions Continuous Integration for public open source repositories</p>
+</li>
+	
+	<li><p>Enable Travis Continuous Integration for public open source repositories</p>
+</li>
+	
+	<li><p>Use continuous integration to automatically run unit tests and code coverage when changes are committed to a version control repository</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>So far we’ve been manually running our tests as we require. So once we’ve made a change, or add a new feature with accompanying tests, we can re-run our tests, giving ourselves (and others who wish to run them) increased confidence that everything is working as expected. Now we’re going to take further advantage of automation in a way that helps testing scale across a development team with very little overhead, using Continuous Integration.</p>
+
+<h2 id="what-is-continuous-integration">What is Continuous Integration?</h2>
+
+<p>The automated testing we’ve done so far only taking into account the state of the repository we have on our own machines. In a software project involving multiple developers working and pushing changes on a repository, it would be great to know holistically how all these changes are affecting our codebase without everyone having to pull down all the changes and test them. If we also take into account the testing required on different target user plaforms for our software and the changes being made to many repository branches, the effort required to conduct testing at this scale can quickly become intractable for a research project to sustain.</p>
+
+<p>Continuous Integration (CI) aims to reduce this burden by further automation, and automation - wherever possible - helps us to reduce errors and makes predictable processes more efficient. The idea is that when a new change is committed to a repository, CI clones the repository, builds it if necessary, and runs any tests. Once complete, it presents a report to let you see what happened.</p>
+
+<p>There are many CI infrastructures and services, free and paid for, and subject to change as they evolve their features. We’ll be looking at two free ones, GitHub Actions - which unsurprisingly is available as part of GitHub - and a third party one called Travis. Both of these make use of common features across many CI implementations, and looking at both will illustrate some of the commonalities and differences in how such features are typically provided.</p>
+
+<h2 id="continuous-integration-with-github-actions">Continuous Integration with GitHub Actions</h2>
+
+<p>With a GitHub repository there’s a really easy way we can set up CI to run our tests when we make a change, simply by adding a new file to our repository whilst on the <code class="language-plaintext highlighter-rouge">test-suite</code> branch. First, create the new directories <code class="language-plaintext highlighter-rouge">.github/workflows</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> .github/workflows
+</code></pre></div></div>
+
+<p>This directory is used specifically for GitHub Actions, allowing us to specify any number of workflows that can be run under a variety of conditions. Next, add a file called <code class="language-plaintext highlighter-rouge">main.yml</code> within that directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name: CI
+
+<span class="c"># We can specify which GitHub events will trigger a CI build</span>
+on: <span class="o">[</span>push, pull_request]
+
+<span class="c"># Next we define a single job 'build', but we could add more</span>
+<span class="nb">jobs</span>:
+
+  build:
+
+    <span class="c"># We can also specify which operating systems we want to test on</span>
+    runs-on: ubuntu-latest
+
+    <span class="c"># A job is made up of a sequence of steps</span>
+    steps:
+
+    <span class="c"># Next we need to checkout out repository, and set up Python</span>
+    <span class="c"># A 'name' is just an optional label shown in the log - helpful to clarify progress - and can be anything</span>
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+
+    <span class="c"># We can use 'run' to execute commands</span>
+    - name: Install Python dependencies
+      run: |
+        pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+        pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
+
+    - name: Test with PyTest
+      run: |
+        pytest <span class="nt">--cov</span><span class="o">=</span>inflammation.models tests/test_stats.py
+</code></pre></div></div>
+
+<h3 id="triggering-a-build-on-github-actions">Triggering a build on GitHub Actions</h3>
+
+<p>Now if we commit and push this change a CI run will be triggered:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add .github
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add GitHub Actions configuration"</span> .github
+<span class="nv">$ </span>git push
+</code></pre></div></div>
+
+<p>Since we are only committing the GitHub Actions configuration file to the <code class="language-plaintext highlighter-rouge">test-suite</code> branch for the moment, only the contents of this branch will be used for CI. We can pass this file upstream into other branches (i.e. via merges) when we’re happy it works, which will then allow the process to run automatically on these other branches. This again highlights the usefulness of the feature-branch model - we can work in isolation on a feature until it’s ready to be passed upstream without disrupting development on other branches, and in the case of CI, we’re starting to see its scaling benefits across a larger scale development team working across potentially many branches.</p>
+
+<h3 id="checking-build-progress-and-reports">Checking build progress and reports</h3>
+
+<p>Handily, we can see the progress of the build from our repository on GitHub by selecting the <code class="language-plaintext highlighter-rouge">test-suite</code> branch and then selecting <code class="language-plaintext highlighter-rouge">commits</code>.</p>
+
+<p>FIXME: add screenshot of branches page with build in progress</p>
+
+<p>You’ll see a list of commits for this branch, and likely see an orange marker next to the latest commit (clicking on it yields <code class="language-plaintext highlighter-rouge">Some checks haven’t completed yet</code>) meaning the build is still in progress. This is a useful view, as over time, it will give you a history of commits, who did them, and whether the commit resulted in a successful build or not.</p>
+
+<p>Hopefully after a while, the marker will turn green indicating a successful build. Selecting it gives you even more information about the build, and selecting <code class="language-plaintext highlighter-rouge">Details</code> link takes you to a complete log of the build and its output. The logs are actually truncated; selecting the arrows next to the entries - which are the <code class="language-plaintext highlighter-rouge">name</code> labels we specified in the <code class="language-plaintext highlighter-rouge">main.yml</code> file - will expand them with more detail, including the output from the actions performed.</p>
+
+<p>GitHub Actions offers these continuous integration features as a free service with 2000 Actions/minutes a month on as many public repositories that you like, although paid levels are available.</p>
+
+<h2 id="continuous-integration-with-an-external-ci-service">Continuous Integration with an external CI service</h2>
+
+<p>Now let’s take a look at Travis-CI, another free continuous integration service provided by a third-party. You’ll notice many similarities between how Travis does it with GitHub Actions, but it should be pointed out that Travis did it first!</p>
+
+<p>The first thing we need to do is let Travis install its GitHub App to GitHub:</p>
+
+<ol>
+  <li>Log into <a href="">https://travis-ci.com/</a> with your GitHub account</li>
+  <li>Select your profile picture in the top right and select ‘Activate &amp; Migrate’ under ‘GitHub Apps Integration’</li>
+  <li>From the permissions window, select ‘Only select repositories’, and add the <code class="language-plaintext highlighter-rouge">swc-intermediate-template</code> repository</li>
+  <li>Select <code class="language-plaintext highlighter-rouge">Approve and install</code> to install the Travis application to GitHub</li>
+</ol>
+
+<p>FIXME: add screenshot of permissions dialogue</p>
+
+<p>Once we’ve done this, all we need to do now - whilst still on the <code class="language-plaintext highlighter-rouge">test-suite</code> branch - is add a <code class="language-plaintext highlighter-rouge">.travis.yml</code> file to the root of the repository, commit, and push it. For example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>language: python
+
+python:
+    - <span class="s2">"3.7"</span>
+
+<span class="nb">install</span>:
+    - pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+    - pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
+
+script:
+    - pytest <span class="nt">--cov</span><span class="o">=</span>inflammation.models tests/test_stats.py
+</code></pre></div></div>
+
+<p>Here, we are informing Travis that the software assumes a Python 3.7 environment (which will be built and provided for the CI run), and the script to execute. We already have our software dependencies in our <code class="language-plaintext highlighter-rouge">requirements.txt</code> file, and Travis will automatically use this to install these dependencies prior to running the script command.</p>
+
+<h3 id="triggering-a-build-on-travis">Triggering a build on Travis</h3>
+
+<p>As with GitHub Actions, we know that once a commit is pushed Travis will attempt to run a build, so if we commit and push this change a CI run will be triggered:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add .travis.yml
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add Travis CI configuration"</span> .travis.yml
+<span class="nv">$ </span>git push
+</code></pre></div></div>
+
+<p>Again, since we’re only committing this to the <code class="language-plaintext highlighter-rouge">test-suite</code> branch, it will only build from that branch until we merge this file into upstream branches.</p>
+
+<h3 id="checking-build-progress-and-reports-1">Checking build progress and reports</h3>
+
+<p>The process of checking build progress is again similar to GitHub Actions, with Travis feeding back progress to GitHub - go to our repository on GitHub and select the <code class="language-plaintext highlighter-rouge">test-suite</code> branch and then <code class="language-plaintext highlighter-rouge">commits</code>. Notice that there are now <em>two</em> build indicators when you select one of the build icons, one each for GitHub Actions and Travis, that are running simultaneously. Selecting one of these gives us more details about the build, and shows it alongside details of the GitHub Actions build.</p>
+
+<p>FIXME: add screenshot of Travis build log</p>
+
+<p>Note that travis-ci.com also offers continuous integration as a free service, but with unlimited builds on as many open source (i.e. public) repositories that you have. But a key limitation is that only 5 concurrent build jobs may run at one time. Again, paid options are available.</p>
+
+<h2 id="scaling-up-testing-using-build-matrices">Scaling up testing using build matrices</h2>
+
+<p>Now we have our CI configured and building, we can use a feature called <strong>build matrices</strong> which really shows the value of using CI to test at scale.</p>
+
+<p>Suppose the intended users of our software use either Ubuntu, Mac OS, or Windows, and either have Python version 3.7 or 3.8 installed, and we want to support all of these. Assuming we have a suitable test suite, it would take a considerable amount of time to set up testing platforms to run our tests across all these platform combinations. Fortunately, CI can do the hard work for us very easily.</p>
+
+<p>Using a build matrix we can specify testing environments and parameters (such as operating system, Python version, etc.) and new jobs will be created that run our tests for each permutation of these.</p>
+
+<p>Let’s see how this is done using GitHub Actions (similar support for build matrices exists in Travis). To support this, change <code class="language-plaintext highlighter-rouge">.github/workflow/main.yml</code> to the following:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+    runs-on: <span class="k">${</span><span class="p">{ matrix.os </span><span class="k">}</span><span class="o">}</span>
+    strategy:
+      matrix:
+        os: <span class="o">[</span>ubuntu-latest, macos-latest, windows-latest]
+        python-version: <span class="o">[</span>3.7, 3.8]
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: <span class="k">${</span><span class="p">{ matrix.python-version </span><span class="k">}</span><span class="o">}</span>
+...
+</code></pre></div></div>
+
+<p>Here, we are specifying a build strategy as a matrix of operating systems and Python versions, and using <code class="language-plaintext highlighter-rouge">matrix.os</code> and <code class="language-plaintext highlighter-rouge">matrix.python-version</code> to reference these configuration possibilities instead of using hardcoded values. The <code class="language-plaintext highlighter-rouge">${{ }}</code> are used as a means to reference these configurations.</p>
+
+<p>Let’s commit and push this change and see what happens:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add .github/workflows/main.yml
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add GA build matrix for os and Python version"</span> <span class="nb">.</span>
+<span class="nv">$ </span>git push
+</code></pre></div></div>
+
+<p>If we go to our GitHub build now, we can see that a new job has been created for each permutation. Note all jobs running in parallel (up to the limit allowed by our account) which potentially saves us a lot of time waiting for testing results. Overall, this approach allows us to massively scale our automated testing across platforms we wish to test.</p>
+
+<h2 id="merging-back-to-dev">Merging back to dev</h2>
+
+<p>Now we’re happy with our test suite, we can merge this work (which currently only exist on our <code class="language-plaintext highlighter-rouge">test-suite</code> branch) with our parent <code class="language-plaintext highlighter-rouge">develop</code> branch. Again, this reflects us working with impunity on a logical unit of work, involving multiple commits, on a separate feature branch until it’s ready to be escalated to the develop branch:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout develop
+<span class="nv">$ </span>git merge test-suite
+</code></pre></div></div>
+
+<p>Then, assuming no conflicts we can push these changes back to the remote repository as we’ve done before:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git push origin develop
+</code></pre></div></div>
+
+<p>Now these changes have migrated to our parent <code class="language-plaintext highlighter-rouge">develop</code> branch, <code class="language-plaintext highlighter-rouge">develop</code> will also inherit the configuration to run CI builds, so these will run automatically on this branch as well.</p>
+
+<p>This highlights a big benefit of CI when you perform merges (and apply pull requests). As new branch code is merged into upstream branches like <code class="language-plaintext highlighter-rouge">dev</code> and <code class="language-plaintext highlighter-rouge">master</code> this newly integrated code changes are automatically tested <em>together</em> with existing code - which of course may also have changed in the meantime!</p>
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Continuous Integration can run tests automatically to verify changes as code develops in our repository.</p>
+</li>
+    
+    <li><p>CI builds are typically triggered by commits pushed to a repository.</p>
+</li>
+    
+    <li><p>We need to write a configuration file to inform a CI service what to do for a build.</p>
+</li>
+    
+    <li><p>Builds can be enabled and configured separately for each branch.</p>
+</li>
+    
+    <li><p>We can run - and get reports from - different CI infrastructure builds simultaneously.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../07-QandA/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-md-6 copyright" align="left">
+<!--
+	
+	Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2018–2020
+	by <a href="https://carpentries.org/">The Carpentries</a>
+        <br>
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2016–2018
+	by <a href="https://software-carpentry.org">Software Carpentry Foundation</a>
+	
+-->
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:s.crouch@software.ac.uk">Contact</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center">
+      Using <a href="https://github.com/carpentries/styles/">The Carpentries style</a>
+      version <a href="https://github.com/carpentries/styles/releases/tag/v9.5.3">9.5.3</a>.
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/lesson.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37305346-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
