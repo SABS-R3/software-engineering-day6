@@ -149,7 +149,14 @@ AssertionError
 ~~~
 {: .output}
 
-We could put these in a separate script to automate the running of these tests. But Python halts at the first failed assertion, so the second and third tests aren’t run at all. It would be more helpful if we could get data from all of our tests every time they’re run, since the more information we have, the faster we’re likely to be able to track down bugs. It would also be helpful to have some kind of summary report: if our set of test - known as a **test suite** - includes thirty or forty tests (as it well might for a complex function or library that’s widely used), we’d like to know how many passed or failed.
+We could put these in a separate script to automate the running of these tests. But 
+Python halts at the first failed assertion, so the second and third tests are not run at 
+all. It would be more helpful if we could get data from all of our tests every time 
+they’re run, since the more information we have, the faster we’re likely to be able to 
+track down bugs. It would also be helpful to have some kind of summary report: if our 
+set of test - known as a **test suite** - includes thirty or forty tests (as it well 
+might for a complex function or library that’s widely used), we’d like to know how many 
+passed or failed.
 
 So what has failed? As it turns out, the first test we just ran was incorrect, and should have read:
 
@@ -171,7 +178,8 @@ Most people don’t enjoy writing tests, so if we want them to actually do it, i
 
 Test results must also be reliable. If a testing tool says that code is working when it’s not, or reports problems when there actually aren’t any, people will lose faith in it and stop using it.
 
-Keeping these things in mind, here's a different approach. Look at `tests/test_stats.py`:
+Keeping these things in mind, here's a different approach. Look at 
+`tests/test_models.py`:
 
 ~~~
 """Tests for statistics functions within the Model layer."""
@@ -217,8 +225,7 @@ Each of these test functions, in a general sense, are called **test cases** - th
 > You'll also notice the peculiar `# yapf: disable` comments. You may remember we looked 
 > into coding style in a previous lesson, and Yapf is a command-line tool that reformats 
 > your code according to a given coding style. These *directives* inform Yapf that we 
-> don't wish to have this line reformatted, just to maintain clarity. We'll be looking 
-> into using Yapf later.
+> don't wish to have this line reformatted, just to maintain clarity.
 >
 {: .callout}
 
@@ -306,11 +313,12 @@ This will install our code, as a package, within our virtual environment. The `-
 Now we can run these tests using pytest:
 
 ~~~
-$ pytest tests/test_stats.py
+$ pytest tests/test_models.py
 ~~~
 {: .language-bash}
 
-So here, we specify the `tests/test_stats.py` file to run the tests in that file specifically.
+So here, we specify the `tests/test_models.py` file to run the tests in that file 
+specifically.
 
 ~~~
 ============================= test session starts ==============================
@@ -318,7 +326,7 @@ platform darwin -- Python 3.7.9, pytest-6.0.2, py-1.9.0, pluggy-0.13.1
 rootdir: /Users/user/Projects/SSI/intermediate-swc/swc-intermediate-template
 collected 2 items                                                              
 
-tests/test_stats.py ..                                                   [100%]
+tests/test_models.py ..                                                   [100%]
 
 ============================== 2 passed in 0.08s ===============================
 ~~~
@@ -384,7 +392,9 @@ def test_daily_min_string():
 ~~~
 {: .language-python}
 
-Although note that we need to import the pytest library at the top of our `test_stats.py` file with `import pytest` so that we can use pytest's `raises()` function.
+Although note that we need to import the pytest library at the top of our 
+`test_models.py` file with `import pytest` so that we can use pytest's `raises()` 
+function.
 
 > ## Why should we test invalid input data?
 >
@@ -410,7 +420,13 @@ def test_daily_mean(test, expected):
 ~~~
 {: .language-python}
 
-Here, we use pytest's **mark** capability to add metadata to this specific test - in this case, marking that it's a parameterised test. `parameterize()` is actually a **decorator**, and we'll be finding out more about these later in the course. The arguments we pass to `parameterize()` indicate that we wish to pass additional arguments to the function as it is executed a number of times, and what we'll call these arguments.  We also pass the arguments we want to test with the expected result, which are picked up by the function. In this case, we are passing in two tests which will be run sequentially.
+Here, we use pytest's **mark** capability to add metadata to this specific test - in 
+this case, marking that it's a parameterised test. `parameterize()` is actually a Python 
+**decorator**. The arguments we pass to `parameterize()` indicate that we wish to pass 
+additional arguments to the function as it is executed a number of times, and what we'll 
+call these arguments.  We also pass the arguments we want to test with the expected 
+result, which are picked up by the function. In this case, we are passing in two tests 
+which will be run sequentially.
  
 The big pluses here are that we don't need to write separate functions for each of them, which can mean writing our tests scales better as our code becomes more complex and we need to write more tests.
 
@@ -458,7 +474,7 @@ Try them out!
 Let's commit our new `pytest.py` file and test cases to our `test-suite` branch (but don't push it yet!):
 
 ~~~
-$ git add setup.py tests/test_stats.py
+$ git add setup.py tests/test_models.py
 $ git commit -m "Add initial test cases for daily_max() and daily_min()"
 ~~~
 {: .language-bash}
@@ -474,7 +490,7 @@ A simple way to check the code coverage for a set of tests is to use nose to tel
 
 ~~~
 $ pip install pytest-cov
-$ pytest --cov=inflammation.models tests/test_stats.py
+$ pytest --cov=inflammation.models tests/test_models.py
 ~~~
 {: .language-bash}
 
@@ -487,7 +503,7 @@ rootdir: /Users/user/swc-intermediate-template
 plugins: cov-2.10.1
 collected 9 items                                                              
 
-tests/test_stats.py .....                                                [100%]
+tests/test_models.py .....                                                [100%]
 
 ---------- coverage: platform darwin, python 3.7.9-final-0 -----------
 Name                     Stmts   Miss  Cover

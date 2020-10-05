@@ -14,7 +14,7 @@ keypoints:
   unexpected flaws in our code."
 ---
 
-See intro video at FIXME: put in link.
+See introduction video [here](https://youtu.be/IJRWQW4npmY).
 
 {% include links.md %}
 

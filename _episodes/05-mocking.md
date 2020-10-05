@@ -31,7 +31,7 @@ all but the simplest code. For example:
 
 For example 1, you would like your tests to pass even if the computer in question has no 
 internet. For example 2, ideally you would want to be able to write a test for function 
-A that didn't depend on function B, so that if a bug occured in function B, your tests 
+A that didn't depend on function B, so that if a bug occurred in function B, your tests 
 for function A would still pass. For example 3, it would be nice to be able to test 
 class A without having to construct the difficult-to-create object of class B.
 
@@ -214,7 +214,7 @@ the requests object. Note that we could simply put a `print` statement in the fu
 to verify this, but this would have to be removed, so writing a test for this is a more 
 long-term and sustainable solution.
 
-We need to temporarily replace a method, specificly the `requests.get()` function, with 
+We need to temporarily replace a method, specifically the `requests.get()` function, with 
 a mock. We can use `unittest.mock.patch` to do this:
 
 ~~~
@@ -317,7 +317,7 @@ How do we assert that it is doing the right thing? One way we could do this is t
 the result of the function against the correct solution. After all, we know that the 
 partial derivative of the `sum` function should be 1, we could also check the 
 performance of the function using other test functions as well. But with mocks we can 
-also write a test that is completly independent of the specific function we might use, 
+also write a test that is completely independent of the specific function we might use, 
 and one that directly tests that the `partial_derivative` is doing what you expect it to 
 do. Here is a possible test using a `Mock` to replace the input `function` argument. 
 

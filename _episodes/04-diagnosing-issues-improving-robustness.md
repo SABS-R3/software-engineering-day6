@@ -13,7 +13,7 @@ keypoints:
 - "Unit testing is good to show us what doesn't work, but does not help us locate problems."
 - "We can use a **debugger** to help us locate problems in our program."
 - "A debugger allows us to pause a program and examine it's state by adding **breakpoints** to lines in code."
-- "We can use **preconditions**, **postconditions* and **invariants** to ensure correct behaviour in our programs."
+- "We can use **preconditions** to ensure correct behaviour in our programs."
 - "We must ensure our unit tests cater for **edge** and **corner cases** sufficiently."
 ---
 
@@ -26,7 +26,9 @@ points, perhaps using print statements to output the contents of variables, mayb
 use a logging capability to output the state of everything as the program progresses, or 
 look at intermediately generated files to give us an idea of what went wrong.
 
-But such approaches only go so far and often these are time consuming and aren't enough. In complex programs like simulation codes, sometimes we need to get inside the code as it's running and explore. This is where using a **debugger** can be useful.
+But such approaches only go so far and often these are time consuming and aren't enough. 
+In complex programs like simulation codes, sometimes we need to get inside the code as 
+it's running and explore. This is where using a **debugger** can be useful.
 
 ## Normalising patient data
 
@@ -136,7 +138,7 @@ we are dividing `data` by in the return line of the function. You can also open 
 Debug Console and type in `max[:, np.newaxis]` to see the same result.
 
 Looking at the `max` variable, we can see that something looks wrong, as the maximum 
-values for each patient do no correspond to the `data` array. Recall that the input 
+values for each patient do not correspond to the `data` array. Recall that the input 
 `data` array we are using for the function is
 
 ~~~
@@ -155,22 +157,22 @@ nice green tick next to the test in the VSCode IDE.
 
 The test case that we have currently written for `patient_normalise` is parameterised 
 with a fairly standard `data` array. However, when writing your test cases, it is 
-important to consider parameterising them by unusual or extream values, in order to test 
+important to consider parametrising them by unusual or extrema values, in order to test 
 all the edge or corner cases that your code could be exposed to in practice. Generally 
-speaking, it is at these extream cases that you will find your code failing, so it 
-benificial to test them beforehand.
+speaking, it is at these extrema cases that you will find your code failing, so it 
+beneficial to test them beforehand.
 
 What is considered an "edge case" for any given component depends on what that component 
 is meant to do. In the case of `patient_normalise` the goal of the function is to 
-normalise a numeric array of numbers. For numerical values the extream cases could be 
+normalise a numeric array of numbers. For numerical values the extrema cases could be 
 zeros, very large or small values, not-a-number (NaN), or infinity values. Since we are 
-specifically considering an *array* of values, an extram case could be that all the 
+specifically considering an *array* of values, an extrema case could be that all the 
 numbers of the array are equal.
 
 For all the given edge cases you might come up with, you should also consider their 
-likelihood of occurance, it is often too much effort to exhaustivly test a given 
+likelihood of occurrence, it is often too much effort to exhaustively test a given 
 function, so you should priorities edge cases that are likely to happen in practice. For 
-our `patient_normalise` function, the most common edge cases would be the occurance of 
+our `patient_normalise` function, the most common edge cases would be the occurrence of 
 zeros, and the case where all the values of the array are the same. 
 
 When you are considering edge cases to test for, try also to think about what might 
@@ -221,7 +223,7 @@ divide by zero, reproduced below
 ~~~
 {: .output}
 
-How can we fix this. Luckily there is a Numpy function that is useful here, 
+How can we fix this? Luckily there is a Numpy function that is useful here, 
 [`np.isnan()`](https://numpy.org/doc/stable/reference/generated/numpy.isnan.html), which 
 we can use to replace all the NaN's with our desired result, which is 0. We can also 
 silence the run-time warning using 
@@ -310,10 +312,10 @@ normalisation function will work correctly.
 
 Checking valid input to a function via preconditions is one of the simplest forms of 
 *defensive programming*. These preconditions are checked at the beginning of the 
-function to make sure that all assumpations are satisfied. These assumptions are often 
+function to make sure that all assumptions are satisfied. These assumptions are often 
 based on the *value* of the arguments, like we have already discussed. However, in a 
 dynamic language like Python one of the more common preconditions is to check that the 
-arguements of function are of the correct *type*. Currently there is nothing stopping 
+arguments of function are of the correct *type*. Currently there is nothing stopping 
 someone from calling `patient_normalise` with a string, a dictionary, or another object 
 that is not an `ndarray`.
 
@@ -364,8 +366,8 @@ def test_patient_normalise(test, expected, raises):
 
 > ## Add precondition checking correct type and shape of data
 >
-> We are not currently checking that the `data` arguement to `test_patient_normalise` is 
-> of a valid type. Add one precondtion to check that data is an `ndarray` object, and 
+> We are not currently checking that the `data` argument to `test_patient_normalise` is 
+> of a valid type. Add one precondition to check that data is an `ndarray` object, and 
 > another to check that it is of the correct shape. Add corresponding tests to check 
 > that the function raises the correct exception. You will probably find the Python 
 > function [`isinstance`](https://docs.python.org/3/library/functions.html#isinstance) 
