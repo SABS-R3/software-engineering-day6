@@ -1,23 +1,120 @@
 ---
-title: "Continuous Integration for Automated Testing"
-teaching: 40
-exercises: 10
+title: "Continuous Integration"
+teaching: 60
+exercises: 120
 questions:
-- "How can I apply automated repository testing to scale with development activity?"
+- "How can I automate a variety of tasks on a repository to make my software more robust?"
 objectives:
-- "Describe the benefits of using Continuous Integration for further automation of testing"
-- "Enable GitHub Actions Continuous Integration for public open source repositories"
-- "Enable Travis Continuous Integration for public open source repositories"
-- "Use continuous integration to automatically run unit tests and code coverage when changes are committed to a version control repository"
+- "Describe the benefits of using Continuous Integration for further automation of testing and other tasks"
+- "Enable GitHub Actions Continuous Integration for public open source (or private) repositories"
+- "Be aware of alternatives to GitHub actions, such as Travis"
+- "Use continuous integration to automatically run unit tests"
+- "Use continuous integration and Codecov to automatically run and display coverage information"
+- "Integrate Better Code Hub to give general insights into software quality"
+- "Integrate Read the Docs to automatically generate and house software documentation"
 keypoints:
 - "Continuous Integration can run tests automatically to verify changes as code develops in our repository."
+- "CI can run tests on different architectures and different configurations, baking portability into software."
 - "CI builds are typically triggered by commits pushed to a repository."
-- "We need to write a configuration file to inform a CI service what to do for a build."
-- "Builds can be enabled and configured separately for each branch."
-- "We can run - and get reports from - different CI infrastructure builds simultaneously."
+- "Third party services can be configured to listen for changes to your repository."
+- "Use of CI is essential to software quality as it removes tedious manual tasks that will not otherwise be regularly performed."
 ---
 
-So far we've been manually running our tests as we require. So once we've made a change, or add a new feature with accompanying tests, we can re-run our tests, giving ourselves (and others who wish to run them) increased confidence that everything is working as expected. Now we're going to take further advantage of automation in a way that helps testing scale across a development team with very little overhead, using Continuous Integration.
+## What is Continuous Integration?
+
+The automated testing we've done so far only taking into account the state of the repository we have on our own machines. In a software project involving multiple developers working and pushing changes on a repository, it would be great to know holistically how all these changes are affecting our codebase without everyone having to pull down all the changes and test them. If we also take into account the testing required on different target user plaforms for our software and the changes being made to many repository branches, the effort required to conduct testing at this scale can quickly become intractable for a research project to sustain.
+
+Continuous Integration (CI) aims to reduce this burden by further automation, and automation - wherever possible - helps us to reduce errors and makes predictable processes more efficient. The idea is that when a new change is committed to a repository, CI clones the repository, builds it if necessary, and runs any tests. Once complete, it presents a report to let you see what happened.
+
+There are many CI infrastructures and services, free and paid for, and subject to change as they evolve their features. We'll be looking at two free ones, GitHub Actions - which unsurprisingly is available as part of GitHub - and a third party one called Travis. Both of these make use of common features across many CI implementations, and looking at both will illustrate some of the commonalities and differences in how such features are typically provided.
+
+
+## 14:15 - Getting set up with the repository
+
+This will be a hands-on afternoon where you will all set up CI for a small Python project, and see some of its benefits in action.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Some instructions
+- on what to do
+
+
+## 14:30 - Getting started with GitHub actions
+
+Default set up using the GitHub actions wizard to create a workflow file that tests with multiple versions of Python.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Some instructions
+- on what to do
+
+
+## 15:00 - Testing on multiple operating systems
+
+To ensure good portability between all potential users, we should be testing on Windows, Linux and macOS.
+We can do that using GitHub actions.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Some instructions
+- on what to do
+
+## 15:15 - Coffee break
+
+Take a break!
+
+
+## 15:30 Testing code coverage
+
+Introduction to coverage testing, why it's important, and how we can visualise the results using Codecov, for public repositories.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Some instructions
+- on what to do
+
+
+## 16:15 Integrating third party tools: Better Code Hub
+
+Better Code Hub is a service that provides a broad overview of your software's architecture, giving a useful indication of guidelines you ought to be aware of.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Some instructions
+- on what to do
+
+
+## 16:30 - Coffee break
+
+Take a break!
+
+
+## 16:45 Integrating third party tools: Read the Docs
+
+Read the Docs is a free place to host documentation for open source software projects.
+In this section we will use a tool called Sphinx to generate documentation for our Python library, and have that documentation hosted and updated automatically on Read the Docs.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Some instructions
+- on what to do
+
+
+## 17:15 Wrapping up
+
+Read the Docs is a free place to host documentation for open source software projects.
+In this section we will use a tool called Sphinx to generate documentation for our Python library, and have that documentation hosted and updated automatically on Read the Docs.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Some instructions
+- on what to do
+
+
+
+
+
+<!-- So far we've been manually running our tests as we require. So once we've made a change, or add a new feature with accompanying tests, we can re-run our tests, giving ourselves (and others who wish to run them) increased confidence that everything is working as expected. Now we're going to take further advantage of automation in a way that helps testing scale across a development team with very little overhead, using Continuous Integration.
 
 
 ## What is Continuous Integration?
@@ -223,7 +320,7 @@ $ git push origin develop
 
 Now these changes have migrated to our parent `develop` branch, `develop` will also inherit the configuration to run CI builds, so these will run automatically on this branch as well.
 
-This highlights a big benefit of CI when you perform merges (and apply pull requests). As new branch code is merged into upstream branches like `dev` and `master` this newly integrated code changes are automatically tested *together* with existing code - which of course may also have changed in the meantime!
+This highlights a big benefit of CI when you perform merges (and apply pull requests). As new branch code is merged into upstream branches like `dev` and `master` this newly integrated code changes are automatically tested *together* with existing code - which of course may also have changed in the meantime! -->
 
 
 {% include links.md %}
