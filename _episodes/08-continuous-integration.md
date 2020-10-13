@@ -8,12 +8,14 @@ objectives:
 - "Describe the benefits of using Continuous Integration for further automation of testing and other tasks"
 - "Enable GitHub Actions Continuous Integration for public open source (or private) repositories"
 - "Be aware of alternatives to GitHub actions, such as Travis"
-- "Use continuous integration to automatically run unit tests"
-- "Use continuous integration and Codecov to automatically run and display coverage information"
+- "Use GitHub Actions to automatically run unit tests with multiple Python versions"
+- "Use GitHub Actions to automatically run unit tests on multiple operating systems"
+- "Use GitHub Actions and Codecov to automatically run and display coverage information"
 - "Integrate Better Code Hub to give general insights into software quality"
-- "Integrate Read the Docs to automatically generate and house software documentation"
+- "Integrate Sphinx and Read the Docs to automatically generate and host software documentation"
 keypoints:
-- "Continuous Integration can run tests automatically to verify changes as code develops in our repository."
+- "Continuous Integration covers a whole range of tools and practices that can be applied to aid good software development."
+- "CI can run tests automatically to verify changes as code develops."
 - "CI can run tests on different architectures and different configurations, baking portability into software."
 - "CI builds are typically triggered by commits pushed to a repository."
 - "Third party services can be configured to listen for changes to your repository."
@@ -33,7 +35,7 @@ There are many CI infrastructures and services, free and paid for, and subject t
 
 This will be a hands-on afternoon where you will all set up CI for a small Python project, and see some of its benefits in action.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Vh-DNTvYgsY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - Some instructions
 - on what to do
@@ -43,7 +45,7 @@ This will be a hands-on afternoon where you will all set up CI for a small Pytho
 
 Default set up using the GitHub actions wizard to create a workflow file that tests with multiple versions of Python.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-91cuGP24U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - Some instructions
 - on what to do
@@ -54,7 +56,7 @@ Default set up using the GitHub actions wizard to create a workflow file that te
 To ensure good portability between all potential users, we should be testing on Windows, Linux and macOS.
 We can do that using GitHub actions.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eIf1KxNpn68" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - Some instructions
 - on what to do
@@ -68,7 +70,7 @@ Take a break!
 
 Introduction to coverage testing, why it's important, and how we can visualise the results using Codecov, for public repositories.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yc7hnL04fYs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - Some instructions
 - on what to do
@@ -78,7 +80,7 @@ Introduction to coverage testing, why it's important, and how we can visualise t
 
 Better Code Hub is a service that provides a broad overview of your software's architecture, giving a useful indication of guidelines you ought to be aware of.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ZIJPVD5C0UA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - Some instructions
 - on what to do
@@ -94,18 +96,13 @@ Take a break!
 Read the Docs is a free place to host documentation for open source software projects.
 In this section we will use a tool called Sphinx to generate documentation for our Python library, and have that documentation hosted and updated automatically on Read the Docs.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/3kDdPtg3pwU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - Some instructions
 - on what to do
 
 
-## 17:15 Wrapping up
-
-Read the Docs is a free place to host documentation for open source software projects.
-In this section we will use a tool called Sphinx to generate documentation for our Python library, and have that documentation hosted and updated automatically on Read the Docs.
-
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LL_NrM7MY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+## Wrapping up
 
 - Some instructions
 - on what to do
