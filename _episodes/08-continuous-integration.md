@@ -52,12 +52,27 @@ If you get through everything quickly and have time left at the end of the day, 
 
 ## 14:10 - Getting set up with the repository
 
-This will be a hands-on afternoon where you will all set up CI for a small Python project, and see some of its benefits in action.
+In this section, you will set up your own personal version of the SABS CI Course python project, and check that you can configure it on your own machine.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Vh-DNTvYgsY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-- Some instructions
-- on what to do
+1. The repository is at [https://github.com/SABS-R3/2020-software-engineering-ci](https://github.com/SABS-R3/2020-software-engineering-ci)
+1. Import (not fork) to your own GitHub account
+1. Clone your imported version locally
+1. Set up a Python3 virtual environment:
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
+1. Install the project:
+  ```bash
+  pip install --upgrade pip setuptools wheel
+  pip install -e .[dev,docs]
+  ```
+1. Check that the unit tests run and pass:
+  ```bash
+  python -m unittest
+  ```
 
 
 ## 14:30 - Getting started with GitHub actions
