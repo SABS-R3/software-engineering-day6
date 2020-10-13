@@ -167,16 +167,16 @@ coverage codecov
         codecov
     ```
 {% endraw %}
+1. Find the status badge from [https://codecov.io/](https://codecov.io/) to display in your `README.md`.
+1. Add a unit test to cover the remaining line in `functionality.py`, and check that your coverage goes up to 100%.
+1. \[optional\] Read about [branch coverage](https://coverage.readthedocs.io/en/v4.5.x/branch.html). Turn branch coverage on in your coverage workflow. Check whether you have 100% branch coverage, and if not, fix it.
 1. \[optional\] Read more about [encrypted secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets) in GitHub Actions
 1. \[optional\] Read more about [environment variables](https://docs.github.com/en/free-pro-team@latest/actions/reference/environment-variables) in GitHub Actions
-
-  
-
 
 
 ## 16:15 Integrating third party tools: Better Code Hub
 
-Better Code Hub is a service that provides a broad overview of your software's architecture, giving a useful indication of guidelines you ought to be aware of.
+[Better Code Hub]() is a service that provides a broad overview of your software's architecture, giving a useful indication of guidelines you ought to be aware of.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ZIJPVD5C0UA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
