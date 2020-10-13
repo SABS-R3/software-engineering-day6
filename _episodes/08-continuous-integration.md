@@ -96,6 +96,7 @@ In this section we will create two workflows by using the wizard and built-in ed
 1. Check that the four runners start, and watch them fail.
 1. On your machine, fix the errors that `flake8` found, and commit and push those changes. Make sure the CI now passes.
    - Remember to pull the changes you made on GitHub before commiting your fixes
+1. Read the contents of the `.flake8` file in your repository. What is it doing?
 1. \[optional\] read more about [GitHub's hosted runners](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners).
 1. \[optional\] read more about the [syntax for GitHub actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions).
 1. \[optional, after completing exercises\] set up a similar workflow using [Travis CI](https://travis-ci.com/).
@@ -169,6 +170,7 @@ coverage codecov
 {% endraw %}
 1. Find the status badge from [https://codecov.io/](https://codecov.io/) to display in your `README.md`.
 1. Add a unit test to cover the remaining line in `functionality.py`, and check that your coverage goes up to 100%.
+1. Read the contents of the `.coveragerc` file in your repository. What is it doing?
 1. \[optional\] Read about [branch coverage](https://coverage.readthedocs.io/en/v4.5.x/branch.html). Turn branch coverage on in your coverage workflow. Check whether you have 100% branch coverage, and if not, fix it.
 1. \[optional\] Read more about [encrypted secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets) in GitHub Actions
 1. \[optional\] Read more about [environment variables](https://docs.github.com/en/free-pro-team@latest/actions/reference/environment-variables) in GitHub Actions
@@ -176,13 +178,16 @@ coverage codecov
 
 ## 16:15 Integrating third party tools: Better Code Hub
 
-[Better Code Hub]() is a service that provides a broad overview of your software's architecture, giving a useful indication of guidelines you ought to be aware of.
+[Better Code Hub](https://bettercodehub.com/) is a service that provides a broad overview of your software's architecture, giving a useful indication of guidelines you ought to be aware of.
+
+Better Code Hub is one of a number of services that can add to your continuous integration set up without you writing a single line of code: no workflow is necessary, you just link the service to your GitHub repository and it will watch for changes.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ZIJPVD5C0UA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-- Some instructions
-- on what to do
-
+1. Go to [https://bettercodehub.com/](https://bettercodehub.com/) and analyse your repository.
+1. Read through the guidelines to get an idea of what checks are being made.
+1. Add a status badge from [Better Code Hub](https://bettercodehub.com/) to your `README.md`.
+1. \[optional\] Read about how you can [configure Better Code Hub](https://bettercodehub.com/docs/configuration-manual) by adding a YAML file to your repository.
 
 ## 16:30 - Coffee break
 
@@ -191,13 +196,22 @@ Take a break!
 
 ## 16:45 Integrating third party tools: Read the Docs
 
-Read the Docs is a free place to host documentation for open source software projects.
-In this section we will use a tool called Sphinx to generate documentation for our Python library, and have that documentation hosted and updated automatically on Read the Docs.
+[Read the Docs](https://readthedocs.org/) is a free place to host documentation for open source software projects.
+In this section you will use a tool called [Sphinx](https://www.sphinx-doc.org/en/master/) to generate documentation for your repository, and host that documentation automatically on Read the Docs.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/3kDdPtg3pwU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-- Some instructions
-- on what to do
+1. Create a directory called `docs` and run the `sphinx-quickstart`
+1. Edit `conf.py` to remove the empty `_static` directory from the configuration. The final line should end up as:
+    ```
+    html_static_path = []
+    ```
+1. Commit and push those files to GitHub.
+1. Go to [https://readthedocs.org/](https://readthedocs.org/) and import your repository.
+1. Check that it builds correctly. Find a status badge to add to your `README.md`.
+1. Add a quickstart guide to your documentation. Push the changes, and check that they go live.
+2. Read the contents of the `.readthedocs.yml` file in your repository. What is it doing?
+3. \[optional\] Read more about [Sphinx](https://www.sphinx-doc.org/en/master/) and [Read the Docs](https://readthedocs.org/).
 
 
 ## Wrapping up
