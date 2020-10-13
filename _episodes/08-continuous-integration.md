@@ -7,7 +7,7 @@ questions:
 objectives:
 - "Describe the benefits of using Continuous Integration for further automation of testing and other tasks"
 - "Enable GitHub Actions Continuous Integration for public open source (or private) repositories"
-- "Be aware of alternatives to GitHub actions, such as Travis"
+- "Be aware of alternatives to GitHub Actions, such as Travis"
 - "Use GitHub Actions to automatically run unit tests with multiple Python versions"
 - "Use GitHub Actions to automatically run unit tests on multiple operating systems"
 - "Use GitHub Actions and Codecov to automatically run and display coverage information"
@@ -34,7 +34,7 @@ The idea is that when a new change is committed to a repository, CI clones the r
 Once complete, it presents a report to let you see what happened.
 
 There are many CI infrastructures and services, free and paid for, and subject to change as they evolve their features.
-This afternoon we will be using GitHub Actions, which unsurprisingly is available as part of GitHub.
+This afternoon you will be using GitHub Actions, which unsurprisingly is available as part of GitHub.
 There are other free options, for instance [Travis CI](https://travis-ci.com/) and [AppVeyor](https://www.appveyor.com/).
 All three of these make use of common features across many CI implementations, and you are certainly advised to look at the options to see some of the commonalities and differences in how features are typically provided.
 
@@ -56,9 +56,9 @@ In this section, you will set up your own personal version of the SABS CI Course
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Vh-DNTvYgsY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. The repository is at [https://github.com/SABS-R3/2020-software-engineering-ci](https://github.com/SABS-R3/2020-software-engineering-ci)
-1. Import (not fork) to your own GitHub account
-1. Clone your imported version locally
+1. The repository is at [https://github.com/SABS-R3/2020-software-engineering-ci](https://github.com/SABS-R3/2020-software-engineering-ci).
+1. Import (not fork) to your own GitHub account.
+1. Clone your imported version locally.
 1. Set up a Python3 virtual environment:
 ```bash
 python3 -m venv venv
@@ -75,16 +75,16 @@ python -m unittest
 ```
 
 
-## 14:30 - Getting started with GitHub actions
+## 14:30 - Getting started with GitHub Actions
 
-With a GitHub repository there's a very easy way we can set up CI to run tasks when we make a change: simply add a file to our repository in the directory `.github/workflows`.
+With a GitHub repository there's a very easy way to set up CI that runs when your repository changes: simply add a file to your repository in the directory `.github/workflows`.
 Each file in this directory will, when triggered, spin up a virtual machine and run the sequence of commands in the file.
 
 Information about the specifications of these VMs can be found [here](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners).
 At the time of writing, each VM will have a 2-core CPU, 7GB of RAM and 14 GB of SSD space available, and each workflow can run for up to 6 hours.
 These resources are all free for public repositories, and for private repositories you have a monthly quota of VM-minutes before any payment is required.
 
-In this section we will create two workflows by using the wizard and built-in editor on the GitHub website.
+In this section you will create two workflows by using the wizard and built-in editor on the GitHub website.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-91cuGP24U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -98,27 +98,26 @@ In this section we will create two workflows by using the wizard and built-in ed
    - Remember to pull the changes you made on GitHub before commiting your fixes
 1. Read the contents of the `.flake8` file in your repository. What is it doing?
 1. \[optional\] read more about [GitHub's hosted runners](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners).
-1. \[optional\] read more about the [syntax for GitHub actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions).
+1. \[optional\] read more about the [syntax for GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions).
 1. \[optional, after completing exercises\] set up a similar workflow using [Travis CI](https://travis-ci.com/).
 
 
 ## 15:00 - Testing on multiple operating systems
 
-To ensure good portability of our software for all potential users, we should ideally be testing on Windows, Linux and macOS.
-We can do that using GitHub actions.
+To ensure good portability of software for all potential users, you should ideally be testing on Windows, Linux and macOS.
+You can do that using GitHub Actions.
 
-Information about the operating systems that GitHub actions supports can be found [in their documentation](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources).
+Information about the operating systems that GitHub Actions supports can be found [in their documentation](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources).
 At the time of writing, you can access virtual machines running Windows Server 2019, Ubuntu 20.04, Ubuntu 18.04, Ubuntu 16.04, and macOS Catalina 10.15.
 
-While not covered in this course, you can also use GitHub actions with [Docker](https://www.docker.com/), allowing you to test on many other environments than the defaults.
+While not covered in this course, you can also use GitHub Actions with [Docker](https://www.docker.com/), allowing you to test on many other environments than the defaults.
 You can also add [self hosted runners](https://docs.github.com/en/free-pro-team@latest/actions/hosting-your-own-runners/adding-self-hosted-runners) if you need to run your CI on specific hardware that you own, or if you need to use software (such as Matlab) that you have local licenses for.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eIf1KxNpn68" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. Remove the basic workflow file.  We don't need that any more.
+1. Remove the basic workflow file.  You don't need that any more.
 1. Add a status badge to your repository's `README.md` file.
-1. Create a new workflow file to test your repository on Windows, Linux and macOS.
-   - Use a build matrix with the following:
+1. Create a new workflow file to test your repository on Windows, Linux and macOS. Use a build matrix with the following:
 ```yml
 os: [windows-latest, macos-latest, ubuntu-latest]
 ```
@@ -135,7 +134,7 @@ Take a break!
 Code coverage is a metric used to describe how much code in a software project is hit when the unit tests are run.
 In its simplest form, this is the proportion of the lines of code that get executed when you run the unit tests.
 
-Code coverage is no guarantee that the unit tests are any good: but, nevertheless, code coverage is an important metric for helping to assess how well tested a codebase is.
+Code coverage is no guarantee that the unit tests are any good. But, nevertheless, code coverage is an important metric for helping to assess how well tested a codebase is.
 
 In this section, you are going to calculate the code coverage of your Python project, which you will then visualise using a third party tool called [Codecov](https://codecov.io/).
 Codecov is free for public repositories.
@@ -171,23 +170,23 @@ coverage codecov
 1. Find the status badge from [https://codecov.io/](https://codecov.io/) to display in your `README.md`.
 1. Add a unit test to cover the remaining line in `functionality.py`, and check that your coverage goes up to 100%.
 1. Read the contents of the `.coveragerc` file in your repository. What is it doing?
-1. \[optional\] Read about [branch coverage](https://coverage.readthedocs.io/en/v4.5.x/branch.html). Turn branch coverage on in your coverage workflow. Check whether you have 100% branch coverage, and if not, fix it.
-1. \[optional\] Read more about [encrypted secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets) in GitHub Actions
-1. \[optional\] Read more about [environment variables](https://docs.github.com/en/free-pro-team@latest/actions/reference/environment-variables) in GitHub Actions
+1. \[optional\] Read about [branch coverage](https://coverage.readthedocs.io/en/v4.5.x/branch.html). Turn branch coverage on in your coverage workflow. Check whether you have 100% branch coverage and, if not, fix it.
+1. \[optional\] Read more about [encrypted secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets) in GitHub Actions.
+1. \[optional\] Read more about [environment variables](https://docs.github.com/en/free-pro-team@latest/actions/reference/environment-variables) in GitHub Actions.
 
 
 ## 16:15 Integrating third party tools: Better Code Hub
 
-[Better Code Hub](https://bettercodehub.com/) is a service that provides a broad overview of your software's architecture, giving a useful indication of guidelines you ought to be aware of.
+[Better Code Hub](https://bettercodehub.com/) is a service that provides a broad overview of aspects of your software's quality. It uses a number of useful guidelines to score your software out of 10.
 
 Better Code Hub is one of a number of services that can add to your continuous integration set up without you writing a single line of code: no workflow is necessary, you just link the service to your GitHub repository and it will watch for changes.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ZIJPVD5C0UA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 1. Go to [https://bettercodehub.com/](https://bettercodehub.com/) and analyse your repository.
-1. Read through the guidelines to get an idea of what checks are being made.
-1. Add a status badge from [Better Code Hub](https://bettercodehub.com/) to your `README.md`.
-1. \[optional\] Read about how you can [configure Better Code Hub](https://bettercodehub.com/docs/configuration-manual) by adding a YAML file to your repository.
+2. Read through the guidelines to get an idea of what checks are being made.
+3. Add a status badge from [Better Code Hub](https://bettercodehub.com/) to your `README.md`.
+4. \[optional\] Read about how you can [configure Better Code Hub](https://bettercodehub.com/docs/configuration-manual) by adding a YAML file to your repository.
 
 ## 16:30 - Coffee break
 
@@ -201,7 +200,7 @@ In this section you will use a tool called [Sphinx](https://www.sphinx-doc.org/e
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/3kDdPtg3pwU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. Create a directory called `docs` and run the `sphinx-quickstart`
+1. Create a directory called `docs` and run the `sphinx-quickstart`.
 1. Edit `conf.py` to remove the empty `_static` directory from the configuration. The final line should end up as:
     ```
     html_static_path = []
@@ -220,7 +219,7 @@ Continuous integration is an essential tool to improve software quality and reli
 It drastically increases the chances of catching problems at an early stage, preventing significant effort correcting problems later once they have become entrenched.
 On top of that, there are many free services that you can take advantage of for your open source projects.
 
-I would encourage you to look at some examples of large repositories using sophisticated continuous integration in production, to see what it can look like for large projects.
+I would encourage you to look at some examples of repositories using sophisticated continuous integration in production, to see what it can look like for large projects.
 I would suggest looking at [PINTS](https://github.com/pints-team/pints).
 If you look at any of the open pull requests, you can see each commit pushed to GitHub has a tick or a cross, telling code reviewers at a glance whether all the checks passed.
 
