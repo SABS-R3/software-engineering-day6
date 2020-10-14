@@ -1,0 +1,593 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2020-10-14 16:44:30 +0100">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../assets/favicons/swc/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/favicons/swc/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/favicons/swc/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/favicons/swc/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../assets/favicons/swc/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../assets/favicons/swc/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../assets/favicons/swc/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../assets/favicons/swc/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Software Carpentry - Developing better code with automated testing"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../assets/favicons/swc/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../assets/favicons/swc/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../assets/favicons/swc/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../assets/favicons/swc/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../assets/favicons/swc/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+  <title>
+  Continuous Integration &ndash; Developing better code with automated testing
+  </title>  
+
+  </head>
+  <body>
+
+    
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="https://software-carpentry.org" class="pull-left">
+        <img class="navbar-logo" src="../assets/img/sabs-logo.png" alt="Software Carpentry logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="../index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        
+        
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="../01-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../02-introduction/index.html">Introduction</a></li>
+            
+            <li><a href="../03-automatically-testing-software/index.html">Automatically Testing your Software</a></li>
+            
+            <li><a href="../04-diagnosing-issues-improving-robustness/index.html">Diagnosing Issues and Improving Robustness</a></li>
+            
+            <li><a href="../05-mocking/index.html">Mocking for Unit Testing</a></li>
+            
+            <li><a href="../06-lunch/index.html">Lunch</a></li>
+            
+            <li><a href="../07-QandA/index.html">Q&A session</a></li>
+            
+            <li><a href="../08-continuous-integration/index.html">Continuous Integration</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="../aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="../LICENSE.html">License</a></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../07-QandA/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Developing better code with automated testing</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Continuous Integration</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 60 min
+      <br/>
+      <strong>Exercises:</strong> 120 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I automate a variety of tasks on a repository to make my software more robust?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Describe the benefits of using Continuous Integration for further automation of testing and other tasks</p>
+</li>
+	
+	<li><p>Enable GitHub Actions Continuous Integration for public open source (or private) repositories</p>
+</li>
+	
+	<li><p>Be aware of alternatives to GitHub Actions, such as Travis</p>
+</li>
+	
+	<li><p>Use GitHub Actions to automatically run unit tests with multiple Python versions</p>
+</li>
+	
+	<li><p>Use GitHub Actions to automatically run unit tests on multiple operating systems</p>
+</li>
+	
+	<li><p>Use GitHub Actions and Codecov to automatically run and display coverage information</p>
+</li>
+	
+	<li><p>Integrate Better Code Hub to give general insights into software quality</p>
+</li>
+	
+	<li><p>Integrate Sphinx and Read the Docs to automatically generate and host software documentation</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h2 id="what-is-continuous-integration">What is Continuous Integration?</h2>
+
+<p>The automated testing we’ve done so far only takes into account the state of the repository we have on our own machines.
+In a software project involving multiple developers working and pushing changes to a repository, it would be great to know holistically how all these changes are affecting our codebase, without everyone having to pull down all the changes and test them.
+If we also take into account the testing required on different target user platforms for our software (e.g. different versions of Python, different operating systems, different compilers, …) and the changes being made to many repository branches, the effort required to conduct testing at this scale can quickly become intractable for a research project to sustain.</p>
+
+<p>Continuous Integration (CI) aims to reduce this burden by further automation, and automation - wherever possible - helps us to reduce errors and makes predictable processes more efficient.
+The idea is that when a new change is committed to a repository, CI clones the repository, builds it if necessary, and performs certain tasks such as running tests, performing static analysis, or building documentation.
+Once complete, it presents a report to let you see what happened.</p>
+
+<p>There are many CI infrastructures and services, free and paid for, and subject to change as they evolve their features.
+This afternoon you will be using GitHub Actions, which unsurprisingly is available as part of GitHub.
+There are other free options, for instance <a href="https://travis-ci.com/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a>.
+All three of these make use of common features across many CI implementations, and you are certainly advised to look at the options to see some of the commonalities and differences in how features are typically provided.</p>
+
+<h2 id="this-afternoon">This afternoon</h2>
+
+<p>This will be a hands-on session where you will all set up CI for a small Python project, and see some of its benefits in action.
+Each section below has a suggested start time, a brief description, a YouTube video lecture, and a list of tasks to perform after watching the video.</p>
+
+<p>Don’t worry if you don’t keep to the suggested start times.
+If you get stuck on something, please reach out to the demonstrators.
+If you want to explore a particular aspect more fully, that’s fine - these resources will remain online for the foreseeable future.
+If you get through everything quickly and have time left at the end of the day, I would suggest that you either look at performing some of the same integrations using a different CI service, or that you investigate some of the GitHub Actions features in more depth.</p>
+
+<h2 id="1410---getting-set-up-with-the-repository">14:10 - Getting set up with the repository</h2>
+
+<p>In this section, you will set up your own personal version of the SABS CI Course python project, and check that you can configure it on your own machine.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Vh-DNTvYgsY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<ol>
+  <li>The repository is at <a href="https://github.com/SABS-R3/2020-software-engineering-ci">https://github.com/SABS-R3/2020-software-engineering-ci</a>.</li>
+  <li>Import (not fork) to your own GitHub account.</li>
+  <li>Clone your imported version locally.</li>
+  <li>Set up a Python3 virtual environment:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> venv venv
+<span class="nb">source </span>venv/bin/activate
+</code></pre></div>    </div>
+  </li>
+  <li>Install the project:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--upgrade</span> pip setuptools wheel
+pip <span class="nb">install</span> <span class="nt">-e</span> .[dev,docs]
+</code></pre></div>    </div>
+  </li>
+  <li>Check that the unit tests run and pass:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> unittest
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="1430---getting-started-with-github-actions">14:30 - Getting started with GitHub Actions</h2>
+
+<p>With a GitHub repository there’s a very easy way to set up CI that runs when your repository changes: simply add a file to your repository in the directory <code class="language-plaintext highlighter-rouge">.github/workflows</code>.
+Each file in this directory will, when triggered, spin up a virtual machine and run the sequence of commands in the file.</p>
+
+<p>Information about the specifications of these VMs can be found <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners">here</a>.
+At the time of writing, each VM will have a 2-core CPU, 7GB of RAM and 14 GB of SSD space available, and each workflow can run for up to 6 hours.
+These resources are all free for public repositories, and for private repositories you have a monthly quota of VM-minutes before any payment is required.</p>
+
+<p>In this section you will create two workflows by using the wizard and built-in editor on the GitHub website.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-91cuGP24U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<ol>
+  <li>Create a basic workflow from your repository’s “Actions” tab, and verify that it runs and executes correctly.</li>
+  <li>Create a workflow based on the default “Python package” workflow, editing the contents as required for this project:
+    <ul>
+      <li>Remove the unnecessary dependency of <code class="language-plaintext highlighter-rouge">pytest</code></li>
+      <li>Change <code class="language-plaintext highlighter-rouge">flake8</code> to <strong>not</strong> treat errors as warnings</li>
+      <li>Run the tests with <code class="language-plaintext highlighter-rouge">python -m unittest</code>, rather than <code class="language-plaintext highlighter-rouge">pytest</code></li>
+    </ul>
+  </li>
+  <li>Check that the four runners start, and watch them fail.</li>
+  <li>On your machine, fix the errors that <code class="language-plaintext highlighter-rouge">flake8</code> found, and commit and push those changes. Make sure the CI now passes.
+    <ul>
+      <li>Remember to pull the changes you made on GitHub before commiting your fixes</li>
+    </ul>
+  </li>
+  <li>Read the contents of the <code class="language-plaintext highlighter-rouge">.flake8</code> file in your repository. What is it doing?</li>
+  <li>[optional] read more about <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners">GitHub’s hosted runners</a>.</li>
+  <li>[optional] read more about the <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions">syntax for GitHub Actions</a>.</li>
+  <li>[optional, after completing exercises] set up a similar workflow using <a href="https://travis-ci.com/">Travis CI</a>.</li>
+</ol>
+
+<h2 id="1500---testing-on-multiple-operating-systems">15:00 - Testing on multiple operating systems</h2>
+
+<p>To ensure good portability of software for all potential users, you should ideally be testing on Windows, Linux and macOS.
+You can do that using GitHub Actions.</p>
+
+<p>Information about the operating systems that GitHub Actions supports can be found <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources">in their documentation</a>.
+At the time of writing, you can access virtual machines running Windows Server 2019, Ubuntu 20.04, Ubuntu 18.04, Ubuntu 16.04, and macOS Catalina 10.15.</p>
+
+<p>While not covered in this course, you can also use GitHub Actions with <a href="https://www.docker.com/">Docker</a>, allowing you to test on many other environments than the defaults.
+You can also add <a href="https://docs.github.com/en/free-pro-team@latest/actions/hosting-your-own-runners/adding-self-hosted-runners">self hosted runners</a> if you need to run your CI on specific hardware that you own, or if you need to use software (such as Matlab) that you have local licenses for.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eIf1KxNpn68" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<ol>
+  <li>Remove the basic workflow file.  You don’t need that any more.</li>
+  <li>Add a status badge to your repository’s <code class="language-plaintext highlighter-rouge">README.md</code> file.</li>
+  <li>Create a new workflow file to test your repository on Windows, Linux and macOS. Use a build matrix with the following:
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">os</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">windows-latest</span><span class="pi">,</span> <span class="nv">macos-latest</span><span class="pi">,</span> <span class="nv">ubuntu-latest</span><span class="pi">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Add a status badge for your new workflow.</li>
+  <li>[optional, after completing exercises] set up a similar workflow using <a href="https://travis-ci.com/">Travis CI</a>.</li>
+</ol>
+
+<h2 id="1520---coffee-break">15:20 - Coffee break</h2>
+
+<p>Take a break!</p>
+
+<h2 id="1530-testing-code-coverage">15:30 Testing code coverage</h2>
+
+<p>Code coverage is a metric used to describe how much code in a software project is hit when the unit tests are run.
+In its simplest form, this is the proportion of the lines of code that get executed when you run the unit tests.</p>
+
+<p>Code coverage is no guarantee that the unit tests are any good. But, nevertheless, code coverage is an important metric for helping to assess how well tested a codebase is.</p>
+
+<p>In this section, you are going to calculate the code coverage of your Python project, which you will then visualise using a third party tool called <a href="https://codecov.io/">Codecov</a>.
+Codecov is free for public repositories.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yc7hnL04fYs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<ol>
+  <li>Go to <a href="https://codecov.io/">https://codecov.io/</a>, log in with your GitHub account, and configure your project.</li>
+  <li>Copy the token, and set it as a secret in your repository, with the name <code class="language-plaintext highlighter-rouge">CODECOV_TOKEN</code>.</li>
+  <li>Create a new GitHub Actions workflow for running coverage.
+    <ul>
+      <li>You will need to add the following Python dependencies to your YAML file:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>coverage codecov
+</code></pre></div>        </div>
+      </li>
+      <li>Run coverage with the following block in your YAML file:</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run coverage</span>
+   <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+     <span class="s">coverage run -m unittest</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Run codecov with the following block in your YAML file:</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run codecov</span>
+   <span class="na">if</span><span class="pi">:</span> <span class="s">success()</span>
+   <span class="na">env</span><span class="pi">:</span>
+     <span class="na">CODECOV_TOKEN</span><span class="pi">:</span> <span class="s">${{ secrets.CODECOV_TOKEN }}</span>
+   <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+     <span class="s">codecov</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Find the status badge from <a href="https://codecov.io/">https://codecov.io/</a> to display in your <code class="language-plaintext highlighter-rouge">README.md</code>.</li>
+  <li>Add a unit test to cover the remaining line in <code class="language-plaintext highlighter-rouge">functionality.py</code>, and check that your coverage goes up to 100%.</li>
+  <li>Read the contents of the <code class="language-plaintext highlighter-rouge">.coveragerc</code> file in your repository. What is it doing?</li>
+  <li>[optional] Read about <a href="https://coverage.readthedocs.io/en/v4.5.x/branch.html">branch coverage</a>. Turn branch coverage on in your coverage workflow. Check whether you have 100% branch coverage and, if not, fix it.</li>
+  <li>[optional] Read more about <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets">encrypted secrets</a> in GitHub Actions.</li>
+  <li>[optional] Read more about <a href="https://docs.github.com/en/free-pro-team@latest/actions/reference/environment-variables">environment variables</a> in GitHub Actions.</li>
+</ol>
+
+<h2 id="1615-integrating-third-party-tools-better-code-hub">16:15 Integrating third party tools: Better Code Hub</h2>
+
+<p><a href="https://bettercodehub.com/">Better Code Hub</a> is a service that provides a broad overview of aspects of your software’s quality. It uses a number of useful guidelines to score your software out of 10.</p>
+
+<p>Better Code Hub is one of a number of services that can add to your continuous integration set up without you writing a single line of code: no workflow is necessary, you just link the service to your GitHub repository and it will watch for changes.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ZIJPVD5C0UA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<ol>
+  <li>Go to <a href="https://bettercodehub.com/">https://bettercodehub.com/</a> and analyse your repository.</li>
+  <li>Read through the guidelines to get an idea of what checks are being made.</li>
+  <li>Add a status badge from <a href="https://bettercodehub.com/">Better Code Hub</a> to your <code class="language-plaintext highlighter-rouge">README.md</code>.</li>
+  <li>[optional] Read about how you can <a href="https://bettercodehub.com/docs/configuration-manual">configure Better Code Hub</a> by adding a YAML file to your repository.</li>
+</ol>
+
+<h2 id="1630---coffee-break">16:30 - Coffee break</h2>
+
+<p>Take a break!</p>
+
+<h2 id="1645-integrating-third-party-tools-read-the-docs">16:45 Integrating third party tools: Read the Docs</h2>
+
+<p><a href="https://readthedocs.org/">Read the Docs</a> is a free place to host documentation for open source software projects.
+In this section you will use a tool called <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> to generate documentation for your repository, and host that documentation automatically on Read the Docs.</p>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/3kDdPtg3pwU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<ol>
+  <li>Create a directory called <code class="language-plaintext highlighter-rouge">docs</code> and run the <code class="language-plaintext highlighter-rouge">sphinx-quickstart</code>.</li>
+  <li>Edit <code class="language-plaintext highlighter-rouge">conf.py</code> to remove the empty <code class="language-plaintext highlighter-rouge">_static</code> directory from the configuration. The final line should end up as:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> html_static_path = []
+</code></pre></div>    </div>
+  </li>
+  <li>Commit and push those files to GitHub.</li>
+  <li>Go to <a href="https://readthedocs.org/">https://readthedocs.org/</a> and import your repository.</li>
+  <li>Check that it builds correctly. Find a status badge to add to your <code class="language-plaintext highlighter-rouge">README.md</code>.</li>
+  <li>Add a quickstart guide to your documentation. Push the changes, and check that they go live.</li>
+  <li>Read the contents of the <code class="language-plaintext highlighter-rouge">.readthedocs.yml</code> file in your repository. What is it doing?</li>
+  <li>[optional] Read more about <a href="https://www.sphinx-doc.org/en/master/">Sphinx</a> and <a href="https://readthedocs.org/">Read the Docs</a>.</li>
+</ol>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>Continuous integration is an essential tool to improve software quality and reliability.
+It drastically increases the chances of catching problems at an early stage, preventing significant effort correcting problems later once they have become entrenched.
+On top of that, there are many free services that you can take advantage of for your open source projects.</p>
+
+<p>I would encourage you to look at some examples of repositories using sophisticated continuous integration in production, to see what it can look like for large projects.
+I would suggest looking at <a href="https://github.com/pints-team/pints">PINTS</a>.
+If you look at any of the open pull requests, you can see each commit pushed to GitHub has a tick or a cross, telling code reviewers at a glance whether all the checks passed.</p>
+
+<p>Getting a good CI pipeline set up early in a project will pay back your time investment many times over.</p>
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Continuous Integration covers a whole range of tools and practices that can be applied to aid good software development.</p>
+</li>
+    
+    <li><p>CI can run tests automatically to verify changes as code develops.</p>
+</li>
+    
+    <li><p>CI can run tests on different architectures and different configurations, baking portability into software.</p>
+</li>
+    
+    <li><p>CI builds are typically triggered by commits pushed to a repository.</p>
+</li>
+    
+    <li><p>Third party services can be configured to listen for changes to your repository.</p>
+</li>
+    
+    <li><p>Use of CI is essential to software quality as it removes tedious manual tasks that will not otherwise be regularly performed.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../07-QandA/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-md-6 copyright" align="left">
+<!--
+	
+	Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2018–2020
+	by <a href="https://carpentries.org/">The Carpentries</a>
+        <br>
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2016–2018
+	by <a href="https://software-carpentry.org">Software Carpentry Foundation</a>
+	
+-->
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:s.crouch@software.ac.uk">Contact</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center">
+      Using <a href="https://github.com/carpentries/styles/">The Carpentries style</a>
+      version <a href="https://github.com/carpentries/styles/releases/tag/v9.5.3">9.5.3</a>.
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/lesson.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37305346-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
