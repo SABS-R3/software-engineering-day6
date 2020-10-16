@@ -345,6 +345,9 @@ test_derivative_2d_y_direction()
 > functions. Make sure to test for the two different behaviours of the function which 
 > occur when the input filename is either absolute or relative.
 >
+> Once you are finished, commit your changes and then merge all the new commits on your 
+> `test-suite` branch into `master.
+>
 > > ## Solution
 > > 
 > > ~~~

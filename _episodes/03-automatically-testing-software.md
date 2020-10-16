@@ -56,23 +56,42 @@ materials](https://swcarpentry.github.io/python-novice-inflammation/). It's base
 clinical trial of inflammation in patients who have been given a new treatment for 
 arthritis. 
 
-First clone and install the repository:
+First create your own copy of the software project repository from GitHub:
+
+1. Log into your GitHub account and go to the [template repository 
+   URL](https://github.com/SABS-R3/2020-software-engineering-day6-inflammation).
+2. Click `Use this template` button towards the top right of the template repository's 
+   GitHub page to create a **copy** of the repository under your GitHub account. Note 
+   that each participant is creating their own copy to work on. Also, we are not forking 
+   the directory but creating a copy (remember - you can fork only once but can have 
+   multiple copies in GitHub). 
+3. Make sure to select your personal account and set the name to the project 
+   `inflammation` (you can call it anything you like, but it may be easier if everyone 
+   uses the same name).
+4. Locate the copied repository under your own GitHub account, and click the green 
+   "Code" button to get the HTTPS or SSH url. Use this to clone the repository to your 
+   local computer, for example:
 
 ```
-$ git clone https://github.com/SABS-R3/2020-software-engineering-day6-inflammation.git 
-inflammation
+$ git clone https://github.com/<username>/inflammation.git 
 $ cd inflammation
+```
+{: .language-bash}
+
+Now create a new virtual environment and install the requirements.
+
+```
 $ python3 -m venv env
 $ source env/bin/activate
 $ pip install -r requirements.txt
 ```
 {: .language-bash}
 
-Then, since we will be editing the code, we will create and checkout a new branch called 
-`develop`:
+Then, since we will be editing the code to create some new tests, we will create and 
+checkout a new branch called `test-suite`:
 
 ```bash
-$ git checkout -b develop
+$ git checkout -b test-suite
 ```
 {: .language-bash}
 
@@ -155,8 +174,8 @@ all. It would be more helpful if we could get data from all of our tests every t
 they’re run, since the more information we have, the faster we’re likely to be able to 
 track down bugs. It would also be helpful to have some kind of summary report: if our 
 set of test - known as a **test suite** - includes thirty or forty tests (as it well 
-might for a complex function or library that’s widely used), we’d like to know how many 
-passed or failed.
+might for a more complex function or library), we’d like to know how many passed or 
+failed.
 
 So what has failed? As it turns out, the first test we just ran was incorrect, and should have read:
 
@@ -241,7 +260,8 @@ Going back to our list of requirements, how easy is it to run these tests? We ca
 
 #### Install pytest
 
-One of the first things we need to do is install the pytest package in our virtual environment. Instead of using PyCharm to configure the Conda environment, let's use the `pip` command from the command line instead:
+One of the first things we need to do is install the pytest package in our virtual 
+environment using `pip`:
 
 ~~~
 $ pip install pytest
@@ -265,18 +285,18 @@ So pytest gets installed along with any additional dependencies it requires.
 
 #### Set up a new feature branch for writing tests
 
-Since we're going to write some new tests, let's ensure we're initially on our `develop` branch we created earlier. And then, we'll create a new feature branch called `test-suite` - a common term we use to refer to sets of tests - that we'll use for our initial test writing work:
+Since we're going to write some new tests, let's ensure we're initially on our 
+`test-suite` branch we created earlier:
 
 ~~~
-$ git checkout develop
-$ git branch test-suite
 $ git checkout test-suite
 ~~~
 {: .language-bash}
 
 Good practice is to write our tests around the same time we write our code on a feature branch. But since the code already exists, we're creating a feature branch for just these extra tests. Git branches are designed to be lightweight, and where necessary, transient, and use of branches for even small bits of work is encouraged.
 
-Once we've finished writing these tests and are convinced they work properly, we'll merge our `test-suite` branch back into `develop`.
+Once we've finished writing these tests and are convinced they work properly, we'll 
+merge our `test-suite` branch back into `master`.
 
 #### Write a metadata package description
 
@@ -464,14 +484,14 @@ The big pluses here are that we don't need to write separate functions for each 
 > > ...
 > > ~~~
 > > {: .language-python}
-> > function test_daily_max()
 > {: .solution}   
 >
 {: .challenge}
 
 Try them out!
 
-Let's commit our new `pytest.py` file and test cases to our `test-suite` branch (but don't push it yet!):
+Let's commit our new `test_models.py` file and test cases to our `test-suite` branch 
+(but don't push it yet!):
 
 ~~~
 $ git add setup.py tests/test_models.py
@@ -533,7 +553,7 @@ this line, since we only need it for development. Do that now, and once done:
 
 ~~~
 $ git add requirements.txt
-$ git commit -m "Add coverage support" requirements.txt
+$ git commit -m "Add coverage support"
 $ git push -u origin test-suite
 ~~~
 {: .language-bash}

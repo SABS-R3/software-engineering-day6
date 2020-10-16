@@ -35,8 +35,8 @@ it's running and explore. This is where using a **debugger** can be useful.
 We wish to add a new function to our inflammation example, one that will normalise a 
 given inflammation data array so that all the entries lie between 0 and 1.
 
-Add a new function to `model.py` called `patient_normalise()`, and copy the following 
-code:
+Add a new function to `inflammation/models.py` called `patient_normalise()`, and copy 
+the following code:
 
 ~~~
 def patient_normalise(data):
@@ -166,14 +166,14 @@ What is considered an "edge case" for any given component depends on what that c
 is meant to do. In the case of `patient_normalise` the goal of the function is to 
 normalise a numeric array of numbers. For numerical values the extrema cases could be 
 zeros, very large or small values, not-a-number (NaN), or infinity values. Since we are 
-specifically considering an *array* of values, an extrema case could be that all the 
+specifically considering an *array* of values, an edge case could be that all the 
 numbers of the array are equal.
 
 For all the given edge cases you might come up with, you should also consider their 
 likelihood of occurrence, it is often too much effort to exhaustively test a given 
-function, so you should priorities edge cases that are likely to happen in practice. For 
-our `patient_normalise` function, the most common edge cases would be the occurrence of 
-zeros, and the case where all the values of the array are the same. 
+function against every possible input, so you should priorities edge cases that are 
+likely to occer. For our `patient_normalise` function, some common edge cases might be 
+the occurrence of zeros, and the case where all the values of the array are the same. 
 
 When you are considering edge cases to test for, try also to think about what might 
 break your code. For `patient_normalise` we can see that there is a division by the 
@@ -233,7 +233,7 @@ silence the run-time warning using
 >
 > Fix the failing `test_patient_normalise` test, and think of some more suitable edge 
 > cases to test our `patient_normalise()` function and add them to the parametrised 
-> tests.
+> tests. After you have finished remember to commit your changes.
 >
 > > ## Possible Solution
 > > ~~~
@@ -372,7 +372,9 @@ def test_patient_normalise(test, expected, raises):
 > that the function raises the correct exception. You will probably find the Python 
 > function [`isinstance`](https://docs.python.org/3/library/functions.html#isinstance) 
 > useful here, as well as the Python exception 
-> [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError)
+> [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError). Once you 
+> are done, commit your new files, and push the new commits to your remote repository on 
+> GitHub
 >
 > > ## Solution
 > > ~~~
