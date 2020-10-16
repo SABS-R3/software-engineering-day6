@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2020-10-14 16:44:30 +0100">
+    <meta http-equiv="last-modified" content="2020-10-16 16:49:28 +0100">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -266,8 +266,8 @@ it’s running and explore. This is where using a <strong>debugger</strong> can 
 <p>We wish to add a new function to our inflammation example, one that will normalise a 
 given inflammation data array so that all the entries lie between 0 and 1.</p>
 
-<p>Add a new function to <code class="language-plaintext highlighter-rouge">model.py</code> called <code class="language-plaintext highlighter-rouge">patient_normalise()</code>, and copy the following 
-code:</p>
+<p>Add a new function to <code class="language-plaintext highlighter-rouge">inflammation/models.py</code> called <code class="language-plaintext highlighter-rouge">patient_normalise()</code>, and copy 
+the following code:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">patient_normalise</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="s">"""Normalise patient data between 0 and 1 of a 2D inflammation data array."""</span>
@@ -388,14 +388,14 @@ beneficial to test them beforehand.</p>
 is meant to do. In the case of <code class="language-plaintext highlighter-rouge">patient_normalise</code> the goal of the function is to 
 normalise a numeric array of numbers. For numerical values the extrema cases could be 
 zeros, very large or small values, not-a-number (NaN), or infinity values. Since we are 
-specifically considering an <em>array</em> of values, an extrema case could be that all the 
+specifically considering an <em>array</em> of values, an edge case could be that all the 
 numbers of the array are equal.</p>
 
 <p>For all the given edge cases you might come up with, you should also consider their 
 likelihood of occurrence, it is often too much effort to exhaustively test a given 
-function, so you should priorities edge cases that are likely to happen in practice. For 
-our <code class="language-plaintext highlighter-rouge">patient_normalise</code> function, the most common edge cases would be the occurrence of 
-zeros, and the case where all the values of the array are the same.</p>
+function against every possible input, so you should priorities edge cases that are 
+likely to occer. For our <code class="language-plaintext highlighter-rouge">patient_normalise</code> function, some common edge cases might be 
+the occurrence of zeros, and the case where all the values of the array are the same.</p>
 
 <p>When you are considering edge cases to test for, try also to think about what might 
 break your code. For <code class="language-plaintext highlighter-rouge">patient_normalise</code> we can see that there is a division by the 
@@ -450,7 +450,7 @@ silence the run-time warning using
 
   <p>Fix the failing <code class="language-plaintext highlighter-rouge">test_patient_normalise</code> test, and think of some more suitable edge 
 cases to test our <code class="language-plaintext highlighter-rouge">patient_normalise()</code> function and add them to the parametrised 
-tests.</p>
+tests. After you have finished remember to commit your changes.</p>
 
   <blockquote class="solution">
     <h2 id="possible-solution">Possible Solution</h2>
@@ -584,7 +584,9 @@ another to check that it is of the correct shape. Add corresponding tests to che
 that the function raises the correct exception. You will probably find the Python 
 function <a href="https://docs.python.org/3/library/functions.html#isinstance"><code class="language-plaintext highlighter-rouge">isinstance</code></a> 
 useful here, as well as the Python exception 
-<a href="https://docs.python.org/3/library/exceptions.html#TypeError"><code class="language-plaintext highlighter-rouge">TypeError</code></a></p>
+<a href="https://docs.python.org/3/library/exceptions.html#TypeError"><code class="language-plaintext highlighter-rouge">TypeError</code></a>. Once you 
+are done, commit your new files, and push the new commits to your remote repository on 
+GitHub</p>
 
   <blockquote class="solution">
     <h2 id="solution">Solution</h2>

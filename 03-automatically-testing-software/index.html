@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2020-10-14 16:44:30 +0100">
+    <meta http-equiv="last-modified" content="2020-10-16 16:49:28 +0100">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -292,20 +292,39 @@ materials</a>. It’s based on a
 clinical trial of inflammation in patients who have been given a new treatment for 
 arthritis.</p>
 
-<p>First clone and install the repository:</p>
+<p>First create your own copy of the software project repository from GitHub:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/SABS-R3/2020-software-engineering-day6-inflammation.git 
-inflammation
+<ol>
+  <li>Log into your GitHub account and go to the <a href="https://github.com/SABS-R3/2020-software-engineering-day6-inflammation">template repository 
+URL</a>.</li>
+  <li>Click <code class="language-plaintext highlighter-rouge">Use this template</code> button towards the top right of the template repository’s 
+GitHub page to create a <strong>copy</strong> of the repository under your GitHub account. Note 
+that each participant is creating their own copy to work on. Also, we are not forking 
+the directory but creating a copy (remember - you can fork only once but can have 
+multiple copies in GitHub).</li>
+  <li>Make sure to select your personal account and set the name to the project 
+<code class="language-plaintext highlighter-rouge">inflammation</code> (you can call it anything you like, but it may be easier if everyone 
+uses the same name).</li>
+  <li>Locate the copied repository under your own GitHub account, and click the green 
+“Code” button to get the HTTPS or SSH url. Use this to clone the repository to your 
+local computer, for example:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/&lt;username&gt;/inflammation.git 
 <span class="nv">$ </span><span class="nb">cd </span>inflammation
-<span class="nv">$ </span>python3 <span class="nt">-m</span> venv <span class="nb">env</span>
+</code></pre></div></div>
+
+<p>Now create a new virtual environment and install the requirements.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3 <span class="nt">-m</span> venv <span class="nb">env</span>
 <span class="nv">$ </span><span class="nb">source env</span>/bin/activate
 <span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
 </code></pre></div></div>
 
-<p>Then, since we will be editing the code, we will create and checkout a new branch called 
-<code class="language-plaintext highlighter-rouge">develop</code>:</p>
+<p>Then, since we will be editing the code to create some new tests, we will create and 
+checkout a new branch called <code class="language-plaintext highlighter-rouge">test-suite</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout <span class="nt">-b</span> develop
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout <span class="nt">-b</span> test-suite
 </code></pre></div></div>
 
 <p>There are a number of these data sets in the <code class="language-plaintext highlighter-rouge">data</code> directory, and are each stored in 
@@ -373,8 +392,8 @@ all. It would be more helpful if we could get data from all of our tests every t
 they’re run, since the more information we have, the faster we’re likely to be able to 
 track down bugs. It would also be helpful to have some kind of summary report: if our 
 set of test - known as a <strong>test suite</strong> - includes thirty or forty tests (as it well 
-might for a complex function or library that’s widely used), we’d like to know how many 
-passed or failed.</p>
+might for a more complex function or library), we’d like to know how many passed or 
+failed.</p>
 
 <p>So what has failed? As it turns out, the first test we just ran was incorrect, and should have read:</p>
 
@@ -459,7 +478,8 @@ don’t wish to have this line reformatted, just to maintain clarity.</p>
 
 <h4 id="install-pytest">Install pytest</h4>
 
-<p>One of the first things we need to do is install the pytest package in our virtual environment. Instead of using PyCharm to configure the Conda environment, let’s use the <code class="language-plaintext highlighter-rouge">pip</code> command from the command line instead:</p>
+<p>One of the first things we need to do is install the pytest package in our virtual 
+environment using <code class="language-plaintext highlighter-rouge">pip</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>pytest
 </code></pre></div></div>
@@ -479,16 +499,16 @@ Successfully installed pytest-6.0.2
 
 <h4 id="set-up-a-new-feature-branch-for-writing-tests">Set up a new feature branch for writing tests</h4>
 
-<p>Since we’re going to write some new tests, let’s ensure we’re initially on our <code class="language-plaintext highlighter-rouge">develop</code> branch we created earlier. And then, we’ll create a new feature branch called <code class="language-plaintext highlighter-rouge">test-suite</code> - a common term we use to refer to sets of tests - that we’ll use for our initial test writing work:</p>
+<p>Since we’re going to write some new tests, let’s ensure we’re initially on our 
+<code class="language-plaintext highlighter-rouge">test-suite</code> branch we created earlier:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout develop
-<span class="nv">$ </span>git branch test-suite
-<span class="nv">$ </span>git checkout test-suite
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout test-suite
 </code></pre></div></div>
 
 <p>Good practice is to write our tests around the same time we write our code on a feature branch. But since the code already exists, we’re creating a feature branch for just these extra tests. Git branches are designed to be lightweight, and where necessary, transient, and use of branches for even small bits of work is encouraged.</p>
 
-<p>Once we’ve finished writing these tests and are convinced they work properly, we’ll merge our <code class="language-plaintext highlighter-rouge">test-suite</code> branch back into <code class="language-plaintext highlighter-rouge">develop</code>.</p>
+<p>Once we’ve finished writing these tests and are convinced they work properly, we’ll 
+merge our <code class="language-plaintext highlighter-rouge">test-suite</code> branch back into <code class="language-plaintext highlighter-rouge">master</code>.</p>
 
 <h4 id="write-a-metadata-package-description">Write a metadata package description</h4>
 
@@ -665,14 +685,14 @@ which will be run sequentially.</p>
     <span class="n">npt</span><span class="p">.</span><span class="n">assert_array_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">daily_min</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)))</span>
 <span class="p">...</span>
 </code></pre></div>    </div>
-    <p>function test_daily_max()</p>
   </blockquote>
 
 </blockquote>
 
 <p>Try them out!</p>
 
-<p>Let’s commit our new <code class="language-plaintext highlighter-rouge">pytest.py</code> file and test cases to our <code class="language-plaintext highlighter-rouge">test-suite</code> branch (but don’t push it yet!):</p>
+<p>Let’s commit our new <code class="language-plaintext highlighter-rouge">test_models.py</code> file and test cases to our <code class="language-plaintext highlighter-rouge">test-suite</code> branch 
+(but don’t push it yet!):</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add setup.py tests/test_models.py
 <span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add initial test cases for daily_max() and daily_min()"</span>
@@ -724,7 +744,7 @@ GitHub repository URL to locate it. Before committing it to GitHub, we should re
 this line, since we only need it for development. Do that now, and once done:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add requirements.txt
-<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add coverage support"</span> requirements.txt
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add coverage support"</span>
 <span class="nv">$ </span>git push <span class="nt">-u</span> origin test-suite
 </code></pre></div></div>
 
