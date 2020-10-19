@@ -73,17 +73,17 @@ First create your own copy of the software project repository from GitHub:
    local computer, for example:
 
 ```
-$ git clone https://github.com/<username>/inflammation.git 
-$ cd inflammation
+git clone https://github.com/<username>/inflammation.git
+cd inflammation
 ```
 {: .language-bash}
 
 Now create a new virtual environment and install the requirements.
 
 ```
-$ python3 -m venv env
-$ source env/bin/activate
-$ pip install -r requirements.txt
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
 ```
 {: .language-bash}
 
@@ -91,7 +91,7 @@ Then, since we will be editing the code to create some new tests, we will create
 checkout a new branch called `test-suite`:
 
 ```bash
-$ git checkout -b test-suite
+git checkout -b test-suite
 ```
 {: .language-bash}
 
@@ -103,7 +103,7 @@ Let's take a quick look now. Start the Python interpreter on the command line, i
 repository root `inflammation` directory:
 
 ~~~
-$ python
+python
 ~~~
 {: .language-bash}
 
@@ -289,7 +289,7 @@ Since we're going to write some new tests, let's ensure we're initially on our
 `test-suite` branch we created earlier:
 
 ~~~
-$ git checkout test-suite
+git checkout test-suite
 ~~~
 {: .language-bash}
 
@@ -316,8 +316,8 @@ setup(name="patient-analysis", version='1.0', packages=find_packages())
 This is a typical short `setup.py` that will enable pytest to locate the Python source files to test, that we have in the `inflammation` directory. But first, we need to install our code as a local package:
 
 ~~~
-$ pip install -e .
-$ pip list
+pip install -e .
+pip list
 ~~~
 {: .language-bash}
 
@@ -337,7 +337,7 @@ This will install our code, as a package, within our virtual environment. The `-
 Now we can run these tests using pytest:
 
 ~~~
-$ pytest tests/test_models.py
+pytest tests/test_models.py
 ~~~
 {: .language-bash}
 
@@ -498,8 +498,8 @@ Let's commit our new `test_models.py` file and test cases to our `test-suite` br
 (but don't push it yet!):
 
 ~~~
-$ git add setup.py tests/test_models.py
-$ git commit -m "Add initial test cases for daily_max() and daily_min()"
+git add setup.py tests/test_models.py
+git commit -m "Add initial test cases for daily_max() and daily_min()"
 ~~~
 {: .language-bash}
 
@@ -513,8 +513,8 @@ Now, we should try to choose tests that are as different from each other as poss
 A simple way to check the code coverage for a set of tests is to use nose to tell us how many statements in our code are being tested. By installing a Python package to our virtual environment called `pytest-cov` that is used by pytest and using that, we can find this out:
 
 ~~~
-$ pip install pytest-cov
-$ pytest --cov=inflammation.models tests/test_models.py
+pip install pytest-cov
+pytest --cov=inflammation.models tests/test_models.py
 ~~~
 {: .language-bash}
 
@@ -545,8 +545,8 @@ Here we can see that our tests are doing very well - 89% of statements in `infla
 We should also update our `requirements.txt` file with our latest package environment, which now includes `pytest-cov`, and commit it:
 
 ~~~
-$ pip freeze > requirements.txt
-$ cat requirements.txt
+pip freeze > requirements.txt
+cat requirements.txt
 ~~~
 {: .language-bash}
 
@@ -556,9 +556,9 @@ GitHub repository URL to locate it. Before committing it to GitHub, we should re
 this line, since we only need it for development. Do that now, and once done:
 
 ~~~
-$ git add requirements.txt
-$ git commit -m "Add coverage support"
-$ git push -u origin test-suite
+git add requirements.txt
+git commit -m "Add coverage support"
+git push -u origin test-suite
 ~~~
 {: .language-bash}
 
