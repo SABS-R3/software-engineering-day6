@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2020-10-19 12:29:11 +0100">
+    <meta http-equiv="last-modified" content="2020-10-19 15:38:02 +0100">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -708,7 +708,7 @@ git commit <span class="nt">-m</span> <span class="s2">"Add initial test cases f
 
 <p>Now, we should try to choose tests that are as different from each other as possible, so that we force the code we’re testing to execute in all the different ways it can - to ensure our tests have a high degree of <strong>code coverage</strong>.</p>
 
-<p>A simple way to check the code coverage for a set of tests is to use nose to tell us how many statements in our code are being tested. By installing a Python package to our virtual environment called <code class="language-plaintext highlighter-rouge">pytest-cov</code> that is used by pytest and using that, we can find this out:</p>
+<p>A simple way to check the code coverage for a set of tests is to use <code class="language-plaintext highlighter-rouge">pytest</code> to tell us how many statements in our code are being tested. By installing a Python package to our virtual environment called <code class="language-plaintext highlighter-rouge">pytest-cov</code> that is used by pytest and using that, we can find this out:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pytest-cov
 pytest <span class="nt">--cov</span><span class="o">=</span>inflammation.models tests/test_models.py
@@ -758,7 +758,7 @@ git push <span class="nt">-u</span> origin test-suite
 
 <p>It’s also important to remember that unit testing cannot catch every bug in an application, no matter how many tests you write. To mitigate this manual testing is also important. Also remember to test using as much input data as you can, since very often code is developed and tested against the same small sets of data. Increasing the amount of data you test against - from numerous sources - gives you greater confidence that the results are correct.</p>
 
-<p>Our software will inevitably increases in complexity as it develops. Using automated testing where appropriate can save us considerable time, especially in the long term, and allows others to verify against correct behaviour.</p>
+<p>Our software will inevitably increase in complexity as it develops. Using automated testing where appropriate can save us considerable time, especially in the long term, and allows others to verify against correct behaviour.</p>
 
 
 

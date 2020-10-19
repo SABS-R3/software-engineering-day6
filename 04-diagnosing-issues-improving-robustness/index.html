@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2020-10-19 12:29:11 +0100">
+    <meta http-equiv="last-modified" content="2020-10-19 15:38:02 +0100">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -323,7 +323,7 @@ tests/test_models.py:53: AssertionError
 
 <p>Let’s use a debugger to see what’s going on and why the function failed. Think of it like performing exploratory surgery - on code! Debuggers allow us to peer at the internal workings of a program, such as variables and other state, as it performs its functions.</p>
 
-<p>First we will setup VSCode to run and debug our tests. If you havn’t done so already, 
+<p>First we will set up VSCode to run and debug our tests. If you haven’t done so already, 
 you will first need to enable the PyTest framework in VSCode. You can do this by 
 selecting the <code class="language-plaintext highlighter-rouge">Python: Configure Tests</code> command in the Command Palette (Ctrl+Shift+P). 
 This will then prompt you to select a test framework (<code class="language-plaintext highlighter-rouge">Pytest</code>), and a directory 
@@ -340,12 +340,12 @@ that VSCode runs the function, and the same <code class="language-plaintext high
 
 <p>Now we want to use the debugger to investigate what is happening inside the 
 <code class="language-plaintext highlighter-rouge">patient_normalise</code> function. To do this we will add a <em>breakpoint</em> in the code. 
-Navigate to the <code class="language-plaintext highlighter-rouge">models.py</code> file and move you mouse to the return statement of the 
+Navigate to the <code class="language-plaintext highlighter-rouge">models.py</code> file and move your mouse to the return statement of the 
 <code class="language-plaintext highlighter-rouge">patient_normalise</code> function. Click to the left of the line number for that line and a 
 small red dot will appear, indicating that you have placed a breakpoint on that line. 
 Now if you debug <code class="language-plaintext highlighter-rouge">test_patient_normalise</code>, you will notice that execution will be paused 
 at the return statement of <code class="language-plaintext highlighter-rouge">patient_normalise</code>, and we can investigate the exact state 
-of the program at it is executing this line of code. Navigate to the Run view, and you 
+of the program as it is executing this line of code. Navigate to the Run view, and you 
 will be able to see the local and global variables currently in memory, the call stack 
 (i.e. what functions are currently running), and the current list of breakpoints. In the 
 local variables section you will be able to see the <code class="language-plaintext highlighter-rouge">data</code> array that is input to the 
@@ -393,8 +393,8 @@ numbers of the array are equal.</p>
 
 <p>For all the given edge cases you might come up with, you should also consider their 
 likelihood of occurrence, it is often too much effort to exhaustively test a given 
-function against every possible input, so you should priorities edge cases that are 
-likely to occer. For our <code class="language-plaintext highlighter-rouge">patient_normalise</code> function, some common edge cases might be 
+function against every possible input, so you should prioritise edge cases that are 
+likely to occur. For our <code class="language-plaintext highlighter-rouge">patient_normalise</code> function, some common edge cases might be 
 the occurrence of zeros, and the case where all the values of the array are the same.</p>
 
 <p>When you are considering edge cases to test for, try also to think about what might 
