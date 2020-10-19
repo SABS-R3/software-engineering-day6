@@ -173,7 +173,7 @@ Python halts at the first failed assertion, so the second and third tests are no
 all. It would be more helpful if we could get data from all of our tests every time 
 they’re run, since the more information we have, the faster we’re likely to be able to 
 track down bugs. It would also be helpful to have some kind of summary report: if our 
-set of test - known as a **test suite** - includes thirty or forty tests (as it well 
+set of tests - known as a **test suite** - includes thirty or forty tests (as it well 
 might for a more complex function or library), we’d like to know how many passed or 
 failed.
 
