@@ -147,7 +147,7 @@ AssertionError
 ~~~
 {: .output}
 
-This result is useful, in the sense that we know something’s wrong, but look closely at what happens if we run the tests in a different order:
+This result is useful, in the sense that we know something's wrong, but look closely at what happens if we run the tests in a different order:
 
 ~~~
 from inflammation.models import daily_mean
@@ -171,10 +171,10 @@ AssertionError
 We could put these in a separate script to automate the running of these tests. But 
 Python halts at the first failed assertion, so the second and third tests are not run at 
 all. It would be more helpful if we could get data from all of our tests every time 
-they’re run, since the more information we have, the faster we’re likely to be able to 
+they're run, since the more information we have, the faster we're likely to be able to 
 track down bugs. It would also be helpful to have some kind of summary report: if our 
 set of tests - known as a **test suite** - includes thirty or forty tests (as it well 
-might for a more complex function or library), we’d like to know how many passed or 
+might for a more complex function or library), we'd like to know how many passed or 
 failed.
 
 So what has failed? As it turns out, the first test we just ran was incorrect, and should have read:
@@ -188,14 +188,14 @@ Which highlights an important point: as well as making sure our code is returnin
 
 ### Using a testing framework
 
-Most people don’t enjoy writing tests, so if we want them to actually do it, it must be easy to:
+Most people don't enjoy writing tests, so if we want them to actually do it, it must be easy to:
 
 - Add or change tests,
 - Understand the tests that have already been written,
 - Run those tests, and
-- Understand those tests’ results
+- Understand those tests' results
 
-Test results must also be reliable. If a testing tool says that code is working when it’s not, or reports problems when there actually aren’t any, people will lose faith in it and stop using it.
+Test results must also be reliable. If a testing tool says that code is working when it's not, or reports problems when there actually aren't any, people will lose faith in it and stop using it.
 
 Keeping these things in mind, here's a different approach. Look at 
 `tests/test_models.py`:
@@ -400,7 +400,7 @@ So if we have many tests, we essentially get a report indicating which tests suc
 >
 {: .challenge}
 
-The big advantage is that as our code develops, we can update our test cases and commit them back, ensuring that ourselves (and others) always have a set of tests to verify our code at each step of development. This way, when we implement a new feature, we can check a) that the feature works using a test we write for it, and b) that the development of the new feature doesn’t break any existing functionality.
+The big advantage is that as our code develops, we can update our test cases and commit them back, ensuring that ourselves (and others) always have a set of tests to verify our code at each step of development. This way, when we implement a new feature, we can check a) that the feature works using a test we write for it, and b) that the development of the new feature doesn't break any existing functionality.
 
 ### What about testing for errors?
 
@@ -506,9 +506,9 @@ git commit -m "Add initial test cases for daily_max() and daily_min()"
 
 ## Using code coverage to understand how much of our code is tested
 
-Pytest can’t think of test cases for us. We still have to decide what to test and how many tests to run. Our best guide here is economics: we want the tests that are most likely to give us useful information that we don’t already have. For example, if `daily_mean(np.array([[2, 0], [4, 0]])))` works, there’s probably not much point testing `daily_mean(np.array([[3, 0], [4, 0]])))`, since it’s hard to think of a bug that would show up in one case but not in the other.
+Pytest can't think of test cases for us. We still have to decide what to test and how many tests to run. Our best guide here is economics: we want the tests that are most likely to give us useful information that we don't already have. For example, if `daily_mean(np.array([[2, 0], [4, 0]])))` works, there's probably not much point testing `daily_mean(np.array([[3, 0], [4, 0]])))`, since it's hard to think of a bug that would show up in one case but not in the other.
 
-Now, we should try to choose tests that are as different from each other as possible, so that we force the code we’re testing to execute in all the different ways it can - to ensure our tests have a high degree of **code coverage**.
+Now, we should try to choose tests that are as different from each other as possible, so that we force the code we're testing to execute in all the different ways it can - to ensure our tests have a high degree of **code coverage**.
 
 A simple way to check the code coverage for a set of tests is to use `pytest` to tell us how many statements in our code are being tested. By installing a Python package to our virtual environment called `pytest-cov` that is used by pytest and using that, we can find this out:
 
@@ -565,7 +565,7 @@ git push -u origin test-suite
 
 ## Limits to testing
 
-Like any other piece of experimental apparatus, a complex program requires a much higher investment in testing than a simple one. Putting it another way, a small script that is only going to be used once, to produce one figure, probably doesn’t need separate testing: its output is either correct or not. A linear algebra library that will be used by thousands of people in twice that number of applications over the course of a decade, on the other hand, definitely does. The key is identify and prioritise against what will most affect the code's ability to generate accurate results.
+Like any other piece of experimental apparatus, a complex program requires a much higher investment in testing than a simple one. Putting it another way, a small script that is only going to be used once, to produce one figure, probably doesn't need separate testing: its output is either correct or not. A linear algebra library that will be used by thousands of people in twice that number of applications over the course of a decade, on the other hand, definitely does. The key is identify and prioritise against what will most affect the code's ability to generate accurate results.
 
 It's also important to remember that unit testing cannot catch every bug in an application, no matter how many tests you write. To mitigate this manual testing is also important. Also remember to test using as much input data as you can, since very often code is developed and tested against the same small sets of data. Increasing the amount of data you test against - from numerous sources - gives you greater confidence that the results are correct.
 

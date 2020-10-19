@@ -98,7 +98,7 @@ tests/test_models.py:53: AssertionError
 
 Let's use a debugger to see what's going on and why the function failed. Think of it like performing exploratory surgery - on code! Debuggers allow us to peer at the internal workings of a program, such as variables and other state, as it performs its functions.
 
-First we will setup VSCode to run and debug our tests. If you havn't done so already, 
+First we will set up VSCode to run and debug our tests. If you haven't done so already, 
 you will first need to enable the PyTest framework in VSCode. You can do this by 
 selecting the `Python: Configure Tests` command in the Command Palette (Ctrl+Shift+P). 
 This will then prompt you to select a test framework (`Pytest`), and a directory 
@@ -171,8 +171,8 @@ numbers of the array are equal.
 
 For all the given edge cases you might come up with, you should also consider their 
 likelihood of occurrence, it is often too much effort to exhaustively test a given 
-function against every possible input, so you should priorities edge cases that are 
-likely to occer. For our `patient_normalise` function, some common edge cases might be 
+function against every possible input, so you should prioritise edge cases that are 
+likely to occur. For our `patient_normalise` function, some common edge cases might be 
 the occurrence of zeros, and the case where all the values of the array are the same. 
 
 When you are considering edge cases to test for, try also to think about what might 
