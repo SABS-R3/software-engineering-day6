@@ -300,7 +300,11 @@ merge our `test-suite` branch back into `master`.
 
 #### Write a metadata package description
 
-Another thing we need to do is create a `setup.py` in the root of our project repository. A `setup.py` file defines metadata about our software, such as its name and current version, and is typically used when writing and distributing Python code as packages:
+Another thing we need to do is create a `setup.py` in the root of our project 
+repository. A `setup.py` file defines metadata about our software, such as its name and 
+current version, and is typically used when writing and distributing Python code as 
+packages. Create a new file `setup.py` in the root directory of the `inflammation` 
+repository, with the following content:
 
 ~~~
 from setuptools import setup, find_packages
