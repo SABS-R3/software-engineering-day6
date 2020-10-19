@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2020-10-19 10:19:38 +0100">
+    <meta http-equiv="last-modified" content="2020-10-19 10:29:18 +0100">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -310,21 +310,21 @@ uses the same name).</li>
 local computer, for example:</li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/&lt;username&gt;/inflammation.git 
-<span class="nv">$ </span><span class="nb">cd </span>inflammation
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/&lt;username&gt;/inflammation.git
+<span class="nb">cd </span>inflammation
 </code></pre></div></div>
 
 <p>Now create a new virtual environment and install the requirements.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3 <span class="nt">-m</span> venv <span class="nb">env</span>
-<span class="nv">$ </span><span class="nb">source env</span>/bin/activate
-<span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> venv <span class="nb">env
+source env</span>/bin/activate
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
 </code></pre></div></div>
 
 <p>Then, since we will be editing the code to create some new tests, we will create and 
 checkout a new branch called <code class="language-plaintext highlighter-rouge">test-suite</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout <span class="nt">-b</span> test-suite
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> test-suite
 </code></pre></div></div>
 
 <p>There are a number of these data sets in the <code class="language-plaintext highlighter-rouge">data</code> directory, and are each stored in 
@@ -334,7 +334,7 @@ and the columns represent successive days.</p>
 <p>Let’s take a quick look now. Start the Python interpreter on the command line, in the 
 repository root <code class="language-plaintext highlighter-rouge">inflammation</code> directory:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python
 </code></pre></div></div>
 
 <p>And then enter the following:</p>
@@ -502,7 +502,7 @@ Successfully installed pytest-6.0.2
 <p>Since we’re going to write some new tests, let’s ensure we’re initially on our 
 <code class="language-plaintext highlighter-rouge">test-suite</code> branch we created earlier:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout test-suite
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout test-suite
 </code></pre></div></div>
 
 <p>Good practice is to write our tests around the same time we write our code on a feature branch. But since the code already exists, we’re creating a feature branch for just these extra tests. Git branches are designed to be lightweight, and where necessary, transient, and use of branches for even small bits of work is encouraged.</p>
@@ -525,8 +525,8 @@ repository, with the following content:</p>
 
 <p>This is a typical short <code class="language-plaintext highlighter-rouge">setup.py</code> that will enable pytest to locate the Python source files to test, that we have in the <code class="language-plaintext highlighter-rouge">inflammation</code> directory. But first, we need to install our code as a local package:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
-<span class="nv">$ </span>pip list
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
+pip list
 </code></pre></div></div>
 
 <p>We should see included with the other installed packages:</p>
@@ -542,7 +542,7 @@ patient-analysis 1.0    /Users/user/inflammation
 
 <p>Now we can run these tests using pytest:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pytest tests/test_models.py
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest tests/test_models.py
 </code></pre></div></div>
 
 <p>So here, we specify the <code class="language-plaintext highlighter-rouge">tests/test_models.py</code> file to run the tests in that file 
@@ -698,8 +698,8 @@ which will be run sequentially.</p>
 <p>Let’s commit our new <code class="language-plaintext highlighter-rouge">test_models.py</code> file and test cases to our <code class="language-plaintext highlighter-rouge">test-suite</code> branch 
 (but don’t push it yet!):</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add setup.py tests/test_models.py
-<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add initial test cases for daily_max() and daily_min()"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add setup.py tests/test_models.py
+git commit <span class="nt">-m</span> <span class="s2">"Add initial test cases for daily_max() and daily_min()"</span>
 </code></pre></div></div>
 
 <h2 id="using-code-coverage-to-understand-how-much-of-our-code-is-tested">Using code coverage to understand how much of our code is tested</h2>
@@ -710,8 +710,8 @@ which will be run sequentially.</p>
 
 <p>A simple way to check the code coverage for a set of tests is to use nose to tell us how many statements in our code are being tested. By installing a Python package to our virtual environment called <code class="language-plaintext highlighter-rouge">pytest-cov</code> that is used by pytest and using that, we can find this out:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>pytest-cov
-<span class="nv">$ </span>pytest <span class="nt">--cov</span><span class="o">=</span>inflammation.models tests/test_models.py
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pytest-cov
+pytest <span class="nt">--cov</span><span class="o">=</span>inflammation.models tests/test_models.py
 </code></pre></div></div>
 
 <p>So here, we specify the additional named argument <code class="language-plaintext highlighter-rouge">--cov</code> to PyTest specifying the code to analyse for test coverage.</p>
@@ -738,8 +738,8 @@ inflammation/models.py       9      1    89%
 
 <p>We should also update our <code class="language-plaintext highlighter-rouge">requirements.txt</code> file with our latest package environment, which now includes <code class="language-plaintext highlighter-rouge">pytest-cov</code>, and commit it:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip freeze <span class="o">&gt;</span> requirements.txt
-<span class="nv">$ </span><span class="nb">cat </span>requirements.txt
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze <span class="o">&gt;</span> requirements.txt
+<span class="nb">cat </span>requirements.txt
 </code></pre></div></div>
 
 <p>Now if you look at <code class="language-plaintext highlighter-rouge">requirement.txt</code> you’ll see <code class="language-plaintext highlighter-rouge">pytest-cov</code>, you’ll notice it has a 
@@ -747,9 +747,9 @@ line indicating our <code class="language-plaintext highlighter-rouge">inflammat
 GitHub repository URL to locate it. Before committing it to GitHub, we should remove 
 this line, since we only need it for development. Do that now, and once done:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add requirements.txt
-<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"Add coverage support"</span>
-<span class="nv">$ </span>git push <span class="nt">-u</span> origin test-suite
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add requirements.txt
+git commit <span class="nt">-m</span> <span class="s2">"Add coverage support"</span>
+git push <span class="nt">-u</span> origin test-suite
 </code></pre></div></div>
 
 <h2 id="limits-to-testing">Limits to testing</h2>
