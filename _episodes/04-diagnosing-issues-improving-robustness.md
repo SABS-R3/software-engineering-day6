@@ -109,7 +109,7 @@ icons to the right that either run, debug or open the `test_patient_normalise` t
 can see what this looks like in the screenshot below.
 
 
-![Patient normalise tests in VSCode](/fig/testsInVSCode.jpg)
+![Patient normalise tests in VSCode](../fig/testsInVSCode.jpg)
 
 Click on the "run" button next to `test_patient_normalise`, and you will be able to see 
 that VSCode runs the function, and the same `AssertionError` that we say before. 
@@ -128,7 +128,7 @@ local variables section you will be able to see the `data` array that is input t
 `patient_normalise` function, as well as the `max` local array that was created to hold 
 the maximum inflammation values for each patient. See below for a screenshot.
 
-![Debugging function in VSCode](/fig/debugInVSCode.jpg)
+![Debugging function in VSCode](../fig/debugInVSCode.jpg)
 
 In the Watch section of the Run view you can write any expression you want the debugger 
 to calculate, this is useful if you want to view a particular combination of variables, 
@@ -195,7 +195,7 @@ of all 0, and an input array of all 1.
 ~~~
 {: .language-python}
 
-Running the tests not results in the following assertion error, due to the division by 
+Running the tests now results in the following assertion error, due to the division by 
 zero as we predicted.
 
 ~~~
