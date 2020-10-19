@@ -434,8 +434,8 @@ We're starting to build up a number of tests that test the same function, but ju
 @pytest.mark.parametrize(
     "test, expected",
     [
-     ([[0, 0], [0, 0], [0, 0]], [0, 0]),
-     ([[1, 2], [3, 4], [5, 6]], [3, 4])
+        ([[0, 0], [0, 0], [0, 0]], [0, 0]),
+        ([[1, 2], [3, 4], [5, 6]], [3, 4]),
     ])
 def test_daily_mean(test, expected):
     """Test mean function works for array of zeroes and positive integers."""
