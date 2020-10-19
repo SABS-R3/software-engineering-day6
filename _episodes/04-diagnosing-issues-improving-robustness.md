@@ -116,12 +116,12 @@ that VSCode runs the function, and the same `AssertionError` that we say before.
 
 Now we want to use the debugger to investigate what is happening inside the 
 `patient_normalise` function. To do this we will add a *breakpoint* in the code. 
-Navigate to the `models.py` file and move you mouse to the return statement of the 
+Navigate to the `models.py` file and move your mouse to the return statement of the 
 `patient_normalise` function. Click to the left of the line number for that line and a 
 small red dot will appear, indicating that you have placed a breakpoint on that line. 
 Now if you debug `test_patient_normalise`, you will notice that execution will be paused 
 at the return statement of `patient_normalise`, and we can investigate the exact state 
-of the program at it is executing this line of code. Navigate to the Run view, and you 
+of the program as it is executing this line of code. Navigate to the Run view, and you 
 will be able to see the local and global variables currently in memory, the call stack 
 (i.e. what functions are currently running), and the current list of breakpoints. In the 
 local variables section you will be able to see the `data` array that is input to the 
