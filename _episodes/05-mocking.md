@@ -325,7 +325,7 @@ do. Here is a possible test using a `Mock` to replace the input `function` argum
 from unittest.mock import Mock
 
 def test_derivative_2d_y_direction():
-    func = Mock()
+    func = Mock(return_value=0)
     partial_derivative(func, [0,0], 1)
     func.assert_any_call([0, 1.0])
     func.assert_any_call([0, 0])
