@@ -315,7 +315,7 @@ Checking valid input to a function via preconditions is one of the simplest form
 function to make sure that all assumptions are satisfied. These assumptions are often 
 based on the *value* of the arguments, like we have already discussed. However, in a 
 dynamic language like Python one of the more common preconditions is to check that the 
-arguments of function are of the correct *type*. Currently there is nothing stopping 
+arguments of a function are of the correct *type*. Currently there is nothing stopping 
 someone from calling `patient_normalise` with a string, a dictionary, or another object 
 that is not an `ndarray`.
 
