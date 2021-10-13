@@ -59,7 +59,7 @@ arthritis.
 First create your own copy of the software project repository from GitHub:
 
 1. Log into your GitHub account and go to the [template repository 
-   URL](https://github.com/SABS-R3/2020-software-engineering-day6-inflammation).
+   URL](https://github.com/SABS-R3/software-engineering-day6-inflammation).
 2. Click `Use this template` button towards the top right of the template repository's 
    GitHub page to create a **copy** of the repository under your GitHub account. Note 
    that each participant is creating their own copy to work on. Also, we are not forking 
@@ -142,7 +142,7 @@ So here, our first test is testing that the average mean of a dataset that has v
 
 ~~~
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 6, in <module>
 AssertionError
 ~~~
 {: .output}
@@ -163,7 +163,7 @@ If we were to enter these in this order, we'd now get the following after the fi
 
 ~~~
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 3, in <module>
 AssertionError
 ~~~
 {: .output}
