@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2021-10-13 12:34:11 +0100">
+    <meta http-equiv="last-modified" content="2021-10-18 16:19:27 +0100">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -271,8 +271,8 @@ the following code:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">patient_normalise</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="s">"""Normalise patient data between 0 and 1 of a 2D inflammation data array."""</span>
-    <span class="nb">max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">data</span> <span class="o">/</span> <span class="nb">max</span><span class="p">[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="n">max_for_each_patient</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">/</span> <span class="n">max_for_each_patient</span><span class="p">[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>So here we’re attempting to normalise each patient’s inflammation data by the maximum 
@@ -565,11 +565,11 @@ argument of the right type, but an inappropriate value.</p>
             <span class="bp">None</span><span class="p">,</span>
         <span class="p">),</span>
     <span class="p">])</span>
-<span class="k">def</span> <span class="nf">test_patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">raises</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_patient_normalise</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">expected_error</span><span class="p">):</span>
     <span class="s">"""Test normalisation works for arrays of one and positive integers."""</span>
     <span class="kn">from</span> <span class="nn">inflammation.models</span> <span class="kn">import</span> <span class="n">patient_normalise</span>
-    <span class="k">if</span> <span class="n">raises</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">pytest</span><span class="p">.</span><span class="n">raises</span><span class="p">(</span><span class="n">raises</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">expected_error</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="p">.</span><span class="n">raises</span><span class="p">(</span><span class="n">expected_error</span><span class="p">):</span>
             <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">npt</span><span class="p">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected</span><span class="p">),</span> <span class="n">patient_normalise</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
