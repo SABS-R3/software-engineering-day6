@@ -41,8 +41,8 @@ the following code:
 ~~~
 def patient_normalise(data):
     """Normalise patient data between 0 and 1 of a 2D inflammation data array."""
-    max = np.max(data, axis=0)
-    return data / max[:, np.newaxis]
+    max_for_each_patient = np.max(data, axis=0)
+    return data / max_for_each_patient[:, np.newaxis]
 ~~~
 {: .language-python}
 
@@ -353,11 +353,11 @@ argument of the right type, but an inappropriate value.
             None,
         ),
     ])
-def test_patient_normalise(test, expected, raises):
+def test_patient_normalise(test, expected, expected_error):
     """Test normalisation works for arrays of one and positive integers."""
     from inflammation.models import patient_normalise
-    if raises:
-        with pytest.raises(raises):
+    if expected_error:
+        with pytest.raises(expected_error):
             npt.assert_almost_equal(np.array(expected), patient_normalise(np.array(test)), decimal=2)
     else:
         npt.assert_almost_equal(np.array(expected), patient_normalise(np.array(test)), decimal=2)
