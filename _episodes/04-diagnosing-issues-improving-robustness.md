@@ -353,11 +353,11 @@ argument of the right type, but an inappropriate value.
             None,
         ),
     ])
-def test_patient_normalise(test, expected, expected_error):
+def test_patient_normalise(test, expected, raises):
     """Test normalisation works for arrays of one and positive integers."""
     from inflammation.models import patient_normalise
-    if expected_error:
-        with pytest.raises(expected_error):
+    if raises:
+        with pytest.raises(raises):
             npt.assert_almost_equal(np.array(expected), patient_normalise(np.array(test)), decimal=2)
     else:
         npt.assert_almost_equal(np.array(expected), patient_normalise(np.array(test)), decimal=2)
